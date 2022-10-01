@@ -2,14 +2,14 @@ import java.time.LocalDate;
 
 public class Usuario {
 
-    private String nome;
-    private int id;
-    private String email;
-    private String senha;
-    private String numero;
-    private LocalDate dataNascimento;
-    private String genero;
-    private String sexo;
+    public String nome;
+    public int id;
+    public String email;
+    public String senha;
+    public String numero;
+    public LocalDate dataNascimento;
+    public String genero;
+    public String sexo;
     private boolean isLogado;
 
     public boolean isLogado() {
