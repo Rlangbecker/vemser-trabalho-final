@@ -7,9 +7,6 @@ public class Desafios implements VerificacaoResposta{
     String[] perguntas = new String[5];
     int[] respostas = new int[5];
 
-    List<Desafios> desafios = new ArrayList<>();
-
-
     public String[] getPerguntas() {
         return perguntas;
     }
@@ -31,29 +28,5 @@ public class Desafios implements VerificacaoResposta{
         return true;
     }
 
-
-    public void adicionarDesafio(Desafios desafio) {
-        if (desafios == null) {
-            desafios = new ArrayList<>();
-        }
-        desafios.add(desafio);
-    }
-
-    //    VERIFICAR METODO ATUALIZAR CONTATO
-    public void atualizarDesafio(int id, Desafios desafio) {
-        Desafios desafioAtualizar = desafios.get(id);
-        desafioAtualizar.setPerguntas(desafioAtualizar.getPerguntas());
-        desafioAtualizar.setRespostas(desafioAtualizar.getRespostas());
-    }
-
-    public void listarDesafios() {
-        for (int i = 0; i < desafios.size(); i++) {
-            System.out.println("ID -" + i + " | " + desafios.get(i));
-        }
-    }
-
-    public void deletarDesafio(int id) {
-        this.desafios.remove(id);
-    }
 }
 
