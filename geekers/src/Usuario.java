@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Usuario {
+public class Usuario implements Impressao {
 
     public String nome;
     public int id;
@@ -16,8 +16,7 @@ public class Usuario {
     public boolean logado;
 
     public List<Desafios> desafios = new ArrayList<>();
-    public List<Usuario>usuarios=new ArrayList<>();
-
+    public List<Usuario> usuarios = new ArrayList<>();
     public List<Usuario> matchs = new ArrayList<>();
 
     public String getNome() {
@@ -92,25 +91,29 @@ public class Usuario {
         this.logado = logado;
     }
 
-    public boolean logar(String email,String senha){
+    public boolean logar(String email, String senha) {
         logado = true;
         return logado;
     }
 
-    public boolean deslogar(){
-    logado = false;
+    public boolean deslogar() {
+        logado = false;
         return logado;
     }
 
-    public boolean darMatch(Usuario usuario,String frase){
+    public boolean darMatch(Usuario usuario, String frase) {
         return false;
     }
-    public void imprimirUsuario(){
-        System.out.println();
+
+    @Override
+    public void imprimir() {
+        System.out.println("Usuário: " + this.nome +
+                "\nID: " + this.id +
+                "\nE-mail: " + this.email + "." +
+                "\nNumero: " + this.numero + "." +
+                "\nData de nascimento: " + this.dataNascimento + "." +
+                "\nGenero: " + this.genero + "." +
+                "\nSexo: " + this.sexo + ".\n"
+        );
     }
-
-
-
-
-
 }
