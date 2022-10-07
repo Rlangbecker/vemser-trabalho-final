@@ -32,14 +32,16 @@ public class ContatoMatchs {
         }
     }
 
-    //VERIFICAR METODO LISTAR POR NOME
+    //ALTERAR PARA ID
     public void listarContatoPorNome(String nome){
+
         Optional<Usuario> seTiverNome = contatos.stream()
                 .filter(contatos-> contatos.getNome().toLowerCase().contains(nome))
                 .findFirst();
+
         if (seTiverNome.isPresent()){
             Usuario usuario=seTiverNome.get();
-            System.out.println(usuario.getId()+usuario.getNome());
+            System.out.println(usuario.getId()+" "+usuario.getNome());
         } else{
             System.out.println("Não há contatos com este nome.");
         }
