@@ -1,11 +1,19 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class HobbiesManipulacao {
+public class HobbiesManipulacao<T> {
     public Hobbies hobbies;
-    public List<Hobbies> listaHobbies=new ArrayList<>();
+    public List<T> listaHobbies=new ArrayList<>();
 
-    public void adicionarHobbies(Hobbies hobbie){
+
+    public HobbiesManipulacao() {
+    }
+
+    public HobbiesManipulacao(Hobbies hobbies) {
+        this.hobbies = hobbies;
+    }
+
+    public void adicionarHobbies(T hobbie){
         if(listaHobbies==null){
             listaHobbies = new ArrayList<>();
         }
@@ -34,5 +42,21 @@ public class HobbiesManipulacao {
         return "Hobbies :" + hobbies +
                 ", listaHobbies=" + listaHobbies +
                 '}';
+    }
+
+    public Hobbies getHobbies() {
+        return hobbies;
+    }
+
+    public void setHobbies(Hobbies hobbies) {
+        this.hobbies = hobbies;
+    }
+
+    public List<T> getListaHobbies() {
+        return listaHobbies;
+    }
+
+    public void setListaHobbies(List<T> listaHobbies) {
+        this.listaHobbies = listaHobbies;
     }
 }
