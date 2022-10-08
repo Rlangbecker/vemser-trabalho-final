@@ -19,6 +19,16 @@ public class Usuario {
 
     public List<Usuario> matchs = new ArrayList<>();
 
+    public List<Comentario> comentarios = new ArrayList<>();
+
+    public List<Comentario> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(List<Comentario> comentarios) {
+        this.comentarios = comentarios;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -148,6 +158,7 @@ public class Usuario {
                 ", desafios=" + desafios +
                 ", usuarios=" + usuarios +
                 ", matchs=" + matchs +
+                ", comentarios=" + comentarios +
                 '}';
     }
 }

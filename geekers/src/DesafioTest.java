@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -8,7 +9,10 @@ public class DesafioTest {
 
     Desafios desafios = new Desafios();
     DesafiosManipulacao<Desafios> desafiosManipulacao = new DesafiosManipulacao<>();
-
+    @BeforeEach
+    public void init() {
+        desafios = new Desafios();
+    }
     @Test
     public void deveTestarAdicionarDesafioComSucesso(){
         desafios.setResposta(Resposta.VERDADEIRO);
