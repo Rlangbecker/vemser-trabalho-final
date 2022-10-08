@@ -1,23 +1,18 @@
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
 public class Usuario implements Impressao {
 
-    public String nome;
-    public int id;
-    public String email;
-    public String numero;
-    public String senha;
-    public LocalDate dataNascimento;
-    public String genero;
-    public String sexo;
-    public boolean logado;
+    private String nome;
+    private int id;
+    private String email;
+    private String telefone;
+    private String senha;
+    private LocalDate dataNascimento;
+    private String genero;
+    private String sexo;
+    private boolean logado;
 
-    public List<Desafios> desafios = new ArrayList<>();
-    public List<Usuario> usuarios = new ArrayList<>();
-    public List<Usuario> matchs = new ArrayList<>();
+
 
     public String getNome() {
         return nome;
@@ -43,12 +38,12 @@ public class Usuario implements Impressao {
         this.email = email;
     }
 
-    public String getNumero() {
-        return numero;
+    public String getTelefone() {
+        return telefone;
     }
 
-    public void setNumero(String numero) {
-        this.numero = numero;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
     public String getSenha() {
@@ -110,7 +105,7 @@ public class Usuario implements Impressao {
         System.out.println("Usuário: " + this.nome +
                 "\nID: " + this.id +
                 "\nE-mail: " + this.email + "." +
-                "\nNumero: " + this.numero + "." +
+                "\nNumero: " + this.telefone + "." +
                 "\nData de nascimento: " + this.dataNascimento + "." +
                 "\nGenero: " + this.genero + "." +
                 "\nSexo: " + this.sexo + ".\n"
