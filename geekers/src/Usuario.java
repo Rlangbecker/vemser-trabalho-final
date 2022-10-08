@@ -12,7 +12,27 @@ public class Usuario implements Impressao {
     private String sexo;
     private boolean logado;
 
+    public Usuario() {
+    }
 
+    public Usuario(int id, String email, String telefone, String senha, String genero, String sexo) {
+        this.id = id;
+        this.email = email;
+        this.telefone = telefone;
+        this.senha = senha;
+        this.genero = genero;
+        this.sexo = sexo;
+    }
+
+    public Usuario(String nome, int id, String email, String telefone, String senha, String genero, String sexo) {
+        this.nome = nome;
+        this.id = id;
+        this.email = email;
+        this.telefone = telefone;
+        this.senha = senha;
+        this.genero = genero;
+        this.sexo = sexo;
+    }
 
     public String getNome() {
         return nome;

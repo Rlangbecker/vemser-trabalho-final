@@ -15,6 +15,10 @@ public class UsuarioManipulacao {
     private List<Desafios> desafios = new ArrayList<>();
     private List<Usuario> matchs = new ArrayList<>();
 
+    public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
     public void adicionarUsuario(Usuario usuario) {
         if (usuarios == null) {
             usuarios = new ArrayList<>();
