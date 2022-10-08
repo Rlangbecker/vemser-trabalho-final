@@ -17,6 +17,12 @@ public class Main {
         usuario.setDesafios(listarDesafio);
         System.out.println(usuario.getDesafios());
 
+        desafiosManipulacao.atualizarDesafio(desafios, "Onepiece é melhor que digimon? ", Resposta.FALSO);
+        System.out.println(usuario.getDesafios());
+
+        desafiosManipulacao.deletarDesafio();
+        System.out.println(usuario.getDesafios());
+
         desafios.verificarResposta(Resposta.VERDADEIRO);
     }
 }
