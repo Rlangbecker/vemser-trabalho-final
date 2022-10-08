@@ -1,7 +1,7 @@
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
+
+import static java.util.stream.Collectors.toMap;
 
 public class Usuario {
 
@@ -10,15 +10,44 @@ public class Usuario {
     public String email;
     public String numero;
     public String senha;
-    public LocalDate dataNascimento;
+    public int idade;
     public String genero;
     public String sexo;
     public boolean logado;
 
     public List<Desafios> desafios = new ArrayList<>();
-    public List<Usuario>usuarios=new ArrayList<>();
 
     public List<Usuario> matchs = new ArrayList<>();
+
+
+    public List<Desafios> getDesafios() {
+        return desafios;
+    }
+
+    public void setDesafios(List<Desafios> desafios) {
+        this.desafios = desafios;
+    }
+
+
+
+
+    public void setMatchs(List<Usuario> matchs) {
+        this.matchs = matchs;
+    }
+
+    public Usuario() {
+    }
+
+    public Usuario(String nome, String email, String senha, String numero, int idade, String genero, String sexo) {
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.numero = numero;
+        this.idade = idade;
+        this.genero = genero;
+        this.sexo = sexo;
+
+    }
 
     public String getNome() {
         return nome;
@@ -60,12 +89,12 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
+    public int getIdade() {
+        return idade;
     }
 
-    public void setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;
+    public void setIdade(int idade) {
+        this.idade = idade;
     }
 
     public String getGenero() {
@@ -92,25 +121,29 @@ public class Usuario {
         this.logado = logado;
     }
 
-    public boolean logar(String email,String senha){
-        logado = true;
+
+
+
+    public boolean deslogar() {
+        logado = false;
         return logado;
     }
 
-    public boolean deslogar(){
-    logado = false;
-        return logado;
-    }
-
-    public boolean darMatch(Usuario usuario,String frase){
+    public boolean darMatch(Usuario usuario, String frase) {
         return false;
     }
-    public void imprimirUsuario(){
+
+    public void imprimirUsuario() {
         System.out.println();
     }
 
-
-
-
-
+    @Override
+    public String toString() {
+        return "Nome='" + nome +
+                ", id=" + id +
+                ", email='" + email +
+                ", idade=" + idade +
+                ", genero='" + genero +
+                ", sexo='" + sexo;
+    }
 }

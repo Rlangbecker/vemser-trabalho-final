@@ -18,13 +18,21 @@ public class HobbiesManipulacao {
         }
     }
 
-    public void atualizarHobbie(int id,Hobbies hobbies){
-        Hobbies editarHobbie = listaHobbies.get(id);
-        editarHobbie.setHobbies(hobbies.getHobbies());
-        editarHobbie.setDescricao(hobbies.getDescricao());
+    public void atualizarHobbie(Hobbies hobbies, TipoHobbies tipoHobbies, String descricaoHobbie){
+
+        Hobbies hobbiesAtualizar = (Hobbies) listaHobbies.get(0);
+
+        hobbiesAtualizar.setHobbies(tipoHobbies);
+        hobbiesAtualizar.setDescricao(descricaoHobbie);
     }
     public void deletarHobbie(int id){
         this.listaHobbies.remove(id);
     }
 
+    @Override
+    public String toString() {
+        return "Hobbies :" + hobbies +
+                ", listaHobbies=" + listaHobbies +
+                '}';
+    }
 }
