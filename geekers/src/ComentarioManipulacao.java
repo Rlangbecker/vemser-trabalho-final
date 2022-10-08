@@ -1,29 +1,38 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class ComentarioManipulacao{
+public class ComentarioManipulacao<T>{
 
-    public List<Comentario> comentarios = new ArrayList<>();
+    public List<T> comentarios = new ArrayList<>();
 
-    public void adicionarComentario(Comentario comentario){
+    public boolean adicionarComentario(T comentario){
         if(comentarios==null){
             comentarios = new ArrayList<>();
+            return false;
         }
-        comentarios.add(comentario);
-    }
-
-    public void listarComentario(){
-        for (int i = 0; i <comentarios.size() ; i++) {
-            System.out.println("ID -" + i + " | " + comentarios.get(i));
+        else{
+            comentarios.add(comentario);
+            return true;
         }
     }
 
-    public void atualizarComentario(int id, Comentario comentario){
-        Comentario editarComentario = comentarios.get(id);
-        editarComentario.setComentario(comentario.getComentario());
+    public List<T> listarComentario(){
+        return comentarios;
     }
-    public void deletarHobbie(int id){
-        this.comentarios.remove(id);
+
+    public void atualizarComentario(Comentario comentario, String novoComentario){
+        Comentario editarComentario = (Comentario) comentarios.get(0);
+        editarComentario.setComentario(novoComentario);
+    }
+    public boolean deletarComentario(){
+        if(comentarios==null){
+            comentarios = new ArrayList<>();
+            return false;
+        }
+        else {
+            comentarios.remove(0);
+            return true;
+        }
     }
 
 

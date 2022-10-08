@@ -5,26 +5,30 @@ public class DesafiosManipulacao<T> {
     private List<T> desafios = new ArrayList<>();
     Desafios desafio = new Desafios();
 
-    public void adicionarDesafio(T desafio) {
+    public boolean adicionarDesafio(T desafio) {
         if (desafios == null) {
             desafios = new ArrayList<>();
+            return false;
         }
-        desafios.add(desafio);
+        else {
+            desafios.add(desafio);
+            return true;
+        }
+
     }
 
-    //    VERIFICAR METODO ATUALIZAR CONTATO
-//    public void atualizarDesafio(int id, Desafios desafio) {
-//        Desafios desafioAtualizar = desafios.get(id);
-//        desafioAtualizar.setPergunta(desafioAtualizar.getPergunta());
-//        desafioAtualizar.setResposta(desafioAtualizar.getResposta());
-//    }
+    public void atualizarDesafio(Desafios desafio, String novaPergunta, Resposta novaResposta) {
+        Desafios desafioAtualizar = (Desafios) desafios.get(0);
+        desafioAtualizar.setPergunta(novaPergunta);
+        desafioAtualizar.setResposta(novaResposta);
+    }
 
     public List<T> listarDesafios() {
         return desafios;
     }
 
-    public void deletarDesafio(int id) {
-        this.desafios.remove(id);
+    public void deletarDesafio() {
+        this.desafios.remove(0);
     }
 
     @Override
