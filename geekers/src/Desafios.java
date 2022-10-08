@@ -4,56 +4,51 @@ import java.util.Optional;
 
 public class Desafios implements VerificacaoResposta{
 
-    String[] perguntas = new String[5];
-    int[] respostas = new int[5];
+    String pergunta;
+    Resposta resposta;
 
-    List<Desafios> desafios = new ArrayList<>();
+    public Desafios(){
 
-
-    public String[] getPerguntas() {
-        return perguntas;
     }
 
-    public void setPerguntas(String[] perguntas) {
-        this.perguntas = perguntas;
+    public Desafios(String pergunta, Resposta resposta) {
+        this.pergunta = pergunta;
+        this.resposta = resposta;
     }
 
-    public int[] getRespostas() {
-        return respostas;
+    public String getPergunta() {
+        return pergunta;
     }
 
-    public void setRespostas(int[] respostas) {
-        this.respostas = respostas;
+    public void setPergunta(String pergunta) {
+        this.pergunta = pergunta;
     }
 
-
-    public boolean verificarResposta(int opcao) {
-        return true;
+    public Resposta getResposta() {
+        return resposta;
     }
 
+    public void setResposta(Resposta resposta) {
+        this.resposta = resposta;
+    }
 
-    public void adicionarDesafio(Desafios desafio) {
-        if (desafios == null) {
-            desafios = new ArrayList<>();
+    public boolean verificarResposta(Resposta opcao) {
+        if (opcao == getResposta()){
+            System.out.println("Resposta Correta!");
+            return true;
         }
-        desafios.add(desafio);
-    }
-
-    //    VERIFICAR METODO ATUALIZAR CONTATO
-    public void atualizarDesafio(int id, Desafios desafio) {
-        Desafios desafioAtualizar = desafios.get(id);
-        desafioAtualizar.setPerguntas(desafioAtualizar.getPerguntas());
-        desafioAtualizar.setRespostas(desafioAtualizar.getRespostas());
-    }
-
-    public void listarDesafios() {
-        for (int i = 0; i < desafios.size(); i++) {
-            System.out.println("ID -" + i + " | " + desafios.get(i));
+        else {
+            System.out.println("Resposta Errada!");
+            return false;
         }
     }
 
-    public void deletarDesafio(int id) {
-        this.desafios.remove(id);
+    @Override
+    public String toString() {
+        return "Desafios{" +
+                "pergunta='" + pergunta + '\'' +
+                ", resposta=" + resposta +
+                '}';
     }
 }
 

@@ -1,6 +1,5 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class Usuario {
@@ -88,6 +87,30 @@ public class Usuario {
         return logado;
     }
 
+    public List<Desafios> getDesafios() {
+        return desafios;
+    }
+
+    public void setDesafios(List<Desafios> desafios) {
+        this.desafios = desafios;
+    }
+
+    public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
+
+    public List<Usuario> getMatchs() {
+        return matchs;
+    }
+
+    public void setMatchs(List<Usuario> matchs) {
+        this.matchs = matchs;
+    }
+
     public void setLogado(boolean logado) {
         this.logado = logado;
     }
@@ -110,7 +133,21 @@ public class Usuario {
     }
 
 
-
-
-
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "nome='" + nome + '\'' +
+                ", id=" + id +
+                ", email='" + email + '\'' +
+                ", numero='" + numero + '\'' +
+                ", senha='" + senha + '\'' +
+                ", dataNascimento=" + dataNascimento +
+                ", genero='" + genero + '\'' +
+                ", sexo='" + sexo + '\'' +
+                ", logado=" + logado +
+                ", desafios=" + desafios +
+                ", usuarios=" + usuarios +
+                ", matchs=" + matchs +
+                '}';
+    }
 }
