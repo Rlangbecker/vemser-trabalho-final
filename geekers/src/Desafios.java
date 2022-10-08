@@ -4,29 +4,51 @@ import java.util.Optional;
 
 public class Desafios implements VerificacaoResposta{
 
-    String[] perguntas = new String[5];
-    int[] respostas = new int[5];
+    String pergunta;
+    Resposta resposta;
 
-    public String[] getPerguntas() {
-        return perguntas;
+    public Desafios(){
+
     }
 
-    public void setPerguntas(String[] perguntas) {
-        this.perguntas = perguntas;
+    public Desafios(String pergunta, Resposta resposta) {
+        this.pergunta = pergunta;
+        this.resposta = resposta;
     }
 
-    public int[] getRespostas() {
-        return respostas;
+    public String getPergunta() {
+        return pergunta;
     }
 
-    public void setRespostas(int[] respostas) {
-        this.respostas = respostas;
+    public void setPergunta(String pergunta) {
+        this.pergunta = pergunta;
     }
 
-
-    public boolean verificarResposta(int opcao) {
-        return true;
+    public Resposta getResposta() {
+        return resposta;
     }
 
+    public void setResposta(Resposta resposta) {
+        this.resposta = resposta;
+    }
+
+    public boolean verificarResposta(Resposta opcao) {
+        if (opcao == getResposta()){
+            System.out.println("Resposta Correta!");
+            return true;
+        }
+        else {
+            System.out.println("Resposta Errada!");
+            return false;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Desafios{" +
+                "pergunta='" + pergunta + '\'' +
+                ", resposta=" + resposta +
+                '}';
+    }
 }
 

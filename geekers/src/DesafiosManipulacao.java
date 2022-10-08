@@ -1,10 +1,11 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class DesafiosManipulacao {
-    private List<Desafios> desafios = new ArrayList<>();
+public class DesafiosManipulacao<T> {
+    private List<T> desafios = new ArrayList<>();
+    Desafios desafio = new Desafios();
 
-    public void adicionarDesafio(Desafios desafio) {
+    public void adicionarDesafio(T desafio) {
         if (desafios == null) {
             desafios = new ArrayList<>();
         }
@@ -12,19 +13,24 @@ public class DesafiosManipulacao {
     }
 
     //    VERIFICAR METODO ATUALIZAR CONTATO
-    public void atualizarDesafio(int id, Desafios desafio) {
-        Desafios desafioAtualizar = desafios.get(id);
-        desafioAtualizar.setPerguntas(desafioAtualizar.getPerguntas());
-        desafioAtualizar.setRespostas(desafioAtualizar.getRespostas());
-    }
+//    public void atualizarDesafio(int id, Desafios desafio) {
+//        Desafios desafioAtualizar = desafios.get(id);
+//        desafioAtualizar.setPergunta(desafioAtualizar.getPergunta());
+//        desafioAtualizar.setResposta(desafioAtualizar.getResposta());
+//    }
 
-    public void listarDesafios() {
-        for (int i = 0; i < desafios.size(); i++) {
-            System.out.println("ID -" + i + " | " + desafios.get(i));
-        }
+    public List<T> listarDesafios() {
+        return desafios;
     }
 
     public void deletarDesafio(int id) {
         this.desafios.remove(id);
+    }
+
+    @Override
+    public String toString() {
+        return "DesafiosManipulacao{" +
+                "desafio=" + desafios +
+                '}';
     }
 }
