@@ -6,11 +6,11 @@ public class Hobbies {
     public Hobbies() {
     }
 
-
     public Hobbies(TipoHobbies hobbies, String descricao) {
         this.hobbies = hobbies;
         this.descricao = descricao;
     }
+
 
     public TipoHobbies getHobbies() {
         return hobbies;

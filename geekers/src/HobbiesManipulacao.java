@@ -9,32 +9,40 @@ public class HobbiesManipulacao<T> {
     public HobbiesManipulacao() {
     }
 
-    public HobbiesManipulacao(Hobbies hobbies) {
+    public HobbiesManipulacao(Hobbies hobbies)
+    {
         this.hobbies = hobbies;
     }
 
-    public void adicionarHobbies(T hobbie){
+    public boolean adicionarHobbies(T hobbie){
         if(listaHobbies==null){
             listaHobbies = new ArrayList<>();
+            listaHobbies.add(hobbie);
         }
         listaHobbies.add(hobbie);
+        return true;
     }
 
-    public void listarHobbies(){
+    public boolean listarHobbies(){
         for (int i = 0; i <listaHobbies.size() ; i++) {
             System.out.println("ID -" + i + " | " + listaHobbies.get(i));
         }
+        return true;
     }
 
-    public void atualizarHobbie(Hobbies hobbies, TipoHobbies tipoHobbies, String descricaoHobbie){
+    public boolean atualizarHobbie(T hobbies, TipoHobbies tipoHobbies, String descricaoHobbie){
 
         Hobbies hobbiesAtualizar = (Hobbies) listaHobbies.get(0);
 
         hobbiesAtualizar.setHobbies(tipoHobbies);
         hobbiesAtualizar.setDescricao(descricaoHobbie);
+        return true;
     }
-    public void deletarHobbie(int id){
+
+    public boolean deletarHobbie(int id){
+
         this.listaHobbies.remove(id);
+        return true;
     }
 
     @Override
