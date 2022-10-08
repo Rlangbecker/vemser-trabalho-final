@@ -1,4 +1,6 @@
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Usuario implements Impressao {
 
@@ -32,6 +34,16 @@ public class Usuario implements Impressao {
         this.senha = senha;
         this.genero = genero;
         this.sexo = sexo;
+    }
+
+    public List<Comentario> comentarios = new ArrayList<>();
+
+    public List<Comentario> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(List<Comentario> comentarios) {
+        this.comentarios = comentarios;
     }
 
     public String getNome() {
@@ -102,6 +114,30 @@ public class Usuario implements Impressao {
         return logado;
     }
 
+    public List<Desafios> getDesafios() {
+        return desafios;
+    }
+
+    public void setDesafios(List<Desafios> desafios) {
+        this.desafios = desafios;
+    }
+
+    public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
+
+    public List<Usuario> getMatchs() {
+        return matchs;
+    }
+
+    public void setMatchs(List<Usuario> matchs) {
+        this.matchs = matchs;
+    }
+
     public void setLogado(boolean logado) {
         this.logado = logado;
     }
@@ -130,5 +166,6 @@ public class Usuario implements Impressao {
                 "\nGenero: " + this.genero + "." +
                 "\nSexo: " + this.sexo + ".\n"
         );
+
     }
 }

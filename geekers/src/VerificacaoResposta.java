@@ -1,3 +1,3 @@
 public interface VerificacaoResposta {
-    boolean verificarResposta(int opcao);
+    boolean verificarResposta(Resposta opcao);
 }
