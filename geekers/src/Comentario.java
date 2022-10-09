@@ -24,4 +24,8 @@ public class Comentario {
         return "Comentario{" +
                 "comentario='" + comentario + "}'";
     }
+
+    public void imprimir(){
+        System.out.println("Comentario: " + comentario);
+    }
 }

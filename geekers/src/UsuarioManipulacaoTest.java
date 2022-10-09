@@ -11,18 +11,17 @@ public class UsuarioManipulacaoTest {
     @BeforeEach
     public void init() {usuarioManipulacao = new UsuarioManipulacao();}
 
-    @Test
-    public void testAdicionarUsuario() {
-        Usuario user = new Usuario();
-
-
-        usuarioManipulacao.adicionarUsuario(new Usuario(0, "email1", "telefone1", "senha1", "genero1", "f"));
-
-
-        assertEquals(usuarioManipulacao.getUsuarios().size(), 1);
-    }
-
-    @Test
+//    @Test
+//    public void testAdicionarUsuario() {
+//        Usuario user = new Usuario("nome", 0, "email", "telefone", "senha", "genero", "m", desafios, comentario, null);
+//
+//
+//        usuarioManipulacao.adicionarUsuario(new Usuario(0, "email1", "telefone1", "senha1", "genero1", "f"));
+//
+//
+//        assertEquals(usuarioManipulacao.getUsuarios().size(), 1);
+//    }
+//
 //    public void testAtualizarUsuario() {
 //        Usuario usuario = new Usuario(0, "email1", "telefone1", "senha1", "genero1", "f");
 //        Usuario user = new Usuario();

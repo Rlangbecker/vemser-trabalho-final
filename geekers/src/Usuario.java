@@ -9,34 +9,32 @@ public class Usuario implements Impressao {
     private String email;
     private String telefone;
     private String senha;
-    private LocalDate dataNascimento;
+    private String dataNascimento;
     private String genero;
     private String sexo;
     private boolean logado;
 
+    public List<Desafios> desafios = new ArrayList<>();
+    public List<Comentario> comentarios = new ArrayList<>();
+
+    public List<Usuario> matchs = new ArrayList<>();
     public Usuario() {
     }
 
-    public Usuario(int id, String email, String telefone, String senha, String genero, String sexo) {
-        this.id = id;
-        this.email = email;
-        this.telefone = telefone;
-        this.senha = senha;
-        this.genero = genero;
-        this.sexo = sexo;
-    }
-
-    public Usuario(String nome, int id, String email, String telefone, String senha, String genero, String sexo) {
+    public Usuario(String nome, int id, String email, String telefone, String senha, String dataNascimento, String genero, String sexo, boolean logado, List<Desafios> desafios, List<Comentario> comentarios, List<Usuario> matchs) {
         this.nome = nome;
         this.id = id;
         this.email = email;
         this.telefone = telefone;
         this.senha = senha;
+        this.dataNascimento = dataNascimento;
         this.genero = genero;
         this.sexo = sexo;
+        this.logado = logado;
+        this.desafios = desafios;
+        this.comentarios = comentarios;
+        this.matchs = matchs;
     }
-
-    public List<Comentario> comentarios = new ArrayList<>();
 
     public List<Comentario> getComentarios() {
         return comentarios;
@@ -86,11 +84,11 @@ public class Usuario implements Impressao {
         this.senha = senha;
     }
 
-    public LocalDate getDataNascimento() {
+    public String getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(LocalDate dataNascimento) {
+    public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
@@ -120,14 +118,6 @@ public class Usuario implements Impressao {
 
     public void setDesafios(List<Desafios> desafios) {
         this.desafios = desafios;
-    }
-
-    public List<Usuario> getUsuarios() {
-        return usuarios;
-    }
-
-    public void setUsuarios(List<Usuario> usuarios) {
-        this.usuarios = usuarios;
     }
 
     public List<Usuario> getMatchs() {
@@ -164,7 +154,9 @@ public class Usuario implements Impressao {
                 "\nNumero: " + this.telefone + "." +
                 "\nData de nascimento: " + this.dataNascimento + "." +
                 "\nGenero: " + this.genero + "." +
-                "\nSexo: " + this.sexo + ".\n"
+                "\nSexo: " + this.sexo +
+                "\nDesafio: " + this.desafios +
+                "\nComentarios: " + this.comentarios
         );
 
     }

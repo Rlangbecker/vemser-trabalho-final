@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class Desafios implements VerificacaoResposta{
+public class Desafios implements VerificacaoResposta, Impressao{
 
     String pergunta;
     Resposta resposta;
@@ -49,6 +49,11 @@ public class Desafios implements VerificacaoResposta{
                 "pergunta='" + pergunta + '\'' +
                 ", resposta=" + resposta +
                 '}';
+    }
+
+    public void imprimir(){
+        System.out.println("Pergunta: " + pergunta +
+                "\nResposta: " + resposta);
     }
 }
 

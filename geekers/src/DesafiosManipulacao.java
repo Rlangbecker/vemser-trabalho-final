@@ -6,6 +6,7 @@ public class DesafiosManipulacao<T> {
     Desafios desafio = new Desafios();
 
     public boolean adicionarDesafio(T desafio) {
+
         if (desafios == null) {
             desafios = new ArrayList<>();
             return false;

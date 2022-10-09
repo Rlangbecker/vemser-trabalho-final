@@ -9,11 +9,12 @@ import java.util.Scanner;
 public class UsuarioManipulacao {
 
     Scanner input = new Scanner(System.in);
-
-
+    private Usuario usuario;
     private List<Usuario> usuarios = new ArrayList<>();
-    private List<Desafios> desafios = new ArrayList<>();
     private List<Usuario> matchs = new ArrayList<>();
+    DesafiosManipulacao<Desafios> desafiosManipulacao = new DesafiosManipulacao<>();
+    List<Desafios> listarDesafio = desafiosManipulacao.listarDesafios();
+    private Desafios desafio;
 
     public List<Usuario> getUsuarios() {
         return usuarios;
@@ -28,7 +29,8 @@ public class UsuarioManipulacao {
 
     public void listarUsuarios() {
         for (int i = 0; i < usuarios.size(); i++) {
-            System.out.println("ID - " + i + " | " + usuarios.get(i).getNome());
+            usuarios.get(i).imprimir();
+            System.out.println("\n");
         }
     }
 
@@ -36,13 +38,20 @@ public class UsuarioManipulacao {
         Usuario editarUsuario = usuarios.get(id);
         editarUsuario.setNome(usuario.getNome());
         editarUsuario.setTelefone(usuario.getTelefone());
+        editarUsuario.setEmail(usuario.getEmail());
+        editarUsuario.setSenha(usuario.getSenha());
+        editarUsuario.setDataNascimento(usuario.getDataNascimento());
+        editarUsuario.setGenero(usuario.getGenero());
+        editarUsuario.setSexo(usuario.getSexo());
+        editarUsuario.setDesafios(usuario.getDesafios());
+
     }
 
     public void deletarUsuario(int id) {
         this.usuarios.remove(id);
     }
 
-    public void cadastrarUsuario() {
+    public boolean cadastrarUsuario() {
         try {
             Usuario usuario = new Usuario();
             System.out.println("CADASTRO DE USUÁRIO" +
@@ -58,16 +67,30 @@ public class UsuarioManipulacao {
             System.out.println("Data de narcimento [dd/MM/yyyy]: ");
             String nascimento = input.nextLine();
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            usuario.setDataNascimento(LocalDate.parse(nascimento, dtf));
+            usuario.setDataNascimento(nascimento);
             System.out.println("Genero: ");
             usuario.setGenero(input.nextLine());
             System.out.println("Sexo: ");
             usuario.setSexo(input.nextLine());
-
-            usuario.setId(usuarios.size()+1);
+            System.out.println("Desafio");
+            System.out.println("Faça sua pergunta: ");
+            String pergunta = input.nextLine();
+            System.out.println("Escolha sua resposta: 1- Verdadeiro 2- Falso");
+            int escolha = input.nextInt();
+            if (escolha == 1){
+               desafiosManipulacao.adicionarDesafio(new Desafios(pergunta, Resposta.VERDADEIRO));
+            }
+            else if (escolha == 2){
+                desafiosManipulacao.adicionarDesafio(new Desafios(pergunta, Resposta.FALSO));
+            }
+            usuario.setDesafios(listarDesafio);
+            usuario.setComentarios(null);
+            usuario.setId(usuarios.size());
             adicionarUsuario(usuario);
+            return true;
         } catch (DateTimeException ex) {
             System.out.println("Formato de data inválida, tente novamente.");
+            return false;
         }
 
     }
@@ -82,9 +105,31 @@ public class UsuarioManipulacao {
             System.out.println("Digite o novo nome do usuario: ");
             usuarioAtualizado.setNome(input.nextLine());
             System.out.println("Digite o novo telefone do usuário: ");
-            usuarioAtualizado.setId(input.nextInt());
-            input.nextLine();
-
+            usuarioAtualizado.setTelefone(input.nextLine());
+            System.out.println("E-mail: ");
+            usuarioAtualizado.setEmail(input.nextLine());
+            System.out.println("Senha: ");
+            usuarioAtualizado.setSenha(input.nextLine());
+            System.out.println("Data de narcimento [dd/MM/yyyy]: ");
+            String nascimento = input.nextLine();
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            usuarioAtualizado.setDataNascimento(nascimento);
+            System.out.println("Genero: ");
+            usuarioAtualizado.setGenero(input.nextLine());
+            System.out.println("Sexo: ");
+            usuarioAtualizado.setSexo(input.nextLine());
+            System.out.println("Desafio");
+            System.out.println("Faça sua pergunta: ");
+            String pergunta = input.nextLine();
+            System.out.println("Escolha sua resposta: 1- Verdadeiro 2- Falso");
+            int escolha = input.nextInt();
+            if (escolha == 1){
+                desafiosManipulacao.adicionarDesafio(new Desafios(pergunta, Resposta.VERDADEIRO));
+            }
+            else if (escolha == 2){
+                desafiosManipulacao.adicionarDesafio(new Desafios(pergunta, Resposta.FALSO));
+            }
+            usuarioAtualizado.setDesafios(listarDesafio);
             atualizarUsuario(id, usuarioAtualizado);
         } catch (InputMismatchException ex) {
             ex.printStackTrace();
