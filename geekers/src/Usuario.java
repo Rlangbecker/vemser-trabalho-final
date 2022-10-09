@@ -153,6 +153,50 @@ public class Usuario implements Impressao {
         return logado;
     }
 
+
+    @Override
+    public void imprimir() {
+        System.out.println("\n+---------------------------------+\n"+"| Usuário: " + this.nome +
+                           "\n| ID: " + this.id +
+                           "\n| E-mail: " + this.email +
+                "\n| Numero: " + this.telefone + "." +
+                "\n| Data de nascimento: " + this.dataNascimento + "." +
+                "\n| Genero: " + this.genero + "." +
+                "\n| Sexo: " + this.sexo +
+                "\n| Desafio: " + this.desafios +
+                "\n| Comentarios: " + this.comentarios +
+                "\n| Matchs: " + this.matchs +
+                "\n| Hobbies: " + this.hobbies +
+                "\n+---------------------------------+ \n");
+
+    }
+
+    public void setDesafios(List<Desafios> desafios) {
+        this.desafios = desafios;
+    }
+
+    public List<Usuario> getMatchs() {
+        return matchs;
+    }
+
+    public void setMatchs(List<Usuario> matchs) {
+        this.matchs = matchs;
+    }
+
+    public void setLogado(boolean logado) {
+        this.logado = logado;
+    }
+
+    public boolean logar(String email, String senha) {
+        logado = true;
+        return logado;
+    }
+
+    public boolean deslogar() {
+        logado = false;
+        return logado;
+    }
+
     @Override
     public String toString() {
         return "Usuario= '" + nome + '\'' +
@@ -161,20 +205,4 @@ public class Usuario implements Impressao {
                 ", hobbies=" + hobbies ;
     }
 
-    @Override
-    public void imprimir() {
-        System.out.println("Usuário: " + this.nome +
-                "\nID: " + this.id +
-                "\nE-mail: " + this.email + "." +
-                "\nNumero: " + this.telefone + "." +
-                "\nData de nascimento: " + this.dataNascimento + "." +
-                "\nGenero: " + this.genero + "." +
-                "\nSexo: " + this.sexo +
-                "\nDesafio: " + this.desafios +
-                "\nComentarios: " + this.comentarios +
-                "\nMatchs: " + this.matchs +
-                "\nHobbies: " + this.hobbies
-        );
-
-    }
 }

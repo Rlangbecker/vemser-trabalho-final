@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DesafioTest {
-
     private Desafios desafios = new Desafios();
     private DesafiosManipulacao<Desafios> desafiosManipulacao = new DesafiosManipulacao<>();
+
     @BeforeEach
     public void init() {
         desafios = new Desafios();

@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        Usuario userParaLogar = new Usuario();
+
         Usuario usuario = new Usuario();
         UsuarioManipulacao usuarioManipulacao = new UsuarioManipulacao();
         Scanner input = new Scanner(System.in);
@@ -15,6 +17,7 @@ public class Main {
         List<Comentario> listaComentario = comentarioManipulacao.listarComentario();
         Comentario comentario = new Comentario();
         desafios.setPergunta("Flamengo é o maior do rio?");
+        desafios.setResposta(Resposta.VERDADEIRO);
         desafios.setResposta(Resposta.FALSO);
         desafiosManipulacao.adicionarDesafio(desafios);
         comentario.setComentario("Belo perfil!");
@@ -25,7 +28,6 @@ public class Main {
         hobbies.setHobbies(TipoHobbies.JOGOS);
         hobbies.setDescricao("FIFA 22");
         hobbiesManipulacao.adicionarHobbies(hobbies);
-
 
         Usuario usuario1 = new Usuario("Leoncio", 0, "Leoneymar@gmail.com", "9987461432", "1234",
                 "15022000", "m", "m", false, listarDesafio, listaComentario, null, hobbiesList);
@@ -38,68 +40,90 @@ public class Main {
         usuarioManipulacao.adicionarUsuario(usuario1);
         usuarioManipulacao.adicionarUsuario(usuarioLogado);
         usuarioManipulacao.adicionarUsuario(usuario2);
-
-        int escolha = 100;
+        
+        int escolha = -1;
         while (escolha != 0) {
             try {
-                System.out.println("Bem vindo ao Tinder Geeker\n");
-                System.out.println("Para cadastrar, digite 1: " +
-                        "\nPara listar contato(s), digite 2: " +
-                        "\nPara alterar contato, digite 3: " +
-                        "\nPara excluir contato, digite 4" +
-                        "\nEscolha um usuario para dar match, digite 5" +
-                        "\nComente no perfil de um usuario, digite 6" +
-                        "\nPara sair, digite 0"
-                );
-
+                System.out.println("+---------------------------------+\n" +
+                        "|             Geeker              |\n" +
+                        "+---------------------------------+\n" +
+                        "|          [1] Login              |" +
+                        "\n|          [2] Cadastrar          |" +
+                        "\n|          [0] Sair               |\n" +
+                        "+---------------------------------+\n");
                 escolha = input.nextInt();
                 input.nextLine();
-                switch (escolha){
+                switch (escolha) {
                     case 1 -> {
-                        usuarioManipulacao.cadastrarUsuario();
+                        System.out.println("+---------------------------------+\n" +
+                                "|             LOGIN               |\n" +
+                                "+---------------------------------+");
+                        System.out.println("Email:");
+                        String email = input.nextLine();
+                        System.out.println("Senha:");
+                        String senha = input.nextLine();
+                        System.out.println(" \n Carregando ...");
+                        if (usuarioManipulacao.logar(email, senha)) {
+                            Usuario usuarioTemp = usuarioManipulacao.receberUsuario(email, senha);
+                            UsuarioManipulacao usuarioManipulacaoTemp = new UsuarioManipulacao();
+                            while (usuarioTemp.isLogado()) {
+                                mostrarMenuLogado();
+
+                                int opcao = input.nextInt();
+                                input.nextLine();
+                                switch (opcao) {
+                                    case 1 -> {
+                                        usuarioManipulacaoTemp.listarUsuarios();
+                                    }
+                                    case 2 -> {
+                                        usuarioManipulacaoTemp.editarUsuario();
+                                    }
+                                    case 3 -> {
+                                        usuarioManipulacaoTemp.excluirUsuario();
+                                    }
+                                    case 4 -> {
+                                        usuarioManipulacaoTemp.listarUsuarios();
+                                        escolha = input.nextInt();
+                                        usuarioManipulacaoTemp.resolverDesafio(escolha, usuarioLogado);
+                                    }
+                                    case 5 -> {
+                                        usuarioManipulacaoTemp.comentarPerfil(escolha);
+                                    }
+                                    case 0 -> {
+
+                                    }
+                                    default -> {
+                                        System.out.println("Ops!" +
+                                                "\nOpção inválida, tente novamente");
+                                    }
+                                }
+                            }
+                        }
                     }
                     case 2 -> {
-                        System.out.println("Matchs do Usuario: ");
-                        System.out.println(usuarioLogado.getMatchs());
-                    }
-                    case 3 -> {
-                        usuarioManipulacao.editarUsuario();
-                    }
-                    case 4 -> {
-                        usuarioManipulacao.excluirUsuario();
-                    }
-                    case 5 -> {
-                        usuarioManipulacao.listarUsuarios();
-                        System.out.println("Escolha um usuario para dar match: ");
-                        escolha = input.nextInt();
-                        input.nextLine();
-                        usuarioManipulacao.resolverDesafio(escolha, usuarioLogado);
-                        escolha = 100;
-                    }
-                    case 6 -> {
-                        usuarioManipulacao.comentarPerfil(escolha);
+                        usuarioManipulacao.cadastrarUsuario();
+        
 
-                    }
-                    case 0 -> {
-                        System.out.println("Programa encerrado." +
-                                "\nAté logo.");
-                    }
-                    default -> {
-                        System.out.println("Ops!" +
-                                "\nOpção inválida, tente novamente");
-                    }
-                }
-            } catch (InputMismatchException ex) {
-//                ex.printStackTrace();
-                System.err.println("Opção inválido, tente novamente.");
-            }
+    }
 
-        }
+    public static void mostrarMenuLogado() {
+        System.out.println("+---------------------------------+\n" +
+                "|             Geeker              |\n" +
+                "+---------------------------------+" +
+                "\n|         [1] Listar Contatos     |" +
+                "\n|         [2] Alterar Contato     |" +
+                "\n|         [3] Excluir contato     |" +
+                "\n|         [4] Dar match           |" +
+                "\n|         [5] Comentar            |" +
+                "\n|         [0] Sair                |\n" +
+                "+---------------------------------+\n");
+    }
+
 
 
 
         input.close();
 
     }
-
+    
 }

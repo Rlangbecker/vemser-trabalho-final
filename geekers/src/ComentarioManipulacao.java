@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ComentarioManipulacao<T>{
-
     private List<T> comentarios = new ArrayList<>();
 
     public boolean adicionarComentario(T comentario){

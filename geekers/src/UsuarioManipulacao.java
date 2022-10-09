@@ -9,13 +9,14 @@ public class UsuarioManipulacao {
     private Usuario usuario;
     private List<Usuario> usuarios = new ArrayList<>();
     private List<Usuario> matchs = new ArrayList<>();
+
     private List<Usuario> usuariosMatchs = new ArrayList<>();
     private HobbiesManipulacao<Hobbies> hobbiesManipulacao = new HobbiesManipulacao<>();
     private List<Hobbies> listarHobbies = hobbiesManipulacao.listarHobbies();
     private DesafiosManipulacao<Desafios> desafiosManipulacao = new DesafiosManipulacao<>();
     private List<Desafios> listarDesafio = desafiosManipulacao.listarDesafios();
     private Desafios desafio;
-
+    
     public List<Usuario> getUsuarios() {
         return usuarios;
     }
@@ -31,8 +32,12 @@ public class UsuarioManipulacao {
         for (int i = 0; i < usuarios.size(); i++) {
             usuarios.get(i).imprimir();
             System.out.println("\n");
+
         }
     }
+
+        
+ 
 
     public void comentarPerfil(int id){
         ComentarioManipulacao<Comentario> comentarioManipulacao = new ComentarioManipulacao<>();
@@ -85,6 +90,7 @@ public class UsuarioManipulacao {
             }
         }
 
+
     public void atualizarUsuario(int id, Usuario usuario) {
         Usuario editarUsuario = usuarios.get(id);
         editarUsuario.setNome(usuario.getNome());
@@ -105,71 +111,91 @@ public class UsuarioManipulacao {
     public boolean cadastrarUsuario() {
         try {
             Usuario usuario = new Usuario();
-            System.out.println("CADASTRO DE USUÁRIO" +
-                    "\nPREENCHA OS CAMPOS..." +
-                    "\nNome: ");
+
+            System.out.println("+------ CADASTRO DE USUÁRIO ------+" +
+                    "\n|        Insira os dados          |" +
+                    "\n+---------------------------------+" +
+                    "\nNome:                            ");
             usuario.setNome(input.nextLine());
-            System.out.println("E-mail: ");
+            System.out.println("E-mail:");
             usuario.setEmail(input.nextLine());
-            System.out.println("Telefone: ");
+            System.out.println("Telefone:");
             usuario.setTelefone(input.nextLine());
-            System.out.println("Senha: ");
+            System.out.println("Senha:");
             usuario.setSenha(input.nextLine());
-            System.out.println("Data de narcimento [dd/MM/yyyy]: ");
+            System.out.println("Data de nascimento [dd/MM/yyyy]:");
             String nascimento = input.nextLine();
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             usuario.setDataNascimento(nascimento);
-            System.out.println("Genero: ");
+            System.out.println("Genero:");
             usuario.setGenero(input.nextLine());
-            System.out.println("Sexo: ");
+            System.out.println("Sexo:");
             usuario.setSexo(input.nextLine());
-            System.out.println("Desafio");
-            System.out.println("Faça sua pergunta: ");
+            System.out.println("+------ CADASTRO DE DESAFIO ------+");
+            System.out.println("|       Insira sua pergunta:      |");
+            System.out.println("+---------------------------------+");
             String pergunta = input.nextLine();
-            System.out.println("Escolha sua resposta: 1- Verdadeiro 2- Falso");
+            System.out.println("+---------------------------------+");
+            System.out.println("|    ESCOLHA SUA RESPOSTA:        |\n"
+                    + "+---------------------------------+\n"
+                    + "|  [1] Verdadeiro  |  [2] Falso   |" +
+                    "\n+---------------------------------+");
+
             int escolha = input.nextInt();
-            if (escolha == 1){
-               desafiosManipulacao.adicionarDesafio(new Desafios(pergunta, Resposta.VERDADEIRO));
-            }
-            else if (escolha == 2){
+            if (escolha == 1) {
+                desafiosManipulacao.adicionarDesafio(new Desafios(pergunta, Resposta.VERDADEIRO));
+            } else if (escolha == 2) {
                 desafiosManipulacao.adicionarDesafio(new Desafios(pergunta, Resposta.FALSO));
             }
             usuario.setDesafios(listarDesafio);
-            System.out.println("Escolha seu hobbie: " +
-                    "\n1- Jogos" +
-                    "\n2 - Series" +
-                    "\n3 - Livros" +
-                    "\n4 - Filmes" +
-                    "\n5 - Bebidas"+
-                    "\n6- Outros");
+
+            System.out.println("+---------------------------------+");
+            System.out.println("|       QUAIS SEUS HOBBIES?       |\n" +
+                    "+---------------------------------+" +
+                    "\n|          [1] Jogos              |" +
+                    "\n|          [2] Series             |" +
+                    "\n|          [3] Livros             |" +
+                    "\n|          [4] Filmes             |" +
+                    "\n|          [5] Bebidas            |" +
+                    "\n|          [6] Outros             |" +
+                    "\n+---------------------------------+ \n");
             escolha = input.nextInt();
             input.nextLine();
-            switch (escolha){
+            switch (escolha) {
                 case 1 -> {
-                    System.out.println("Informe a descricao: ");
+                    System.out.println("+---------------------------------+\n" +
+                            "|       DESCREVA SEU HOBBIE       |\n" +
+                            "+---------------------------------+\n" +
+                            "Descreva");
                     String descricao = input.nextLine();
                     hobbiesManipulacao.adicionarHobbies(new Hobbies(TipoHobbies.JOGOS, descricao));
                 }
                 case 2 -> {
+                    System.out.println("+------ DESCREVA SEU HOBBIE ------+");
                     System.out.println("Informe a descricao: ");
                     String descricao = input.nextLine();
                     hobbiesManipulacao.adicionarHobbies(new Hobbies(TipoHobbies.SERIES, descricao));
                 }
                 case 3 -> {
-                    System.out.println("Informe a descricao: ");
+                    System.out.println("+------ DESCREVA SEU HOBBIE ------+");
                     String descricao = input.nextLine();
                     hobbiesManipulacao.adicionarHobbies(new Hobbies(TipoHobbies.LIVROS, descricao));
+                }
+           
                 }case 4 -> {
-                    System.out.println("Informe a descricao: ");
+                    System.out.println("+------ DESCREVA SEU HOBBIE ------+");
+                    System.out.println("Informe a descricao: ")
                     String descricao = input.nextLine();
                     hobbiesManipulacao.adicionarHobbies(new Hobbies(TipoHobbies.FILMES, descricao));
                 }
                 case 5 -> {
+                    System.out.println("+------ DESCREVA SEU HOBBIE ------+");
                     System.out.println("Informe a descricao: ");
                     String descricao = input.nextLine();
                     hobbiesManipulacao.adicionarHobbies(new Hobbies(TipoHobbies.BEBIDAS, descricao));
                 }
                 case 6 -> {
+                    System.out.println("+------ DESCREVA SEU HOBBIE ------+");
                     System.out.println("Informe a descricao: ");
                     String descricao = input.nextLine();
                     hobbiesManipulacao.adicionarHobbies(new Hobbies(TipoHobbies.OUTROS, descricao));
@@ -192,7 +218,9 @@ public class UsuarioManipulacao {
 
     public void editarUsuario() {
         try {
-            System.out.println("Digite o ID do usuário para realizar alterações: ");
+            System.out.println("\n+---------------------------------+ \n"+
+                    "|     Insira o ID para alterar    | "+
+                    "\n+---------------------------------+ \n");
             listarUsuarios();
             int id = input.nextInt();
             input.nextLine();
@@ -218,10 +246,9 @@ public class UsuarioManipulacao {
             String pergunta = input.nextLine();
             System.out.println("Escolha sua resposta: 1- Verdadeiro 2- Falso");
             int escolha = input.nextInt();
-            if (escolha == 1){
+            if (escolha == 1) {
                 desafiosManipulacao.adicionarDesafio(new Desafios(pergunta, Resposta.VERDADEIRO));
-            }
-            else if (escolha == 2){
+            } else if (escolha == 2) {
                 desafiosManipulacao.adicionarDesafio(new Desafios(pergunta, Resposta.FALSO));
             }
             usuarioAtualizado.setDesafios(listarDesafio);
@@ -229,8 +256,6 @@ public class UsuarioManipulacao {
         } catch (InputMismatchException ex) {
             ex.printStackTrace();
             System.err.println("Caracter inválido, tente novamente para editar o usuário.");
-
-
         }
 
     }
@@ -249,6 +274,39 @@ public class UsuarioManipulacao {
         }
     }
 
+    public boolean logar(String email, String senha) {
+        boolean temUsuario = false;
+        for (Usuario userLogin : usuarios) {
+            if (userLogin.getEmail().equalsIgnoreCase(email) && userLogin.getSenha().equals(senha)) {
+                userLogin.setLogado(true);
+                temUsuario = true;
+                System.out.println("Logado com sucesso!");
+                return true;
+            }
+        }
+        if (!temUsuario) {
+            System.out.println("Email ou senha não encontrados. \n Verifique e tente novamente!");
+            return false;
+        }
+        return false;
+    }
+
+    public Usuario receberUsuario(String email, String senha) {
+        Usuario usuario = new Usuario();
+        for (Usuario userLogin : usuarios) {
+            if (userLogin.getEmail().equalsIgnoreCase(email) && userLogin.getSenha().equals(senha)) {
+                usuario = userLogin;
+                return usuario;
+            }
+
+        }
+        return usuario;
+    }
+
+    public void deslogar(){
+        this.usuario.deslogar();
+    }
+    
     @Override
     public String toString() {
         return "UsuarioManipulacao{" +
@@ -262,5 +320,8 @@ public class UsuarioManipulacao {
                 ", listarDesafio=" + listarDesafio +
                 ", desafio=" + desafio +
                 '}';
+
     }
 }
+
+
