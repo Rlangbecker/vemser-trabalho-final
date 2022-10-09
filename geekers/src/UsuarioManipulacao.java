@@ -199,7 +199,9 @@ public class UsuarioManipulacao {
 
     public void editarUsuario() {
         try {
-            System.out.println("Digite o ID do usuário para realizar alterações: ");
+            System.out.println("\n+---------------------------------+ \n"+
+                    "|     Insira o ID para alterar    | "+
+                    "\n+---------------------------------+ \n");
             listarUsuarios();
             int id = input.nextInt();
             input.nextLine();
@@ -235,8 +237,6 @@ public class UsuarioManipulacao {
         } catch (InputMismatchException ex) {
             ex.printStackTrace();
             System.err.println("Caracter inválido, tente novamente para editar o usuário.");
-
-
         }
 
     }
@@ -282,6 +282,10 @@ public class UsuarioManipulacao {
 
         }
         return usuario;
+    }
+
+    public void deslogar(){
+        this.usuario.deslogar();
     }
 }
 

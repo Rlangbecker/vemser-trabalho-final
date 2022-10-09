@@ -6,6 +6,8 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        Usuario userParaLogar = new Usuario();
+
         Usuario usuario = new Usuario();
         UsuarioManipulacao usuarioManipulacao = new UsuarioManipulacao();
         Scanner input = new Scanner(System.in);
@@ -62,6 +64,7 @@ public class Main {
                         System.out.println(" \n Carregando ...");
                         if (usuarioManipulacao.logar(email, senha)) {
                             Usuario usuarioTemp = usuarioManipulacao.receberUsuario(email, senha);
+                            UsuarioManipulacao usuarioManipulacaoTemp = new UsuarioManipulacao();
                             while (usuarioTemp.isLogado()) {
                                 mostrarMenuLogado();
 
@@ -69,25 +72,24 @@ public class Main {
                                 input.nextLine();
                                 switch (opcao) {
                                     case 1 -> {
-                                        usuarioManipulacao.listarUsuarios();
+                                        usuarioManipulacaoTemp.listarUsuarios();
                                     }
                                     case 2 -> {
-                                        usuarioManipulacao.editarUsuario();
+                                        usuarioManipulacaoTemp.editarUsuario();
                                     }
                                     case 3 -> {
-                                        usuarioManipulacao.excluirUsuario();
+                                        usuarioManipulacaoTemp.excluirUsuario();
                                     }
                                     case 4 -> {
-                                        usuarioManipulacao.listarUsuarios();
+                                        usuarioManipulacaoTemp.listarUsuarios();
                                         escolha = input.nextInt();
-                                        usuarioManipulacao.resolverDesafio(escolha, usuarioLogado);
+                                        usuarioManipulacaoTemp.resolverDesafio(escolha, usuarioLogado);
                                     }
                                     case 5 -> {
-                                        usuarioManipulacao.comentarPerfil(escolha);
+                                        usuarioManipulacaoTemp.comentarPerfil(escolha);
                                     }
                                     case 0 -> {
-                                        System.out.println("Programa encerrado." +
-                                                "\nAté logo.");
+
                                     }
                                     default -> {
                                         System.out.println("Ops!" +

@@ -29,8 +29,6 @@ public class Hobbies {
 
     @Override
     public String toString() {
-        return
-                "hobbies=" + hobbies +
-                ", descricao='" + descricao + '\'';
+        return  hobbies + "| Descricao: " + descricao ;
     }
 }
