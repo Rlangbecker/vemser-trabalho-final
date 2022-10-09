@@ -19,12 +19,19 @@ public class Main {
         desafiosManipulacao.adicionarDesafio(desafios);
         comentario.setComentario("Belo perfil!");
         comentarioManipulacao.adicionarComentario(comentario);
+        Hobbies hobbies = new Hobbies();
+        HobbiesManipulacao hobbiesManipulacao = new HobbiesManipulacao();
+        List<Hobbies> hobbiesList = hobbiesManipulacao.listarHobbies();
+        hobbies.setHobbies(TipoHobbies.JOGOS);
+        hobbies.setDescricao("FIFA 22");
+        hobbiesManipulacao.adicionarHobbies(hobbies);
+
 
         Usuario usuario1 = new Usuario("nome", 0, "email", "telefone", "senha",
-                null, "genero", "m", false, listarDesafio, listaComentario, null);
+                null, "genero", "m", false, listarDesafio, listaComentario, null, hobbiesList);
         Usuario usuarioLogado = new Usuario("Kaio", 1, "kaio@teste.com", "8979541131",
                 "senha", "140302", "m", "m",
-                true, listarDesafio, listaComentario, null);
+                true, listarDesafio, listaComentario, null, hobbiesList);
 
         usuarioManipulacao.adicionarUsuario(usuario1);
         usuarioManipulacao.adicionarUsuario(usuarioLogado);
@@ -63,7 +70,6 @@ public class Main {
                         usuarioManipulacao.resolverDesafio(escolha, usuarioLogado);
                     }
                     case 6 -> {
-                        escolha = input.nextInt();
                         usuarioManipulacao.comentarPerfil(escolha);
 
                     }

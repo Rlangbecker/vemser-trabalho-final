@@ -9,6 +9,9 @@ public class UsuarioManipulacao {
     private Usuario usuario;
     private List<Usuario> usuarios = new ArrayList<>();
     private List<Usuario> matchs = new ArrayList<>();
+
+    HobbiesManipulacao<Hobbies> hobbiesManipulacao = new HobbiesManipulacao<>();
+    List<Hobbies> listarHobbies = hobbiesManipulacao.listarHobbies();
     DesafiosManipulacao<Desafios> desafiosManipulacao = new DesafiosManipulacao<>();
     List<Desafios> listarDesafio = desafiosManipulacao.listarDesafios();
     private Desafios desafio;
@@ -64,7 +67,6 @@ public class UsuarioManipulacao {
                     }
                 }
                 else if (escolha == 2){
-                    usuarios.get(idParaMatch).desafios.get(idParaMatch).verificarResposta(Resposta.FALSO);
                     if(usuarios.get(idParaMatch).desafios.get(idParaMatch).verificarResposta(Resposta.FALSO)){
                         usuario.setMatchs(usuarios);
                         System.out.println("Usuario adicionado na lista de matchs");
@@ -129,6 +131,50 @@ public class UsuarioManipulacao {
                 desafiosManipulacao.adicionarDesafio(new Desafios(pergunta, Resposta.FALSO));
             }
             usuario.setDesafios(listarDesafio);
+            System.out.println("Escolha seu hobbie: " +
+                    "\n1- Jogos" +
+                    "\n2 - Series" +
+                    "\n3 - Livros" +
+                    "\n4 - Filmes" +
+                    "\n5 - Bebidas"+
+                    "\n6- Outros");
+            escolha = input.nextInt();
+            input.nextLine();
+            switch (escolha){
+                case 1 -> {
+                    System.out.println("Informe a descricao: ");
+                    String descricao = input.nextLine();
+                    hobbiesManipulacao.adicionarHobbies(new Hobbies(TipoHobbies.JOGOS, descricao));
+                }
+                case 2 -> {
+                    System.out.println("Informe a descricao: ");
+                    String descricao = input.nextLine();
+                    hobbiesManipulacao.adicionarHobbies(new Hobbies(TipoHobbies.SERIES, descricao));
+                }
+                case 3 -> {
+                    System.out.println("Informe a descricao: ");
+                    String descricao = input.nextLine();
+                    hobbiesManipulacao.adicionarHobbies(new Hobbies(TipoHobbies.LIVROS, descricao));
+                }case 4 -> {
+                    System.out.println("Informe a descricao: ");
+                    String descricao = input.nextLine();
+                    hobbiesManipulacao.adicionarHobbies(new Hobbies(TipoHobbies.FILMES, descricao));
+                }
+                case 5 -> {
+                    System.out.println("Informe a descricao: ");
+                    String descricao = input.nextLine();
+                    hobbiesManipulacao.adicionarHobbies(new Hobbies(TipoHobbies.BEBIDAS, descricao));
+                }
+                case 6 -> {
+                    System.out.println("Informe a descricao: ");
+                    String descricao = input.nextLine();
+                    hobbiesManipulacao.adicionarHobbies(new Hobbies(TipoHobbies.OUTROS, descricao));
+                }
+                default -> {
+                    System.out.println("Opção invalida!");
+                }
+            }
+            usuario.setHobbies(listarHobbies);
             usuario.setComentarios(null);
             usuario.setId(usuarios.size());
             adicionarUsuario(usuario);

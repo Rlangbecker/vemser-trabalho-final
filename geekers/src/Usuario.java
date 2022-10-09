@@ -17,11 +17,13 @@ public class Usuario implements Impressao {
     public List<Desafios> desafios = new ArrayList<>();
     public List<Comentario> comentarios = new ArrayList<>();
 
+    public List<Hobbies> hobbies = new ArrayList<>();
+
     public List<Usuario> matchs = new ArrayList<>();
     public Usuario() {
     }
 
-    public Usuario(String nome, int id, String email, String telefone, String senha, String dataNascimento, String genero, String sexo, boolean logado, List<Desafios> desafios, List<Comentario> comentarios, List<Usuario> matchs) {
+    public Usuario(String nome, int id, String email, String telefone, String senha, String dataNascimento, String genero, String sexo, boolean logado, List<Desafios> desafios, List<Comentario> comentarios, List<Usuario> matchs, List<Hobbies> hobbies) {
         this.nome = nome;
         this.id = id;
         this.email = email;
@@ -34,6 +36,7 @@ public class Usuario implements Impressao {
         this.desafios = desafios;
         this.comentarios = comentarios;
         this.matchs = matchs;
+        this.hobbies = hobbies;
     }
 
     public List<Comentario> getComentarios() {
@@ -46,6 +49,14 @@ public class Usuario implements Impressao {
 
     public String getNome() {
         return nome;
+    }
+
+    public List<Hobbies> getHobbies() {
+        return hobbies;
+    }
+
+    public void setHobbies(List<Hobbies> hobbies) {
+        this.hobbies = hobbies;
     }
 
     public void setNome(String nome) {
@@ -154,7 +165,8 @@ public class Usuario implements Impressao {
                 "\nSexo: " + this.sexo +
                 "\nDesafio: " + this.desafios +
                 "\nComentarios: " + this.comentarios +
-                "\nMatchs: " + this.matchs
+                "\nMatchs: " + this.matchs +
+                "\nHobbies: " + this.hobbies
         );
 
     }

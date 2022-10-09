@@ -45,10 +45,7 @@ public class Desafios implements VerificacaoResposta, Impressao{
 
     @Override
     public String toString() {
-        return "Desafios{" +
-                "pergunta='" + pergunta + '\'' +
-                ", resposta=" + resposta +
-                '}';
+        return "pergunta='" + pergunta + '\'';
     }
 
     public void imprimir(){
