@@ -32,6 +32,11 @@ public class DesafiosManipulacao<T> {
         this.desafios.remove(0);
     }
 
+    public void validarDesafio(Desafios desafio) throws DesafioException {
+        if (desafio.getPergunta().trim().isEmpty() || desafio.getResposta().equals(null)) {
+            throw new DesafioException("Desafio não cadastrado, tente novamente.");
+        }
+    }
     @Override
     public String toString() {
         return "DesafiosManipulacao{" +

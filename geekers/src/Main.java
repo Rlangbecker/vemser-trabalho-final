@@ -1,11 +1,10 @@
-import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Usuario userParaLogar = new Usuario();
+        Usuario userParaLogar;
 
         Usuario usuario = new Usuario();
         UsuarioManipulacao usuarioManipulacao = new UsuarioManipulacao();
@@ -18,7 +17,6 @@ public class Main {
         Comentario comentario = new Comentario();
         desafios.setPergunta("Flamengo é o maior do rio?");
         desafios.setResposta(Resposta.VERDADEIRO);
-        desafios.setResposta(Resposta.FALSO);
         desafiosManipulacao.adicionarDesafio(desafios);
         comentario.setComentario("Belo perfil!");
         comentarioManipulacao.adicionarComentario(comentario);
@@ -29,18 +27,17 @@ public class Main {
         hobbies.setDescricao("FIFA 22");
         hobbiesManipulacao.adicionarHobbies(hobbies);
 
-        Usuario usuario1 = new Usuario("Leoncio", 0, "Leoneymar@gmail.com", "9987461432", "1234",
-                "15022000", "m", "m", false, listarDesafio, listaComentario, null, hobbiesList);
-        Usuario usuario2 = new Usuario("Cristiano", 2, "Oloco@hotmail.br", "3246189544", "42134123",
-                null, "m", "m", false, listarDesafio, listaComentario, null, hobbiesList);
+
+        Usuario usuario1 = new Usuario("nome", 0, "email", "telefone", "senha",
+                null, "genero", "m", false, listarDesafio, listaComentario, null, hobbiesList);
         Usuario usuarioLogado = new Usuario("Kaio", 1, "kaio@teste.com", "8979541131",
                 "senha", "140302", "m", "m",
                 true, listarDesafio, listaComentario, null, hobbiesList);
 
         usuarioManipulacao.adicionarUsuario(usuario1);
         usuarioManipulacao.adicionarUsuario(usuarioLogado);
-        usuarioManipulacao.adicionarUsuario(usuario2);
-        
+
+
         int escolha = -1;
         while (escolha != 0) {
             try {
@@ -64,33 +61,33 @@ public class Main {
                         String senha = input.nextLine();
                         System.out.println(" \n Carregando ...");
                         if (usuarioManipulacao.logar(email, senha)) {
-                            Usuario usuarioTemp = usuarioManipulacao.receberUsuario(email, senha);
-                            UsuarioManipulacao usuarioManipulacaoTemp = new UsuarioManipulacao();
-                            while (usuarioTemp.isLogado()) {
+                            userParaLogar = usuarioManipulacao.receberUsuario(email, senha);
+                            while (userParaLogar.isLogado()) {
                                 mostrarMenuLogado();
 
                                 int opcao = input.nextInt();
                                 input.nextLine();
                                 switch (opcao) {
                                     case 1 -> {
-                                        usuarioManipulacaoTemp.listarUsuarios();
+                                        System.out.println("Matchs:");
+                                        System.out.println(userParaLogar.getMatchs());
                                     }
                                     case 2 -> {
-                                        usuarioManipulacaoTemp.editarUsuario();
+                                        usuarioManipulacao.editarUsuario();
                                     }
                                     case 3 -> {
-                                        usuarioManipulacaoTemp.excluirUsuario();
+                                        usuarioManipulacao.excluirUsuario();
                                     }
                                     case 4 -> {
-                                        usuarioManipulacaoTemp.listarUsuarios();
+                                        usuarioManipulacao.listarUsuarios();
                                         escolha = input.nextInt();
-                                        usuarioManipulacaoTemp.resolverDesafio(escolha, usuarioLogado);
+                                        usuarioManipulacao.resolverDesafio(escolha, userParaLogar);
                                     }
                                     case 5 -> {
-                                        usuarioManipulacaoTemp.comentarPerfil(escolha);
+                                        usuarioManipulacao.comentarPerfil(escolha);
                                     }
                                     case 0 -> {
-
+                                        usuarioManipulacao.deslogar(userParaLogar);
                                     }
                                     default -> {
                                         System.out.println("Ops!" +
@@ -102,8 +99,22 @@ public class Main {
                     }
                     case 2 -> {
                         usuarioManipulacao.cadastrarUsuario();
-        
-
+                    }
+                    case 0 -> {
+                        System.out.println("Programa encerrado." +
+                                "\nAté logo.");
+                    }
+                    default -> {
+                        System.out.println("Ops!" +
+                                "\nOpção inválida, tente novamente");
+                    }
+                }
+            } catch (InputMismatchException ex) {
+//                ex.printStackTrace();
+                System.err.println("Opção inválido, tente novamente.");
+            }
+        }
+        input.close();
     }
 
     public static void mostrarMenuLogado() {
@@ -111,19 +122,13 @@ public class Main {
                 "|             Geeker              |\n" +
                 "+---------------------------------+" +
                 "\n|         [1] Listar Contatos     |" +
-                "\n|         [2] Alterar Contato     |" +
+                "\n|         [2] Editar Perfil       |" +
                 "\n|         [3] Excluir contato     |" +
                 "\n|         [4] Dar match           |" +
                 "\n|         [5] Comentar            |" +
-                "\n|         [0] Sair                |\n" +
+                "\n|         [0] Deslogar            |\n" +
                 "+---------------------------------+\n");
     }
 
 
-
-
-        input.close();
-
-    }
-    
 }

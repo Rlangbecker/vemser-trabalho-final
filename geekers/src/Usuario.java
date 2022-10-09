@@ -1,9 +1,7 @@
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Usuario implements Impressao {
-
     private String nome;
     private int id;
     private String email;
@@ -21,6 +19,11 @@ public class Usuario implements Impressao {
 
     private List<Usuario> matchs = new ArrayList<>();
     public Usuario() {
+    }
+
+    public Usuario(String nome, int id){
+        this.nome = nome;
+        this.id = id;
     }
 
     public Usuario(String nome, int id, String email, String telefone, String senha, String dataNascimento, String genero, String sexo, boolean logado, List<Desafios> desafios, List<Comentario> comentarios, List<Usuario> matchs, List<Hobbies> hobbies) {
@@ -127,10 +130,6 @@ public class Usuario implements Impressao {
         return desafios;
     }
 
-    public void setDesafios(List<Desafios> desafios) {
-        this.desafios = desafios;
-    }
-
     public List<Usuario> getMatchs() {
         return matchs;
     }
@@ -143,15 +142,11 @@ public class Usuario implements Impressao {
         this.logado = logado;
     }
 
-    public boolean logar(String email, String senha) {
+    public boolean logar() {
         logado = true;
         return logado;
     }
 
-    public boolean deslogar() {
-        logado = false;
-        return logado;
-    }
 
 
     @Override
@@ -164,7 +159,7 @@ public class Usuario implements Impressao {
                 "\n| Genero: " + this.genero + "." +
                 "\n| Sexo: " + this.sexo +
                 "\n| Desafio: " + this.desafios +
-                "\n| Comentarios: " + this.comentarios +
+                "\n| Comentario: " + this.comentarios +
                 "\n| Matchs: " + this.matchs +
                 "\n| Hobbies: " + this.hobbies +
                 "\n+---------------------------------+ \n");
@@ -173,18 +168,6 @@ public class Usuario implements Impressao {
 
     public void setDesafios(List<Desafios> desafios) {
         this.desafios = desafios;
-    }
-
-    public List<Usuario> getMatchs() {
-        return matchs;
-    }
-
-    public void setMatchs(List<Usuario> matchs) {
-        this.matchs = matchs;
-    }
-
-    public void setLogado(boolean logado) {
-        this.logado = logado;
     }
 
     public boolean logar(String email, String senha) {

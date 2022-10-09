@@ -9,14 +9,13 @@ public class UsuarioManipulacao {
     private Usuario usuario;
     private List<Usuario> usuarios = new ArrayList<>();
     private List<Usuario> matchs = new ArrayList<>();
-
     private List<Usuario> usuariosMatchs = new ArrayList<>();
     private HobbiesManipulacao<Hobbies> hobbiesManipulacao = new HobbiesManipulacao<>();
     private List<Hobbies> listarHobbies = hobbiesManipulacao.listarHobbies();
     private DesafiosManipulacao<Desafios> desafiosManipulacao = new DesafiosManipulacao<>();
     private List<Desafios> listarDesafio = desafiosManipulacao.listarDesafios();
     private Desafios desafio;
-    
+
     public List<Usuario> getUsuarios() {
         return usuarios;
     }
@@ -36,8 +35,8 @@ public class UsuarioManipulacao {
         }
     }
 
-        
- 
+
+
 
     public void comentarPerfil(int id){
         ComentarioManipulacao<Comentario> comentarioManipulacao = new ComentarioManipulacao<>();
@@ -57,38 +56,37 @@ public class UsuarioManipulacao {
     }
 
     public void resolverDesafio(int idParaMatch, Usuario usuarioLogado){
-            Usuario usuarioMatch = usuarios.get(idParaMatch);
-
-            if(usuarioMatch == usuarios.get(idParaMatch)) {
-                usuarios.get(idParaMatch).imprimir();
-                System.out.println("Resolva o desafio: ");
-                usuarios.get(idParaMatch).getDesafios();
-                System.out.println("1- Verdadeiro 2- Falso");
-                int escolha = input.nextInt();
-                input.nextLine();
-                if(escolha == 1){
-                    boolean retorno = usuarioMatch.desafios.get(0).verificarResposta(Resposta.VERDADEIRO);
-                    if(retorno){
-                        usuariosMatchs.add(usuarioMatch);
-                        usuarioLogado.setMatchs(usuariosMatchs);
-                        System.out.println("Usuario adicionado na lista de matchs");
-                    }
+        Usuario usuarioMatch = usuarios.get(idParaMatch);
+        if(usuarioMatch == usuarios.get(idParaMatch)) {
+            usuarios.get(idParaMatch).imprimir();
+            System.out.println("Resolva o desafio: ");
+            usuarios.get(idParaMatch).getDesafios();
+            System.out.println("1- Verdadeiro 2- Falso");
+            int escolha = input.nextInt();
+            input.nextLine();
+            if(escolha == 1){
+                boolean retorno = usuarioMatch.desafios.get(0).verificarResposta(Resposta.VERDADEIRO);
+                if(retorno){
+                    usuariosMatchs.add(usuarioMatch);
+                    usuarioLogado.setMatchs(usuariosMatchs);
+                    System.out.println("Usuario adicionado na lista de matchs");
                 }
-                else if (escolha == 2){
-                    if(usuarioMatch.desafios.get(0).verificarResposta(Resposta.FALSO)){
-                        usuariosMatchs.add(usuarioMatch);
-                        usuarioLogado.setMatchs(usuariosMatchs);
-                        System.out.println("Usuario adicionado na lista de matchs");
-                    }
-                }
-                else {
-                    System.out.println("Informe somente 1 ou 2");
+            }
+            else if (escolha == 2){
+                if(usuarioMatch.desafios.get(0).verificarResposta(Resposta.FALSO)){
+                    usuariosMatchs.add(usuarioMatch);
+                    usuarioLogado.setMatchs(usuariosMatchs);
+                    System.out.println("Usuario adicionado na lista de matchs");
                 }
             }
             else {
-                System.out.println("Usuario nao existe");
+                System.out.println("Informe somente 1 ou 2");
             }
         }
+        else {
+            System.out.println("Usuario nao existe");
+        }
+    }
 
 
     public void atualizarUsuario(int id, Usuario usuario) {
@@ -138,16 +136,15 @@ public class UsuarioManipulacao {
             System.out.println("+---------------------------------+");
             System.out.println("|    ESCOLHA SUA RESPOSTA:        |\n"
                     + "+---------------------------------+\n"
-                    + "|  [1] Verdadeiro  |  [2] Falso   |" +
+                    + "|  [0] Verdadeiro  |  [1] Falso   |" +
                     "\n+---------------------------------+");
 
             int escolha = input.nextInt();
-            if (escolha == 1) {
-                desafiosManipulacao.adicionarDesafio(new Desafios(pergunta, Resposta.VERDADEIRO));
-            } else if (escolha == 2) {
-                desafiosManipulacao.adicionarDesafio(new Desafios(pergunta, Resposta.FALSO));
-            }
-            usuario.setDesafios(listarDesafio);
+            Desafios desafios = new Desafios(pergunta, Resposta.values()[escolha]);
+
+            desafiosManipulacao.validarDesafio(desafios);
+            desafiosManipulacao.adicionarDesafio(desafios);
+            usuario.getDesafios().add(desafios);
 
             System.out.println("+---------------------------------+");
             System.out.println("|       QUAIS SEUS HOBBIES?       |\n" +
@@ -181,36 +178,42 @@ public class UsuarioManipulacao {
                     String descricao = input.nextLine();
                     hobbiesManipulacao.adicionarHobbies(new Hobbies(TipoHobbies.LIVROS, descricao));
                 }
-           
-                }case 4 -> {
-                    System.out.println("+------ DESCREVA SEU HOBBIE ------+");
-                    System.out.println("Informe a descricao: ")
-                    String descricao = input.nextLine();
-                    hobbiesManipulacao.adicionarHobbies(new Hobbies(TipoHobbies.FILMES, descricao));
-                }
-                case 5 -> {
-                    System.out.println("+------ DESCREVA SEU HOBBIE ------+");
-                    System.out.println("Informe a descricao: ");
-                    String descricao = input.nextLine();
-                    hobbiesManipulacao.adicionarHobbies(new Hobbies(TipoHobbies.BEBIDAS, descricao));
-                }
-                case 6 -> {
-                    System.out.println("+------ DESCREVA SEU HOBBIE ------+");
-                    System.out.println("Informe a descricao: ");
-                    String descricao = input.nextLine();
-                    hobbiesManipulacao.adicionarHobbies(new Hobbies(TipoHobbies.OUTROS, descricao));
-                }
-                default -> {
-                    System.out.println("Opção invalida!");
-                }
+
+            case 4 -> {
+                System.out.println("+------ DESCREVA SEU HOBBIE ------+");
+                System.out.println("Informe a descricao: ");
+                String descricao = input.nextLine();
+                hobbiesManipulacao.adicionarHobbies(new Hobbies(TipoHobbies.FILMES, descricao));
             }
-            usuario.setHobbies(listarHobbies);
-            usuario.setComentarios(null);
-            usuario.setId(usuarios.size());
-            adicionarUsuario(usuario);
-            return true;
+            case 5 -> {
+                System.out.println("+------ DESCREVA SEU HOBBIE ------+");
+                System.out.println("Informe a descricao: ");
+                String descricao = input.nextLine();
+                hobbiesManipulacao.adicionarHobbies(new Hobbies(TipoHobbies.BEBIDAS, descricao));
+            }
+            case 6 -> {
+                System.out.println("+------ DESCREVA SEU HOBBIE ------+");
+                System.out.println("Informe a descricao: ");
+                String descricao = input.nextLine();
+                hobbiesManipulacao.adicionarHobbies(new Hobbies(TipoHobbies.OUTROS, descricao));
+            }
+            default -> {
+                System.out.println("Opção invalida!");
+            }
+        }
+        usuario.setHobbies(listarHobbies);
+        usuario.setComentarios(null);
+        usuario.setId(usuarios.size());
+        adicionarUsuario(usuario);
+        return true;
         } catch (DateTimeException ex) {
             System.out.println("Formato de data inválida, tente novamente.");
+            return false;
+        } catch (DesafioException ex) {
+            System.out.println("Erro durante o cadastro do desafio: " + ex.getMessage());
+            return false;
+        } catch (ArrayIndexOutOfBoundsException ex){
+            System.out.println("Escolha somente entre 0 e 1");
             return false;
         }
 
@@ -218,9 +221,7 @@ public class UsuarioManipulacao {
 
     public void editarUsuario() {
         try {
-            System.out.println("\n+---------------------------------+ \n"+
-                    "|     Insira o ID para alterar    | "+
-                    "\n+---------------------------------+ \n");
+            System.out.println("Digite o ID do usuário para realizar alterações: ");
             listarUsuarios();
             int id = input.nextInt();
             input.nextLine();
@@ -244,21 +245,28 @@ public class UsuarioManipulacao {
             System.out.println("Desafio");
             System.out.println("Faça sua pergunta: ");
             String pergunta = input.nextLine();
-            System.out.println("Escolha sua resposta: 1- Verdadeiro 2- Falso");
+            System.out.println("Escolha sua resposta: 0- Verdadeiro 1- Falso");
+
             int escolha = input.nextInt();
-            if (escolha == 1) {
-                desafiosManipulacao.adicionarDesafio(new Desafios(pergunta, Resposta.VERDADEIRO));
-            } else if (escolha == 2) {
-                desafiosManipulacao.adicionarDesafio(new Desafios(pergunta, Resposta.FALSO));
-            }
-            usuarioAtualizado.setDesafios(listarDesafio);
+            Desafios desafios = new Desafios(pergunta, Resposta.values()[escolha]);
+
+            desafiosManipulacao.validarDesafio(desafios);
+            desafiosManipulacao.adicionarDesafio(desafios);
+
+            usuarioAtualizado.getDesafios().add(desafios);
             atualizarUsuario(id, usuarioAtualizado);
         } catch (InputMismatchException ex) {
             ex.printStackTrace();
             System.err.println("Caracter inválido, tente novamente para editar o usuário.");
+        } catch (DesafioException ex) {
+            System.out.println("Erro durante o cadastro do desafio: " + ex.getMessage());
         }
 
     }
+
+
+
+
 
     public void excluirUsuario() {
         try {
@@ -278,7 +286,7 @@ public class UsuarioManipulacao {
         boolean temUsuario = false;
         for (Usuario userLogin : usuarios) {
             if (userLogin.getEmail().equalsIgnoreCase(email) && userLogin.getSenha().equals(senha)) {
-                userLogin.setLogado(true);
+                userLogin.logar();
                 temUsuario = true;
                 System.out.println("Logado com sucesso!");
                 return true;
@@ -303,10 +311,10 @@ public class UsuarioManipulacao {
         return usuario;
     }
 
-    public void deslogar(){
-        this.usuario.deslogar();
+    public void deslogar(Usuario usuario){
+        usuario.deslogar();
     }
-    
+
     @Override
     public String toString() {
         return "UsuarioManipulacao{" +
@@ -323,5 +331,3 @@ public class UsuarioManipulacao {
 
     }
 }
-
-
