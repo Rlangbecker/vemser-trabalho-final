@@ -2,11 +2,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Endereco {
+    private String rua;
+    private String cidade;
+    private String estado;
+    private String pais;
+    private List<Endereco> enderecos = new ArrayList<>();
 
-    public String rua;
-    public String cidade;
-    public String estado;
-    public String pais;
 
     public String getRua() {
         return rua;

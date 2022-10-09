@@ -1,6 +1,6 @@
 public class Hobbies {
-    public TipoHobbies hobbies;
-    public String descricao;
+    private TipoHobbies hobbies;
+    private String descricao;
 
     public TipoHobbies getHobbies() {
         return hobbies;
@@ -30,5 +30,6 @@ public class Hobbies {
     @Override
     public String toString() {
         return  hobbies + "| Descricao: " + descricao ;
+
     }
 }

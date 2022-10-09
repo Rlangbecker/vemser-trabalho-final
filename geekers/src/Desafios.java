@@ -3,9 +3,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class Desafios implements VerificacaoResposta, Impressao{
-
-    String pergunta;
-    Resposta resposta;
+    private String pergunta;
+    private Resposta resposta;
 
     public Desafios(){
 
@@ -46,6 +45,7 @@ public class Desafios implements VerificacaoResposta, Impressao{
     @Override
     public String toString() {
         return "Pergunta=" + pergunta ;
+
     }
 
     public void imprimir(){

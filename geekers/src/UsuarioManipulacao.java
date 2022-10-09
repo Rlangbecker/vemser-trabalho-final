@@ -10,12 +10,13 @@ public class UsuarioManipulacao {
     private List<Usuario> usuarios = new ArrayList<>();
     private List<Usuario> matchs = new ArrayList<>();
 
-    HobbiesManipulacao<Hobbies> hobbiesManipulacao = new HobbiesManipulacao<>();
-    List<Hobbies> listarHobbies = hobbiesManipulacao.listarHobbies();
-    DesafiosManipulacao<Desafios> desafiosManipulacao = new DesafiosManipulacao<>();
-    List<Desafios> listarDesafio = desafiosManipulacao.listarDesafios();
+    private List<Usuario> usuariosMatchs = new ArrayList<>();
+    private HobbiesManipulacao<Hobbies> hobbiesManipulacao = new HobbiesManipulacao<>();
+    private List<Hobbies> listarHobbies = hobbiesManipulacao.listarHobbies();
+    private DesafiosManipulacao<Desafios> desafiosManipulacao = new DesafiosManipulacao<>();
+    private List<Desafios> listarDesafio = desafiosManipulacao.listarDesafios();
     private Desafios desafio;
-
+    
     public List<Usuario> getUsuarios() {
         return usuarios;
     }
@@ -31,10 +32,14 @@ public class UsuarioManipulacao {
         for (int i = 0; i < usuarios.size(); i++) {
             usuarios.get(i).imprimir();
             System.out.println("\n");
+
         }
     }
 
-    public void comentarPerfil(int id) {
+        
+ 
+
+    public void comentarPerfil(int id){
         ComentarioManipulacao<Comentario> comentarioManipulacao = new ComentarioManipulacao<>();
         List<Comentario> listaComentario = comentarioManipulacao.listarComentario();
         Comentario comentario = new Comentario();
@@ -51,32 +56,40 @@ public class UsuarioManipulacao {
         usuarios.get(escolha).imprimir();
     }
 
-    public void resolverDesafio(int idParaMatch, Usuario usuarioLogado) {
-        Usuario usuarioMatch = usuarios.get(idParaMatch);
-        if (idParaMatch == usuarios.get(idParaMatch).getId()) {
-            usuarios.get(idParaMatch).imprimir();
-            System.out.println("Resolva o desafio: ");
-            usuarios.get(idParaMatch).getDesafios();
-            System.out.println("1- Verdadeiro 2- Falso");
-            int escolha = input.nextInt();
-            input.nextLine();
-            if (escolha == 1) {
-                if (usuarios.get(idParaMatch).desafios.get(idParaMatch).verificarResposta(Resposta.VERDADEIRO)) {
-                    usuarioLogado.setMatchs(Collections.singletonList(usuarioMatch));
-                    System.out.println("Usuario adicionado na lista de matchs");
+    public void resolverDesafio(int idParaMatch, Usuario usuarioLogado){
+            Usuario usuarioMatch = usuarios.get(idParaMatch);
+
+            if(usuarioMatch == usuarios.get(idParaMatch)) {
+                usuarios.get(idParaMatch).imprimir();
+                System.out.println("Resolva o desafio: ");
+                usuarios.get(idParaMatch).getDesafios();
+                System.out.println("1- Verdadeiro 2- Falso");
+                int escolha = input.nextInt();
+                input.nextLine();
+                if(escolha == 1){
+                    boolean retorno = usuarioMatch.desafios.get(0).verificarResposta(Resposta.VERDADEIRO);
+                    if(retorno){
+                        usuariosMatchs.add(usuarioMatch);
+                        usuarioLogado.setMatchs(usuariosMatchs);
+                        System.out.println("Usuario adicionado na lista de matchs");
+                    }
                 }
-            } else if (escolha == 2) {
-                if (usuarios.get(idParaMatch).desafios.get(idParaMatch).verificarResposta(Resposta.FALSO)) {
-                    usuario.setMatchs(usuarios);
-                    System.out.println("Usuario adicionado na lista de matchs");
+                else if (escolha == 2){
+                    if(usuarioMatch.desafios.get(0).verificarResposta(Resposta.FALSO)){
+                        usuariosMatchs.add(usuarioMatch);
+                        usuarioLogado.setMatchs(usuariosMatchs);
+                        System.out.println("Usuario adicionado na lista de matchs");
+                    }
                 }
-            } else {
-                System.out.println("Informe somente 1 ou 2");
+                else {
+                    System.out.println("Informe somente 1 ou 2");
+                }
             }
-        } else {
-            System.out.println("Usuario nao existe");
+            else {
+                System.out.println("Usuario nao existe");
+            }
         }
-    }
+
 
     public void atualizarUsuario(int id, Usuario usuario) {
         Usuario editarUsuario = usuarios.get(id);
@@ -98,6 +111,7 @@ public class UsuarioManipulacao {
     public boolean cadastrarUsuario() {
         try {
             Usuario usuario = new Usuario();
+
             System.out.println("+------ CADASTRO DE USUÁRIO ------+" +
                     "\n|        Insira os dados          |" +
                     "\n+---------------------------------+" +
@@ -158,6 +172,7 @@ public class UsuarioManipulacao {
                 }
                 case 2 -> {
                     System.out.println("+------ DESCREVA SEU HOBBIE ------+");
+                    System.out.println("Informe a descricao: ");
                     String descricao = input.nextLine();
                     hobbiesManipulacao.adicionarHobbies(new Hobbies(TipoHobbies.SERIES, descricao));
                 }
@@ -166,18 +181,22 @@ public class UsuarioManipulacao {
                     String descricao = input.nextLine();
                     hobbiesManipulacao.adicionarHobbies(new Hobbies(TipoHobbies.LIVROS, descricao));
                 }
-                case 4 -> {
+           
+                }case 4 -> {
                     System.out.println("+------ DESCREVA SEU HOBBIE ------+");
+                    System.out.println("Informe a descricao: ")
                     String descricao = input.nextLine();
                     hobbiesManipulacao.adicionarHobbies(new Hobbies(TipoHobbies.FILMES, descricao));
                 }
                 case 5 -> {
                     System.out.println("+------ DESCREVA SEU HOBBIE ------+");
+                    System.out.println("Informe a descricao: ");
                     String descricao = input.nextLine();
                     hobbiesManipulacao.adicionarHobbies(new Hobbies(TipoHobbies.BEBIDAS, descricao));
                 }
                 case 6 -> {
                     System.out.println("+------ DESCREVA SEU HOBBIE ------+");
+                    System.out.println("Informe a descricao: ");
                     String descricao = input.nextLine();
                     hobbiesManipulacao.adicionarHobbies(new Hobbies(TipoHobbies.OUTROS, descricao));
                 }
@@ -286,6 +305,22 @@ public class UsuarioManipulacao {
 
     public void deslogar(){
         this.usuario.deslogar();
+    }
+    
+    @Override
+    public String toString() {
+        return "UsuarioManipulacao{" +
+                "input=" + input +
+                ", usuario=" + usuario +
+                ", usuarios=" + usuarios +
+                ", matchs=" + matchs +
+                ", hobbiesManipulacao=" + hobbiesManipulacao +
+                ", listarHobbies=" + listarHobbies +
+                ", desafiosManipulacao=" + desafiosManipulacao +
+                ", listarDesafio=" + listarDesafio +
+                ", desafio=" + desafio +
+                '}';
+
     }
 }
 

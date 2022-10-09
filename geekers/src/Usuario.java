@@ -14,12 +14,12 @@ public class Usuario implements Impressao {
     private String sexo;
     private boolean logado;
 
-    public List<Desafios> desafios = new ArrayList<>();
-    public List<Comentario> comentarios = new ArrayList<>();
+    List<Desafios> desafios = new ArrayList<>();
+    private List<Comentario> comentarios = new ArrayList<>();
 
-    public List<Hobbies> hobbies = new ArrayList<>();
+    private List<Hobbies> hobbies = new ArrayList<>();
 
-    public List<Usuario> matchs = new ArrayList<>();
+    private List<Usuario> matchs = new ArrayList<>();
     public Usuario() {
     }
 
@@ -170,4 +170,39 @@ public class Usuario implements Impressao {
                 "\n+---------------------------------+ \n");
 
     }
+
+    public void setDesafios(List<Desafios> desafios) {
+        this.desafios = desafios;
+    }
+
+    public List<Usuario> getMatchs() {
+        return matchs;
+    }
+
+    public void setMatchs(List<Usuario> matchs) {
+        this.matchs = matchs;
+    }
+
+    public void setLogado(boolean logado) {
+        this.logado = logado;
+    }
+
+    public boolean logar(String email, String senha) {
+        logado = true;
+        return logado;
+    }
+
+    public boolean deslogar() {
+        logado = false;
+        return logado;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario= '" + nome + '\'' +
+                ", telefone='" + telefone + '\'' +
+                ", sexo='" + sexo + '\'' +
+                ", hobbies=" + hobbies ;
+    }
+
 }
