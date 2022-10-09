@@ -142,9 +142,6 @@ public class Usuario implements Impressao {
         return logado;
     }
 
-    public boolean darMatch(Usuario usuario, String frase) {
-        return false;
-    }
 
     @Override
     public void imprimir() {
@@ -156,7 +153,8 @@ public class Usuario implements Impressao {
                 "\nGenero: " + this.genero + "." +
                 "\nSexo: " + this.sexo +
                 "\nDesafio: " + this.desafios +
-                "\nComentarios: " + this.comentarios
+                "\nComentarios: " + this.comentarios +
+                "\nMatchs: " + this.matchs
         );
 
     }

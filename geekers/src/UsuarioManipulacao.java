@@ -1,10 +1,7 @@
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class UsuarioManipulacao {
 
@@ -33,6 +30,54 @@ public class UsuarioManipulacao {
             System.out.println("\n");
         }
     }
+
+    public void comentarPerfil(int id){
+        ComentarioManipulacao<Comentario> comentarioManipulacao = new ComentarioManipulacao<>();
+        List<Comentario> listaComentario = comentarioManipulacao.listarComentario();
+        Comentario comentario = new Comentario();
+        System.out.println("Informe o usuario que que deseja comentar: ");
+        int escolha = input.nextInt();
+        input.nextLine();
+        usuarios.get(escolha).imprimir();
+        System.out.println("Informe o comentario: ");
+        String coment = input.nextLine();
+        comentario.setComentario(coment);
+        comentarioManipulacao.adicionarComentario(comentario);
+        System.out.println(listaComentario);
+        usuarios.get(escolha).setComentarios(listaComentario);
+        usuarios.get(escolha).imprimir();
+    }
+
+    public void resolverDesafio(int idParaMatch, Usuario usuarioLogado){
+            Usuario usuarioMatch = usuarios.get(idParaMatch);
+            if(idParaMatch == usuarios.get(idParaMatch).getId()) {
+                usuarios.get(idParaMatch).imprimir();
+                System.out.println("Resolva o desafio: ");
+                usuarios.get(idParaMatch).getDesafios();
+                System.out.println("1- Verdadeiro 2- Falso");
+                int escolha = input.nextInt();
+                input.nextLine();
+                if(escolha == 1){
+                    if(usuarios.get(idParaMatch).desafios.get(idParaMatch).verificarResposta(Resposta.VERDADEIRO)){
+                        usuarioLogado.setMatchs(Collections.singletonList(usuarioMatch));
+                        System.out.println("Usuario adicionado na lista de matchs");
+                    }
+                }
+                else if (escolha == 2){
+                    usuarios.get(idParaMatch).desafios.get(idParaMatch).verificarResposta(Resposta.FALSO);
+                    if(usuarios.get(idParaMatch).desafios.get(idParaMatch).verificarResposta(Resposta.FALSO)){
+                        usuario.setMatchs(usuarios);
+                        System.out.println("Usuario adicionado na lista de matchs");
+                    }
+                }
+                else {
+                    System.out.println("Informe somente 1 ou 2");
+                }
+            }
+            else {
+                System.out.println("Usuario nao existe");
+            }
+        }
 
     public void atualizarUsuario(int id, Usuario usuario) {
         Usuario editarUsuario = usuarios.get(id);
