@@ -1,7 +1,7 @@
 public class Comentario {
 
-    public String comentario;
-    public Usuario usuario;
+    private String comentario;
+    private Usuario usuario;
 
     public String getComentario() {
         return comentario;
