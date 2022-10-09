@@ -2,17 +2,17 @@ public class Hobbies {
     public TipoHobbies hobbies;
     public String descricao;
 
+    public TipoHobbies getHobbies() {
+        return hobbies;
+    }
 
-    public Hobbies() {
+    public Hobbies(){
+
     }
 
     public Hobbies(TipoHobbies hobbies, String descricao) {
         this.hobbies = hobbies;
         this.descricao = descricao;
-    }
-
-    public TipoHobbies getHobbies() {
-        return hobbies;
     }
 
     public void setHobbies(TipoHobbies hobbies) {
@@ -29,7 +29,8 @@ public class Hobbies {
 
     @Override
     public String toString() {
-        return "Hobbies: " + hobbies +
-                ", Descricao: " + descricao;
+        return
+                "hobbies=" + hobbies +
+                ", descricao='" + descricao + '\'';
     }
 }

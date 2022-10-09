@@ -23,11 +23,8 @@ public class HobbiesManipulacao<T> {
         return true;
     }
 
-    public boolean listarHobbies(){
-        for (int i = 0; i <listaHobbies.size() ; i++) {
-            System.out.println("ID -" + i + " | " + listaHobbies.get(i));
-        }
-        return true;
+    public List<T> listarHobbies(){
+        return listaHobbies;
     }
 
     public boolean atualizarHobbie(T hobbies, TipoHobbies tipoHobbies, String descricaoHobbie){

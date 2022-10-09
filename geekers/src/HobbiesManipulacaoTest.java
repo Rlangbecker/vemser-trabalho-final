@@ -24,16 +24,6 @@ public class HobbiesManipulacaoTest<H> {
         Assertions.assertTrue(retorno);
     }
 
-    @Test
-    public void deveListarHobbiesComSucesso() {
-        hobbies1.setHobbies(TipoHobbies.LIVROS);
-        hobbies1.setDescricao("Anjos e Demonios");
-        hobbiesManipulacaoTest.adicionarHobbies(hobbies1);
-
-        boolean retorno = hobbiesManipulacaoTest.listarHobbies();
-
-        Assertions.assertTrue(retorno);
-    }
 
     @Test
     public void deveAtualizarHobbiesComSucesso() {
@@ -60,4 +50,5 @@ public class HobbiesManipulacaoTest<H> {
 
         Assertions.assertTrue(retorno);
     }
+
 }
