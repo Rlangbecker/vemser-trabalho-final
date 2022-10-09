@@ -14,29 +14,32 @@ public class Usuario implements Impressao {
     private String sexo;
     private boolean logado;
 
+    public List<Desafios> desafios = new ArrayList<>();
+    public List<Comentario> comentarios = new ArrayList<>();
+
+    public List<Usuario> matchs = new ArrayList<>();
+
     public Usuario() {
     }
 
-    public Usuario(int id, String email, String telefone, String senha, String genero, String sexo) {
-        this.id = id;
-        this.email = email;
-        this.telefone = telefone;
-        this.senha = senha;
-        this.genero = genero;
-        this.sexo = sexo;
+    public Usuario(String nome) {
+        this.nome = nome;
     }
 
-    public Usuario(String nome, int id, String email, String telefone, String senha, String genero, String sexo) {
+    public Usuario(String nome, int id, String email, String telefone, String senha, LocalDate dataNascimento,
+                   String genero, String sexo, boolean logado, List<Desafios> desafios, List<Comentario> comentarios) {
         this.nome = nome;
         this.id = id;
         this.email = email;
         this.telefone = telefone;
         this.senha = senha;
+        this.dataNascimento = dataNascimento;
         this.genero = genero;
         this.sexo = sexo;
+        this.logado = logado;
+        this.desafios = desafios;
+        this.comentarios = comentarios;
     }
-
-    public List<Comentario> comentarios = new ArrayList<>();
 
     public List<Comentario> getComentarios() {
         return comentarios;
@@ -122,14 +125,6 @@ public class Usuario implements Impressao {
         this.desafios = desafios;
     }
 
-    public List<Usuario> getUsuarios() {
-        return usuarios;
-    }
-
-    public void setUsuarios(List<Usuario> usuarios) {
-        this.usuarios = usuarios;
-    }
-
     public List<Usuario> getMatchs() {
         return matchs;
     }
@@ -141,6 +136,8 @@ public class Usuario implements Impressao {
     public void setLogado(boolean logado) {
         this.logado = logado;
     }
+
+
 
     public boolean logar(String email, String senha) {
         logado = true;
@@ -163,9 +160,10 @@ public class Usuario implements Impressao {
                 "\nE-mail: " + this.email + "." +
                 "\nNumero: " + this.telefone + "." +
                 "\nData de nascimento: " + this.dataNascimento + "." +
-                "\nGenero: " + this.genero + "." +
-                "\nSexo: " + this.sexo + ".\n"
+                "_____________________________________________________"
+                //+
+//                "\nGenero: " + this.genero + "." +
+//                "\nSexo: " + this.sexo + ".\n"
         );
-
     }
 }

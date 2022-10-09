@@ -28,14 +28,19 @@ public class UsuarioManipulacao {
 
     public void listarUsuarios() {
         for (int i = 0; i < usuarios.size(); i++) {
-            System.out.println("ID - " + i + " | " + usuarios.get(i).getNome());
+            usuarios.get(i).imprimir();
         }
     }
 
-    public void atualizarUsuario(int id, Usuario usuario) {
-        Usuario editarUsuario = usuarios.get(id);
-        editarUsuario.setNome(usuario.getNome());
-        editarUsuario.setTelefone(usuario.getTelefone());
+    public boolean atualizarUsuario(int id, Usuario usuario) {
+        if (usuarios == null) {
+            return false;
+        } else {
+            Usuario editarUsuario = usuarios.get(id);
+            editarUsuario.setNome(usuario.getNome());
+            editarUsuario.setTelefone(usuario.getTelefone());
+            return  true;
+        }
     }
 
     public void deletarUsuario(int id) {
@@ -64,12 +69,11 @@ public class UsuarioManipulacao {
             System.out.println("Sexo: ");
             usuario.setSexo(input.nextLine());
 
-            usuario.setId(usuarios.size()+1);
+            usuario.setId(usuarios.size());
             adicionarUsuario(usuario);
         } catch (DateTimeException ex) {
             System.out.println("Formato de data inválida, tente novamente.");
         }
-
     }
 
     public void editarUsuario() {
@@ -89,10 +93,7 @@ public class UsuarioManipulacao {
         } catch (InputMismatchException ex) {
             ex.printStackTrace();
             System.err.println("Caracter inválido, tente novamente para editar o usuário.");
-
-
         }
-
     }
 
     public void excluirUsuario() {
