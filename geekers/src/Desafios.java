@@ -2,10 +2,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class Desafios implements VerificacaoResposta{
-
-    String pergunta;
-    Resposta resposta;
+public class Desafios implements VerificacaoResposta, Impressao{
+    private String pergunta;
+    private Resposta resposta;
 
     public Desafios(){
 
@@ -45,10 +44,13 @@ public class Desafios implements VerificacaoResposta{
 
     @Override
     public String toString() {
-        return "Desafios{" +
-                "pergunta='" + pergunta + '\'' +
-                ", resposta=" + resposta +
-                '}';
+        return "Pergunta=" + pergunta ;
+
+    }
+
+    public void imprimir(){
+        System.out.println("Pergunta: " + pergunta +
+                "\nResposta: " + resposta);
     }
 }
 

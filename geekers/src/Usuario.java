@@ -1,25 +1,46 @@
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Usuario {
+public class Usuario implements Impressao {
+    private String nome;
+    private int id;
+    private String email;
+    private String telefone;
+    private String senha;
+    private String dataNascimento;
+    private String genero;
+    private String sexo;
+    private boolean logado;
 
-    public String nome;
-    public int id;
-    public String email;
-    public String numero;
-    public String senha;
-    public LocalDate dataNascimento;
-    public String genero;
-    public String sexo;
-    public boolean logado;
+    List<Desafios> desafios = new ArrayList<>();
+    private List<Comentario> comentarios = new ArrayList<>();
 
-    public List<Desafios> desafios = new ArrayList<>();
-    public List<Usuario>usuarios=new ArrayList<>();
+    private List<Hobbies> hobbies = new ArrayList<>();
 
-    public List<Usuario> matchs = new ArrayList<>();
+    private List<Usuario> matchs = new ArrayList<>();
+    public Usuario() {
+    }
 
-    public List<Comentario> comentarios = new ArrayList<>();
+    public Usuario(String nome, int id){
+        this.nome = nome;
+        this.id = id;
+    }
+
+    public Usuario(String nome, int id, String email, String telefone, String senha, String dataNascimento, String genero, String sexo, boolean logado, List<Desafios> desafios, List<Comentario> comentarios, List<Usuario> matchs, List<Hobbies> hobbies) {
+        this.nome = nome;
+        this.id = id;
+        this.email = email;
+        this.telefone = telefone;
+        this.senha = senha;
+        this.dataNascimento = dataNascimento;
+        this.genero = genero;
+        this.sexo = sexo;
+        this.logado = logado;
+        this.desafios = desafios;
+        this.comentarios = comentarios;
+        this.matchs = matchs;
+        this.hobbies = hobbies;
+    }
 
     public List<Comentario> getComentarios() {
         return comentarios;
@@ -31,6 +52,14 @@ public class Usuario {
 
     public String getNome() {
         return nome;
+    }
+
+    public List<Hobbies> getHobbies() {
+        return hobbies;
+    }
+
+    public void setHobbies(List<Hobbies> hobbies) {
+        this.hobbies = hobbies;
     }
 
     public void setNome(String nome) {
@@ -53,12 +82,12 @@ public class Usuario {
         this.email = email;
     }
 
-    public String getNumero() {
-        return numero;
+    public String getTelefone() {
+        return telefone;
     }
 
-    public void setNumero(String numero) {
-        this.numero = numero;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
     public String getSenha() {
@@ -69,11 +98,11 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public LocalDate getDataNascimento() {
+    public String getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(LocalDate dataNascimento) {
+    public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
@@ -101,18 +130,6 @@ public class Usuario {
         return desafios;
     }
 
-    public void setDesafios(List<Desafios> desafios) {
-        this.desafios = desafios;
-    }
-
-    public List<Usuario> getUsuarios() {
-        return usuarios;
-    }
-
-    public void setUsuarios(List<Usuario> usuarios) {
-        this.usuarios = usuarios;
-    }
-
     public List<Usuario> getMatchs() {
         return matchs;
     }
@@ -125,40 +142,50 @@ public class Usuario {
         this.logado = logado;
     }
 
-    public boolean logar(String email,String senha){
+    public boolean logar() {
         logado = true;
         return logado;
     }
 
-    public boolean deslogar(){
-    logado = false;
-        return logado;
-    }
-
-    public boolean darMatch(Usuario usuario,String frase){
-        return false;
-    }
-    public void imprimirUsuario(){
-        System.out.println();
-    }
 
 
     @Override
-    public String toString() {
-        return "Usuario{" +
-                "nome='" + nome + '\'' +
-                ", id=" + id +
-                ", email='" + email + '\'' +
-                ", numero='" + numero + '\'' +
-                ", senha='" + senha + '\'' +
-                ", dataNascimento=" + dataNascimento +
-                ", genero='" + genero + '\'' +
-                ", sexo='" + sexo + '\'' +
-                ", logado=" + logado +
-                ", desafios=" + desafios +
-                ", usuarios=" + usuarios +
-                ", matchs=" + matchs +
-                ", comentarios=" + comentarios +
-                '}';
+    public void imprimir() {
+        System.out.println("\n+---------------------------------+\n"+"| Usuário: " + this.nome +
+                           "\n| ID: " + this.id +
+                           "\n| E-mail: " + this.email +
+                "\n| Numero: " + this.telefone + "." +
+                "\n| Data de nascimento: " + this.dataNascimento + "." +
+                "\n| Genero: " + this.genero + "." +
+                "\n| Sexo: " + this.sexo +
+                "\n| Desafio: " + this.desafios +
+                "\n| Comentario: " + this.comentarios +
+                "\n| Matchs: " + this.matchs +
+                "\n| Hobbies: " + this.hobbies +
+                "\n+---------------------------------+ \n");
+
     }
+
+    public void setDesafios(List<Desafios> desafios) {
+        this.desafios = desafios;
+    }
+
+    public boolean logar(String email, String senha) {
+        logado = true;
+        return logado;
+    }
+
+    public boolean deslogar() {
+        logado = false;
+        return logado;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario= '" + nome + '\'' +
+                ", telefone='" + telefone + '\'' +
+                ", sexo='" + sexo + '\'' +
+                ", hobbies=" + hobbies ;
+    }
+
 }
