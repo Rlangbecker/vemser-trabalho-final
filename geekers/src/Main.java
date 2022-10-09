@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -36,46 +37,68 @@ public class Main {
         usuarioManipulacao.adicionarUsuario(usuario1);
         usuarioManipulacao.adicionarUsuario(usuarioLogado);
 
+
         int escolha = -1;
         while (escolha != 0) {
             try {
-                System.out.println("+---------------------------------+\n"+
-                                   "+             Geeker              +\n"+
-                                   "+---------------------------------+");
-                System.out.println(
-                        "|         [1] Cadastrar           |" +
-                        "\n|         [2] Listar Contatos     |" +
-                        "\n|         [3] Alterar Contato     |" +
-                        "\n|         [4] Excluir contato     |" +
-                        "\n|         [5] Dar match           |" +
-                        "\n|         [6] Comentar            |" +
-                        "\n|         [0] Sair                |\n"+
-                        "+---------------------------------+\n"
-                );
-
+                System.out.println("+---------------------------------+\n" +
+                        "|             Geeker              |\n" +
+                        "+---------------------------------+\n" +
+                        "|          [1] Login              |" +
+                        "\n|          [2] Cadastrar          |" +
+                        "\n|          [0] Sair               |\n" +
+                        "+---------------------------------+\n");
                 escolha = input.nextInt();
                 input.nextLine();
-                switch (escolha){
+                switch (escolha) {
                     case 1 -> {
-                        usuarioManipulacao.cadastrarUsuario();
+                        System.out.println("+---------------------------------+\n" +
+                                "|             LOGIN               |\n" +
+                                "+---------------------------------+");
+                        System.out.println("Email:");
+                        String email = input.nextLine();
+                        System.out.println("Senha:");
+                        String senha = input.nextLine();
+                        System.out.println(" \n Carregando ...");
+                        if (usuarioManipulacao.logar(email, senha)) {
+                            Usuario usuarioTemp = usuarioManipulacao.receberUsuario(email, senha);
+                            while (usuarioTemp.isLogado()) {
+                                mostrarMenuLogado();
+
+                                int opcao = input.nextInt();
+                                input.nextLine();
+                                switch (opcao) {
+                                    case 1 -> {
+                                        usuarioManipulacao.listarUsuarios();
+                                    }
+                                    case 2 -> {
+                                        usuarioManipulacao.editarUsuario();
+                                    }
+                                    case 3 -> {
+                                        usuarioManipulacao.excluirUsuario();
+                                    }
+                                    case 4 -> {
+                                        usuarioManipulacao.listarUsuarios();
+                                        escolha = input.nextInt();
+                                        usuarioManipulacao.resolverDesafio(escolha, usuarioLogado);
+                                    }
+                                    case 5 -> {
+                                        usuarioManipulacao.comentarPerfil(escolha);
+                                    }
+                                    case 0 -> {
+                                        System.out.println("Programa encerrado." +
+                                                "\nAté logo.");
+                                    }
+                                    default -> {
+                                        System.out.println("Ops!" +
+                                                "\nOpção inválida, tente novamente");
+                                    }
+                                }
+                            }
+                        }
                     }
                     case 2 -> {
-                        usuarioManipulacao.listarUsuarios();
-                    }
-                    case 3 -> {
-                        usuarioManipulacao.editarUsuario();
-                    }
-                    case 4 -> {
-                        usuarioManipulacao.excluirUsuario();
-                    }
-                    case 5 -> {
-                        usuarioManipulacao.listarUsuarios();
-                        escolha = input.nextInt();
-                        usuarioManipulacao.resolverDesafio(escolha, usuarioLogado);
-                    }
-                    case 6 -> {
-                        usuarioManipulacao.comentarPerfil(escolha);
-
+                        usuarioManipulacao.cadastrarUsuario();
                     }
                     case 0 -> {
                         System.out.println("Programa encerrado." +
@@ -94,9 +117,22 @@ public class Main {
         }
 
 
-
         input.close();
 
     }
+
+    public static void mostrarMenuLogado() {
+        System.out.println("+---------------------------------+\n" +
+                "|             Geeker              |\n" +
+                "+---------------------------------+" +
+                "\n|         [1] Listar Contatos     |" +
+                "\n|         [2] Alterar Contato     |" +
+                "\n|         [3] Excluir contato     |" +
+                "\n|         [4] Dar match           |" +
+                "\n|         [5] Comentar            |" +
+                "\n|         [0] Sair                |\n" +
+                "+---------------------------------+\n");
+    }
+
 
 }
