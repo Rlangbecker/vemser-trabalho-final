@@ -2,22 +2,39 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Usuario {
+public class Usuario implements Impressao {
 
-    public String nome;
-    public int id;
-    public String email;
-    public String numero;
-    public String senha;
-    public LocalDate dataNascimento;
-    public String genero;
-    public String sexo;
-    public boolean logado;
+    private String nome;
+    private int id;
+    private String email;
+    private String telefone;
+    private String senha;
+    private LocalDate dataNascimento;
+    private String genero;
+    private String sexo;
+    private boolean logado;
 
-    public List<Desafios> desafios = new ArrayList<>();
-    public List<Usuario>usuarios=new ArrayList<>();
+    public Usuario() {
+    }
 
-    public List<Usuario> matchs = new ArrayList<>();
+    public Usuario(int id, String email, String telefone, String senha, String genero, String sexo) {
+        this.id = id;
+        this.email = email;
+        this.telefone = telefone;
+        this.senha = senha;
+        this.genero = genero;
+        this.sexo = sexo;
+    }
+
+    public Usuario(String nome, int id, String email, String telefone, String senha, String genero, String sexo) {
+        this.nome = nome;
+        this.id = id;
+        this.email = email;
+        this.telefone = telefone;
+        this.senha = senha;
+        this.genero = genero;
+        this.sexo = sexo;
+    }
 
     public List<Comentario> comentarios = new ArrayList<>();
 
@@ -53,12 +70,12 @@ public class Usuario {
         this.email = email;
     }
 
-    public String getNumero() {
-        return numero;
+    public String getTelefone() {
+        return telefone;
     }
 
-    public void setNumero(String numero) {
-        this.numero = numero;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
     public String getSenha() {
@@ -125,40 +142,30 @@ public class Usuario {
         this.logado = logado;
     }
 
-    public boolean logar(String email,String senha){
+    public boolean logar(String email, String senha) {
         logado = true;
         return logado;
     }
 
-    public boolean deslogar(){
-    logado = false;
+    public boolean deslogar() {
+        logado = false;
         return logado;
     }
 
-    public boolean darMatch(Usuario usuario,String frase){
+    public boolean darMatch(Usuario usuario, String frase) {
         return false;
     }
-    public void imprimirUsuario(){
-        System.out.println();
-    }
-
 
     @Override
-    public String toString() {
-        return "Usuario{" +
-                "nome='" + nome + '\'' +
-                ", id=" + id +
-                ", email='" + email + '\'' +
-                ", numero='" + numero + '\'' +
-                ", senha='" + senha + '\'' +
-                ", dataNascimento=" + dataNascimento +
-                ", genero='" + genero + '\'' +
-                ", sexo='" + sexo + '\'' +
-                ", logado=" + logado +
-                ", desafios=" + desafios +
-                ", usuarios=" + usuarios +
-                ", matchs=" + matchs +
-                ", comentarios=" + comentarios +
-                '}';
+    public void imprimir() {
+        System.out.println("Usuário: " + this.nome +
+                "\nID: " + this.id +
+                "\nE-mail: " + this.email + "." +
+                "\nNumero: " + this.telefone + "." +
+                "\nData de nascimento: " + this.dataNascimento + "." +
+                "\nGenero: " + this.genero + "." +
+                "\nSexo: " + this.sexo + ".\n"
+        );
+
     }
 }

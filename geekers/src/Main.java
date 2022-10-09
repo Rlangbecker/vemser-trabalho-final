@@ -1,47 +1,78 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        //Testes para o desafio
-        DesafiosManipulacao<Desafios> desafiosManipulacao = new DesafiosManipulacao<>();
-        List<Desafios> listarDesafio = desafiosManipulacao.listarDesafios();
-        Desafios desafios = new Desafios();
-        Usuario usuario = new Usuario();
+        UsuarioManipulacao usuarioManipulacao = new UsuarioManipulacao();
+        Scanner input = new Scanner(System.in);
+
+        Usuario usuario = new Usuario("nome", 0, "email", "telefone", "senha", "genero", "m");
+        Usuario usuario1 = new Usuario("nome1", 0, "email1", "telefone1", "senha1", "genero1", "f");
+        Usuario usuario2 = new Usuario("nome2", 0, "email2", "telefone2", "senha2", "genero2", "f");
+        Usuario usuario3 = new Usuario("nome3", 0, "email3", "telefone3", "senha3", "genero3", "m");
+
+        usuarioManipulacao.adicionarUsuario(usuario);
+        usuarioManipulacao.adicionarUsuario(usuario1);
+        usuarioManipulacao.adicionarUsuario(usuario2);
+        usuarioManipulacao.adicionarUsuario(usuario3);
 
 
-        desafios.setPergunta("Goku é mais forte que naruto?");
-        desafios.setResposta(Resposta.VERDADEIRO);
-        desafiosManipulacao.adicionarDesafio(desafios);
+//        usuarioManipulacao.cadastrarUsuario();
+//        usuarioManipulacao.listarUsuarios();
+//
+//        usuarioManipulacao.cadastrarUsuario();
+//        usuarioManipulacao.listarUsuarios();
+//
+//        usuarioManipulacao.cadastrarUsuario();
+//        usuarioManipulacao.listarUsuarios();
 
-        usuario.setDesafios(listarDesafio);
-        System.out.println(usuario.getDesafios());
 
-        desafiosManipulacao.atualizarDesafio(desafios, "Onepiece é melhor que digimon? ", Resposta.FALSO);
-        System.out.println(usuario.getDesafios());
+        Integer escolha = 100;
+        while (escolha != 0) {
+            try {
+                System.out.println("Para cadastrar, digite 1: " +
+                        "\nPara listar contato(s), digite 2: " +
+                        "\nPara alterar contato, digite 3: " +
+                        "\nPara excluir contato, digite 4" +
+                        "\nPara sair, digite 0"
+                );
 
-        desafiosManipulacao.deletarDesafio();
-        System.out.println(usuario.getDesafios());
+                escolha = input.nextInt();
+                input.nextLine();
+                switch (escolha){
+                    case 1 -> {
+                        usuarioManipulacao.cadastrarUsuario();
+                    }
+                    case 2 -> {
+                        usuarioManipulacao.listarUsuarios();
+                    }
+                    case 3 -> {
+                        usuarioManipulacao.editarUsuario();
+                    }
+                    case 4 -> {
+                        usuarioManipulacao.excluirUsuario();
+                    }
+                    case 0 -> {
+                        System.out.println("Programa encerrado." +
+                                "\nAté logo.");
+                        break;
+                    }
+                    default -> {
+                        System.out.println("Ops!" +
+                                "\nOpção inválida, tente novamente");
+                    }
+                }
+            } catch (InputMismatchException ex) {
+//                ex.printStackTrace();
+                System.err.println("Opção inválido, tente novamente.");
+            }
 
-        desafios.verificarResposta(Resposta.VERDADEIRO);
+        }
 
-        //Testes para comentario
-        ComentarioManipulacao<Comentario> comentarioManipulacao = new ComentarioManipulacao<>();
-        List<Comentario> listaComentario = comentarioManipulacao.listarComentario();
-        Comentario comentario = new Comentario();
 
-        comentario.setComentario("Muito bom perfil!");
-        comentario.setUsuario(usuario);
-        comentarioManipulacao.adicionarComentario(comentario);
 
-        usuario.setComentarios(listaComentario);
-        System.out.println(usuario.getComentarios());
-
-        comentarioManipulacao.atualizarComentario(comentario,"Gostei do hobbie");
-        System.out.println(usuario.getComentarios());
-
-        comentarioManipulacao.deletarComentario();
-        System.out.println(usuario.getComentarios());
+        input.close();
 
     }
 }
