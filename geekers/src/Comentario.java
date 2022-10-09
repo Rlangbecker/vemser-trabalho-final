@@ -1,7 +1,7 @@
 public class Comentario {
 
-    public String comentario;
-    public Usuario usuario;
+    private String comentario;
+    private Usuario usuario;
 
     public String getComentario() {
         return comentario;
@@ -23,5 +23,9 @@ public class Comentario {
     public String toString() {
         return "Comentario{" +
                 "comentario='" + comentario + "}'";
+    }
+
+    public void imprimir() {
+        System.out.println("Comentario: " + comentario);
     }
 }

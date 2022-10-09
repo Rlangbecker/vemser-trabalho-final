@@ -2,10 +2,11 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class ComentarioTest {
-    Comentario comentario = new Comentario();
-    ComentarioManipulacao<Comentario> comentarioManipulacao = new ComentarioManipulacao<>();
+    private Comentario comentario = new Comentario();
+    private ComentarioManipulacao<Comentario> comentarioManipulacao = new ComentarioManipulacao<>();
+
     @Test
-    public void deveTestarAdicionarComentarioComSucesso(){
+    public void deveTestarAdicionarComentarioComSucesso() {
         comentario.setComentario("Gostei do perfil");
 
         boolean retorno = comentarioManipulacao.adicionarComentario(comentario);
@@ -14,13 +15,12 @@ public class ComentarioTest {
     }
 
     @Test
-    public void deveTestarRemoverComentarioSemSucesso(){
+    public void deveTestarRemoverComentarioSemSucesso() {
         comentario.setComentario(null);
 
         boolean retorno = comentarioManipulacao.adicionarComentario(comentario);
 
         Assertions.assertTrue(retorno);
     }
-
 
 }

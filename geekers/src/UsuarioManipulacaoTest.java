@@ -1,34 +1,38 @@
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class UsuarioManipulacaoTest {
 
-    UsuarioManipulacao usuarioManipulacao = new UsuarioManipulacao();
+    private UsuarioManipulacao usuarioManipulacao = new UsuarioManipulacao();
 
     @BeforeEach
-    public void init() {usuarioManipulacao = new UsuarioManipulacao();}
+    public void init() {
+        usuarioManipulacao = new UsuarioManipulacao();
+    }
 
     @Test
     public void testAdicionarUsuario() {
         Usuario user = new Usuario();
 
 
-        usuarioManipulacao.adicionarUsuario(new Usuario("Jorge"));
+        usuarioManipulacao.adicionarUsuario(new Usuario("Felipe", 0));
 
 
-        Assertions.assertEquals(usuarioManipulacao.getUsuarios().size(), 1);
+        assertEquals(usuarioManipulacao.getUsuarios().size(), 1);
     }
 
-    @Test
     public void testAtualizarUsuario() {
-        Usuario usuario = new Usuario("Jorge");
-        usuarioManipulacao.adicionarUsuario(usuario);
+        Usuario usuario = new Usuario("Felipe", 0);
+        Usuario user = new Usuario();
 
-        boolean retorno = usuarioManipulacao.atualizarUsuario(0, usuario);
 
-        Assertions.assertTrue(retorno);
+        usuarioManipulacao.atualizarUsuario(user.getId(), usuario);
+
+
+        assertEquals(usuarioManipulacao.getUsuarios().size(), 0);
     }
 }
 

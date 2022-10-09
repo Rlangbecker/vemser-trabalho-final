@@ -9,25 +9,25 @@ public class Usuario implements Impressao {
     private String email;
     private String telefone;
     private String senha;
-    private LocalDate dataNascimento;
+    private String dataNascimento;
     private String genero;
     private String sexo;
     private boolean logado;
 
-    public List<Desafios> desafios = new ArrayList<>();
-    public List<Comentario> comentarios = new ArrayList<>();
-
-    public List<Usuario> matchs = new ArrayList<>();
+    private List<Desafios> desafios = new ArrayList<>();
+    private List<Comentario> comentarios = new ArrayList<>();
+    private List<Hobbies> hobbies = new ArrayList<>();
+    private List<Usuario> matchs = new ArrayList<>();
 
     public Usuario() {
     }
 
-    public Usuario(String nome) {
+    public Usuario(String nome, int id) {
         this.nome = nome;
+        this.id = id;
     }
 
-    public Usuario(String nome, int id, String email, String telefone, String senha, LocalDate dataNascimento,
-                   String genero, String sexo, boolean logado, List<Desafios> desafios, List<Comentario> comentarios) {
+    public Usuario(String nome, int id, String email, String telefone, String senha, String dataNascimento, String genero, String sexo, boolean logado, List<Desafios> desafios, List<Comentario> comentarios, List<Usuario> matchs, List<Hobbies> hobbies) {
         this.nome = nome;
         this.id = id;
         this.email = email;
@@ -39,6 +39,8 @@ public class Usuario implements Impressao {
         this.logado = logado;
         this.desafios = desafios;
         this.comentarios = comentarios;
+        this.matchs = matchs;
+        this.hobbies = hobbies;
     }
 
     public List<Comentario> getComentarios() {
@@ -51,6 +53,14 @@ public class Usuario implements Impressao {
 
     public String getNome() {
         return nome;
+    }
+
+    public List<Hobbies> getHobbies() {
+        return hobbies;
+    }
+
+    public void setHobbies(List<Hobbies> hobbies) {
+        this.hobbies = hobbies;
     }
 
     public void setNome(String nome) {
@@ -89,11 +99,11 @@ public class Usuario implements Impressao {
         this.senha = senha;
     }
 
-    public LocalDate getDataNascimento() {
+    public String getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(LocalDate dataNascimento) {
+    public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
@@ -137,8 +147,6 @@ public class Usuario implements Impressao {
         this.logado = logado;
     }
 
-
-
     public boolean logar(String email, String senha) {
         logado = true;
         return logado;
@@ -149,10 +157,6 @@ public class Usuario implements Impressao {
         return logado;
     }
 
-    public boolean darMatch(Usuario usuario, String frase) {
-        return false;
-    }
-
     @Override
     public void imprimir() {
         System.out.println("Usuário: " + this.nome +
@@ -160,10 +164,14 @@ public class Usuario implements Impressao {
                 "\nE-mail: " + this.email + "." +
                 "\nNumero: " + this.telefone + "." +
                 "\nData de nascimento: " + this.dataNascimento + "." +
-                "_____________________________________________________"
-                //+
-//                "\nGenero: " + this.genero + "." +
-//                "\nSexo: " + this.sexo + ".\n"
+                "\nGenero: " + this.genero + "." +
+                "\nSexo: " + this.sexo +
+                "\nDesafio: " + this.desafios +
+                "\nComentarios: " + this.comentarios +
+                "\nMatchs: " + this.matchs +
+                "\nHobbies: " + this.hobbies
         );
+
     }
+
 }

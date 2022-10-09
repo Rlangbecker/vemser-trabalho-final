@@ -3,14 +3,14 @@ import java.util.List;
 
 public class DesafiosManipulacao<T> {
     private List<T> desafios = new ArrayList<>();
-    Desafios desafio = new Desafios();
+    private Desafios desafio = new Desafios();
 
     public boolean adicionarDesafio(T desafio) {
+
         if (desafios == null) {
             desafios = new ArrayList<>();
             return false;
-        }
-        else {
+        } else {
             desafios.add(desafio);
             return true;
         }
@@ -31,10 +31,17 @@ public class DesafiosManipulacao<T> {
         this.desafios.remove(0);
     }
 
+    public void validarDesafio(Desafios desafio) throws DesafioException {
+        if (desafio.getPergunta().trim().isEmpty() || desafio.getResposta().equals(null)) {
+            throw new DesafioException("Desafio não cadastrado, tente novamente.");
+        }
+    }
+
     @Override
     public String toString() {
         return "DesafiosManipulacao{" +
                 "desafio=" + desafios +
                 '}';
     }
+
 }

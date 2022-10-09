@@ -2,12 +2,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class Desafios implements VerificacaoResposta{
+public class Desafios implements VerificacaoResposta, Impressao {
 
-    String pergunta;
-    Resposta resposta;
+    private String pergunta;
+    private Resposta resposta;
 
-    public Desafios(){
+    public Desafios() {
 
     }
 
@@ -33,11 +33,10 @@ public class Desafios implements VerificacaoResposta{
     }
 
     public boolean verificarResposta(Resposta opcao) {
-        if (opcao == getResposta()){
+        if (opcao == getResposta()) {
             System.out.println("Resposta Correta!");
             return true;
-        }
-        else {
+        } else {
             System.out.println("Resposta Errada!");
             return false;
         }
@@ -45,10 +44,12 @@ public class Desafios implements VerificacaoResposta{
 
     @Override
     public String toString() {
-        return "Desafios{" +
-                "pergunta='" + pergunta + '\'' +
-                ", resposta=" + resposta +
-                '}';
+        return "pergunta='" + pergunta + '\'';
     }
-}
 
+    public void imprimir() {
+        System.out.println("Pergunta: " + pergunta +
+                "\nResposta: " + resposta);
+    }
+
+}

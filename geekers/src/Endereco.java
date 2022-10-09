@@ -3,12 +3,12 @@ import java.util.List;
 
 public class Endereco {
 
-    public String rua;
-    public String cidade;
-    public String estado;
-    public String pais;
+    private String rua;
+    private String cidade;
+    private String estado;
+    private String pais;
 
-    public List<Endereco> enderecos = new ArrayList<>();
+    private List<Endereco> enderecos = new ArrayList<>();
 
     public String getRua() {
         return rua;
@@ -42,29 +42,27 @@ public class Endereco {
         this.pais = pais;
     }
 
-    public void adicionarEndereco(Endereco endereco){
-        if(enderecos==null){
+    public void adicionarEndereco(Endereco endereco) {
+        if (enderecos == null) {
             enderecos = new ArrayList<>();
         }
         enderecos.add(endereco);
-
     }
-    public void listarContatos(){
-        for (int i = 0; i <enderecos.size() ; i++) {
+
+    public void listarContatos() {
+        for (int i = 0; i < enderecos.size(); i++) {
             System.out.println("ID -" + i + " | " + enderecos.get(i));
         }
     }
 
-    public void atualizarEndereco(int id,Endereco Endereco){
-        Endereco enderecoAtualizar= enderecos.get(id);
+    public void atualizarEndereco(int id, Endereco Endereco) {
+        Endereco enderecoAtualizar = enderecos.get(id);
         enderecoAtualizar.setRua(getRua());
         enderecoAtualizar.setCidade((getCidade()));
     }
 
-    public void deletarEndereco(int id){
+    public void deletarEndereco(int id) {
         this.enderecos.remove(id);
     }
-
-
 
 }
