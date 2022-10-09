@@ -36,8 +36,8 @@ public class Main {
                 true, listarDesafio, listaComentario, null, hobbiesList);
 
         usuarioManipulacao.adicionarUsuario(usuario1);
-        usuarioManipulacao.adicionarUsuario(usuario2);
         usuarioManipulacao.adicionarUsuario(usuarioLogado);
+        usuarioManipulacao.adicionarUsuario(usuario2);
 
         int escolha = 100;
         while (escolha != 0) {
@@ -59,7 +59,8 @@ public class Main {
                         usuarioManipulacao.cadastrarUsuario();
                     }
                     case 2 -> {
-                        usuarioManipulacao.listarUsuarios();
+                        System.out.println("Matchs do Usuario: ");
+                        System.out.println(usuarioLogado.getMatchs());
                     }
                     case 3 -> {
                         usuarioManipulacao.editarUsuario();

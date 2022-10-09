@@ -7,8 +7,8 @@ import java.util.List;
 
 public class DesafioTest {
 
-    Desafios desafios = new Desafios();
-    DesafiosManipulacao<Desafios> desafiosManipulacao = new DesafiosManipulacao<>();
+    private Desafios desafios = new Desafios();
+    private DesafiosManipulacao<Desafios> desafiosManipulacao = new DesafiosManipulacao<>();
     @BeforeEach
     public void init() {
         desafios = new Desafios();

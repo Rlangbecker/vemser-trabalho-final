@@ -9,11 +9,11 @@ public class UsuarioManipulacao {
     private Usuario usuario;
     private List<Usuario> usuarios = new ArrayList<>();
     private List<Usuario> matchs = new ArrayList<>();
-    List<Usuario> usuariosMatchs = new ArrayList<>();
-    HobbiesManipulacao<Hobbies> hobbiesManipulacao = new HobbiesManipulacao<>();
-    List<Hobbies> listarHobbies = hobbiesManipulacao.listarHobbies();
-    DesafiosManipulacao<Desafios> desafiosManipulacao = new DesafiosManipulacao<>();
-    List<Desafios> listarDesafio = desafiosManipulacao.listarDesafios();
+    private List<Usuario> usuariosMatchs = new ArrayList<>();
+    private HobbiesManipulacao<Hobbies> hobbiesManipulacao = new HobbiesManipulacao<>();
+    private List<Hobbies> listarHobbies = hobbiesManipulacao.listarHobbies();
+    private DesafiosManipulacao<Desafios> desafiosManipulacao = new DesafiosManipulacao<>();
+    private List<Desafios> listarDesafio = desafiosManipulacao.listarDesafios();
     private Desafios desafio;
 
     public List<Usuario> getUsuarios() {

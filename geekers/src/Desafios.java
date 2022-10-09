@@ -4,8 +4,8 @@ import java.util.Optional;
 
 public class Desafios implements VerificacaoResposta, Impressao{
 
-    String pergunta;
-    Resposta resposta;
+    private String pergunta;
+    private Resposta resposta;
 
     public Desafios(){
 

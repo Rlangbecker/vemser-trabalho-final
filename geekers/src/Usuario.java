@@ -14,12 +14,12 @@ public class Usuario implements Impressao {
     private String sexo;
     private boolean logado;
 
-    public List<Desafios> desafios = new ArrayList<>();
-    public List<Comentario> comentarios = new ArrayList<>();
+    List<Desafios> desafios = new ArrayList<>();
+    private List<Comentario> comentarios = new ArrayList<>();
 
-    public List<Hobbies> hobbies = new ArrayList<>();
+    private List<Hobbies> hobbies = new ArrayList<>();
 
-    public List<Usuario> matchs = new ArrayList<>();
+    private List<Usuario> matchs = new ArrayList<>();
     public Usuario() {
     }
 

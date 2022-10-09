@@ -3,12 +3,11 @@ import java.util.List;
 
 public class Endereco {
 
-    public String rua;
-    public String cidade;
-    public String estado;
-    public String pais;
-
-    public List<Endereco> enderecos = new ArrayList<>();
+    private String rua;
+    private String cidade;
+    private String estado;
+    private String pais;
+    private List<Endereco> enderecos = new ArrayList<>();
 
     public String getRua() {
         return rua;

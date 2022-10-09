@@ -3,7 +3,7 @@ import java.util.List;
 
 public class ComentarioManipulacao<T>{
 
-    public List<T> comentarios = new ArrayList<>();
+    private List<T> comentarios = new ArrayList<>();
 
     public boolean adicionarComentario(T comentario){
         if(comentarios==null){

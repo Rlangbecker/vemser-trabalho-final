@@ -2,8 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HobbiesManipulacao<T> {
-    public Hobbies hobbies;
-    public List<T> listaHobbies=new ArrayList<>();
+    private Hobbies hobbies;
+    private List<T> listaHobbies=new ArrayList<>();
 
 
     public HobbiesManipulacao() {

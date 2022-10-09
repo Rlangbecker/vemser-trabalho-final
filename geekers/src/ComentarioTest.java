@@ -2,8 +2,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class ComentarioTest {
-    Comentario comentario = new Comentario();
-    ComentarioManipulacao<Comentario> comentarioManipulacao = new ComentarioManipulacao<>();
+    private Comentario comentario = new Comentario();
+    private ComentarioManipulacao<Comentario> comentarioManipulacao = new ComentarioManipulacao<>();
     @Test
     public void deveTestarAdicionarComentarioComSucesso(){
         comentario.setComentario("Gostei do perfil");
