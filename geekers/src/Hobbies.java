@@ -11,7 +11,6 @@ public class Hobbies {
         this.descricao = descricao;
     }
 
-
     public TipoHobbies getHobbies() {
         return hobbies;
     }
