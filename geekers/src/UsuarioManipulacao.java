@@ -9,7 +9,7 @@ public class UsuarioManipulacao {
     private Usuario usuario;
     private List<Usuario> usuarios = new ArrayList<>();
     private List<Usuario> matchs = new ArrayList<>();
-
+    List<Usuario> usuariosMatchs = new ArrayList<>();
     HobbiesManipulacao<Hobbies> hobbiesManipulacao = new HobbiesManipulacao<>();
     List<Hobbies> listarHobbies = hobbiesManipulacao.listarHobbies();
     DesafiosManipulacao<Desafios> desafiosManipulacao = new DesafiosManipulacao<>();
@@ -53,7 +53,8 @@ public class UsuarioManipulacao {
 
     public void resolverDesafio(int idParaMatch, Usuario usuarioLogado){
             Usuario usuarioMatch = usuarios.get(idParaMatch);
-            if(idParaMatch == usuarios.get(idParaMatch).getId()) {
+
+            if(usuarioMatch == usuarios.get(idParaMatch)) {
                 usuarios.get(idParaMatch).imprimir();
                 System.out.println("Resolva o desafio: ");
                 usuarios.get(idParaMatch).getDesafios();
@@ -61,14 +62,17 @@ public class UsuarioManipulacao {
                 int escolha = input.nextInt();
                 input.nextLine();
                 if(escolha == 1){
-                    if(usuarios.get(idParaMatch).desafios.get(idParaMatch).verificarResposta(Resposta.VERDADEIRO)){
-                        usuarioLogado.setMatchs(Collections.singletonList(usuarioMatch));
+                    boolean retorno = usuarioMatch.desafios.get(0).verificarResposta(Resposta.VERDADEIRO);
+                    if(retorno){
+                        usuariosMatchs.add(usuarioMatch);
+                        usuarioLogado.setMatchs(usuariosMatchs);
                         System.out.println("Usuario adicionado na lista de matchs");
                     }
                 }
                 else if (escolha == 2){
-                    if(usuarios.get(idParaMatch).desafios.get(idParaMatch).verificarResposta(Resposta.FALSO)){
-                        usuario.setMatchs(usuarios);
+                    if(usuarioMatch.desafios.get(0).verificarResposta(Resposta.FALSO)){
+                        usuariosMatchs.add(usuarioMatch);
+                        usuarioLogado.setMatchs(usuariosMatchs);
                         System.out.println("Usuario adicionado na lista de matchs");
                     }
                 }
@@ -243,5 +247,20 @@ public class UsuarioManipulacao {
         } catch (InputMismatchException ex) {
             System.out.println("Caracter inválido, tente novamente para remover um usuário.");
         }
+    }
+
+    @Override
+    public String toString() {
+        return "UsuarioManipulacao{" +
+                "input=" + input +
+                ", usuario=" + usuario +
+                ", usuarios=" + usuarios +
+                ", matchs=" + matchs +
+                ", hobbiesManipulacao=" + hobbiesManipulacao +
+                ", listarHobbies=" + listarHobbies +
+                ", desafiosManipulacao=" + desafiosManipulacao +
+                ", listarDesafio=" + listarDesafio +
+                ", desafio=" + desafio +
+                '}';
     }
 }

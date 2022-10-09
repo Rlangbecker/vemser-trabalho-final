@@ -153,6 +153,13 @@ public class Usuario implements Impressao {
         return logado;
     }
 
+    @Override
+    public String toString() {
+        return "Usuario= '" + nome + '\'' +
+                ", telefone='" + telefone + '\'' +
+                ", sexo='" + sexo + '\'' +
+                ", hobbies=" + hobbies ;
+    }
 
     @Override
     public void imprimir() {

@@ -15,7 +15,7 @@ public class Main {
         List<Comentario> listaComentario = comentarioManipulacao.listarComentario();
         Comentario comentario = new Comentario();
         desafios.setPergunta("Flamengo é o maior do rio?");
-        desafios.setResposta(Resposta.VERDADEIRO);
+        desafios.setResposta(Resposta.FALSO);
         desafiosManipulacao.adicionarDesafio(desafios);
         comentario.setComentario("Belo perfil!");
         comentarioManipulacao.adicionarComentario(comentario);
@@ -27,16 +27,19 @@ public class Main {
         hobbiesManipulacao.adicionarHobbies(hobbies);
 
 
-        Usuario usuario1 = new Usuario("nome", 0, "email", "telefone", "senha",
-                null, "genero", "m", false, listarDesafio, listaComentario, null, hobbiesList);
+        Usuario usuario1 = new Usuario("Leoncio", 0, "Leoneymar@gmail.com", "9987461432", "1234",
+                "15022000", "m", "m", false, listarDesafio, listaComentario, null, hobbiesList);
+        Usuario usuario2 = new Usuario("Cristiano", 2, "Oloco@hotmail.br", "3246189544", "42134123",
+                null, "m", "m", false, listarDesafio, listaComentario, null, hobbiesList);
         Usuario usuarioLogado = new Usuario("Kaio", 1, "kaio@teste.com", "8979541131",
                 "senha", "140302", "m", "m",
                 true, listarDesafio, listaComentario, null, hobbiesList);
 
         usuarioManipulacao.adicionarUsuario(usuario1);
+        usuarioManipulacao.adicionarUsuario(usuario2);
         usuarioManipulacao.adicionarUsuario(usuarioLogado);
 
-        int escolha = -1;
+        int escolha = 100;
         while (escolha != 0) {
             try {
                 System.out.println("Bem vindo ao Tinder Geeker\n");
@@ -66,8 +69,11 @@ public class Main {
                     }
                     case 5 -> {
                         usuarioManipulacao.listarUsuarios();
+                        System.out.println("Escolha um usuario para dar match: ");
                         escolha = input.nextInt();
+                        input.nextLine();
                         usuarioManipulacao.resolverDesafio(escolha, usuarioLogado);
+                        escolha = 100;
                     }
                     case 6 -> {
                         usuarioManipulacao.comentarPerfil(escolha);
