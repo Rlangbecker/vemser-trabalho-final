@@ -1,8 +1,8 @@
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class UsuarioManipulacaoTest {
 
@@ -24,15 +24,14 @@ public class UsuarioManipulacaoTest {
         assertEquals(usuarioManipulacao.getUsuarios().size(), 1);
     }
 
-    public void testAtualizarUsuario() {
+    @Test
+    public void testarClasseUsuario() {
         Usuario usuario = new Usuario("Felipe", 0);
-        Usuario user = new Usuario();
 
-
-        usuarioManipulacao.atualizarUsuario(user.getId(), usuario);
-
-
-        assertEquals(usuarioManipulacao.getUsuarios().size(), 0);
+        Assertions.assertAll("usuario",
+                () -> assertEquals("Felipe", usuario.getNome()),
+                () -> assertEquals(0, usuario.getId())
+        );
     }
-}
 
+}

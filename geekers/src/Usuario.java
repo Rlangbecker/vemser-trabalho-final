@@ -14,7 +14,7 @@ public class Usuario implements Impressao {
     private String sexo;
     private boolean logado;
 
-    private List<Desafios> desafios = new ArrayList<>();
+    public List<Desafios> desafios = new ArrayList<>();
     private List<Comentario> comentarios = new ArrayList<>();
     private List<Hobbies> hobbies = new ArrayList<>();
     private List<Usuario> matchs = new ArrayList<>();
