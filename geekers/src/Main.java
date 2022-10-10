@@ -121,7 +121,7 @@ public class Main {
         System.out.println("+---------------------------------+\n" +
                 "|             Geeker              |\n" +
                 "+---------------------------------+" +
-                "\n|         [1] Listar Contatos     |" +
+                "\n|         [1] Listar Matchs       |" +
                 "\n|         [2] Editar Perfil       |" +
                 "\n|         [3] Excluir contato     |" +
                 "\n|         [4] Dar match           |" +
