@@ -4,37 +4,44 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
         Usuario userParaLogar;
 
         Usuario usuario = new Usuario();
         UsuarioManipulacao usuarioManipulacao = new UsuarioManipulacao();
-        Scanner input = new Scanner(System.in);
-        DesafiosManipulacao<Desafios> desafiosManipulacao = new DesafiosManipulacao<>();
-        List<Desafios> listarDesafio = desafiosManipulacao.listarDesafios();
-        Desafios desafios = new Desafios();
-        ComentarioManipulacao<Comentario> comentarioManipulacao = new ComentarioManipulacao<>();
-        List<Comentario> listaComentario = comentarioManipulacao.listarComentario();
+
         Comentario comentario = new Comentario();
+        comentario.setComentario("Belo perfil!");
+        ComentarioManipulacao<Comentario> comentarioManipulacao = new ComentarioManipulacao<>();
+        comentarioManipulacao.adicionarComentario(comentario);
+
+        List<Comentario> listaComentario = comentarioManipulacao.listarComentario();
+
+        Desafios desafios = new Desafios();
         desafios.setPergunta("Flamengo é o maior do rio?");
         desafios.setResposta(Resposta.VERDADEIRO);
+
+        DesafiosManipulacao<Desafios> desafiosManipulacao = new DesafiosManipulacao<>();
+        List<Desafios> listarDesafio = desafiosManipulacao.listarDesafios();
         desafiosManipulacao.adicionarDesafio(desafios);
-        comentario.setComentario("Belo perfil!");
-        comentarioManipulacao.adicionarComentario(comentario);
+
         Hobbies hobbies = new Hobbies();
-        HobbiesManipulacao hobbiesManipulacao = new HobbiesManipulacao();
-        List<Hobbies> hobbiesList = hobbiesManipulacao.listarHobbies();
         hobbies.setHobbies(TipoHobbies.JOGOS);
         hobbies.setDescricao("FIFA 22");
+        HobbiesManipulacao hobbiesManipulacao = new HobbiesManipulacao();
         hobbiesManipulacao.adicionarHobbies(hobbies);
+        List<Hobbies> hobbiesList = hobbiesManipulacao.listarHobbies();
 
 
-        Usuario usuario1 = new Usuario("nome", 0, "email", "telefone", "senha",
-                null, "genero", "m", false, listarDesafio, listaComentario, null, hobbiesList);
-        Usuario usuarioLogado = new Usuario("Kaio", 1, "kaio@teste.com", "8979541131",
-                "senha", "140302", "m", "m",
+
+        Usuario julia = new Usuario("Julia", 0, "julia@gmail.com", "993764282", "123456",
+                "06082001", "Bi", "Feminino", false, listarDesafio, listaComentario, null, hobbiesList);
+        Usuario usuarioLogado = new Usuario("Kaio", 1, "kaio@dbc.com", "8979541131",
+                "dbcmelhorempresa", "140302", "Hetero", "Masculino",
                 true, listarDesafio, listaComentario, null, hobbiesList);
 
-        usuarioManipulacao.adicionarUsuario(usuario1);
+        usuarioManipulacao.adicionarUsuario(julia);
         usuarioManipulacao.adicionarUsuario(usuarioLogado);
 
 

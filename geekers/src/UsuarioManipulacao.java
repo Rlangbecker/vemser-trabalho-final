@@ -14,7 +14,7 @@ public class UsuarioManipulacao {
     private List<Hobbies> listarHobbies = hobbiesManipulacao.listarHobbies();
     private DesafiosManipulacao<Desafios> desafiosManipulacao = new DesafiosManipulacao<>();
     private List<Desafios> listarDesafio = desafiosManipulacao.listarDesafios();
-    private Desafios desafio;
+    private Desafios desafios;
 
     public List<Usuario> getUsuarios() {
         return usuarios;
@@ -30,13 +30,8 @@ public class UsuarioManipulacao {
     public void listarUsuarios() {
         for (int i = 0; i < usuarios.size(); i++) {
             usuarios.get(i).imprimir();
-            System.out.println("\n");
-
         }
     }
-
-
-
 
     public void comentarPerfil(int id){
         ComentarioManipulacao<Comentario> comentarioManipulacao = new ComentarioManipulacao<>();
@@ -108,7 +103,7 @@ public class UsuarioManipulacao {
 
     public boolean cadastrarUsuario() {
         try {
-            Usuario usuario = new Usuario();
+            usuario = new Usuario();
 
             System.out.println("+------ CADASTRO DE USUÁRIO ------+" +
                     "\n|        Insira os dados          |" +
@@ -140,7 +135,7 @@ public class UsuarioManipulacao {
                     "\n+---------------------------------+");
 
             int escolha = input.nextInt();
-            Desafios desafios = new Desafios(pergunta, Resposta.values()[escolha]);
+            desafios = new Desafios(pergunta, Resposta.values()[escolha]);
 
             desafiosManipulacao.validarDesafio(desafios);
             desafiosManipulacao.adicionarDesafio(desafios);
@@ -326,7 +321,7 @@ public class UsuarioManipulacao {
                 ", listarHobbies=" + listarHobbies +
                 ", desafiosManipulacao=" + desafiosManipulacao +
                 ", listarDesafio=" + listarDesafio +
-                ", desafio=" + desafio +
+                ", desafio=" + desafios +
                 '}';
 
     }

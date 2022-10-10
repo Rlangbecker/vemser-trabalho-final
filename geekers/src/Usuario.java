@@ -12,7 +12,7 @@ public class Usuario implements Impressao {
     private String sexo;
     private boolean logado;
 
-    List<Desafios> desafios = new ArrayList<>();
+    public List<Desafios> desafios = new ArrayList<>();
     private List<Comentario> comentarios = new ArrayList<>();
 
     private List<Hobbies> hobbies = new ArrayList<>();
@@ -170,10 +170,6 @@ public class Usuario implements Impressao {
         this.desafios = desafios;
     }
 
-    public boolean logar(String email, String senha) {
-        logado = true;
-        return logado;
-    }
 
     public boolean deslogar() {
         logado = false;
@@ -182,10 +178,10 @@ public class Usuario implements Impressao {
 
     @Override
     public String toString() {
-        return "Usuario= '" + nome + '\'' +
-                ", telefone='" + telefone + '\'' +
-                ", sexo='" + sexo + '\'' +
-                ", hobbies=" + hobbies ;
+        return "Usuario: " + nome + "\n" +
+                "Telefone:" + telefone + "\n" +
+                "Sexo='" + sexo + "\n" +
+                "Hobbies=" + hobbies ;
     }
 
 }
