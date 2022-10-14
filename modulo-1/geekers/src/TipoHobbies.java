@@ -5,5 +5,4 @@ public enum TipoHobbies {
     FILMES,
     BEBIDAS,
     OUTROS;
-
 }

@@ -1,9 +1,7 @@
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Usuario implements Impressao {
-
     private String nome;
     private int id;
     private String email;
@@ -16,13 +14,14 @@ public class Usuario implements Impressao {
 
     public List<Desafios> desafios = new ArrayList<>();
     private List<Comentario> comentarios = new ArrayList<>();
-    private List<Hobbies> hobbies = new ArrayList<>();
-    private List<Usuario> matchs = new ArrayList<>();
 
+    private List<Hobbies> hobbies = new ArrayList<>();
+
+    private List<Usuario> matchs = new ArrayList<>();
     public Usuario() {
     }
 
-    public Usuario(String nome, int id) {
+    public Usuario(String nome, int id){
         this.nome = nome;
         this.id = id;
     }
@@ -131,10 +130,6 @@ public class Usuario implements Impressao {
         return desafios;
     }
 
-    public void setDesafios(List<Desafios> desafios) {
-        this.desafios = desafios;
-    }
-
     public List<Usuario> getMatchs() {
         return matchs;
     }
@@ -147,10 +142,34 @@ public class Usuario implements Impressao {
         this.logado = logado;
     }
 
-    public boolean logar(String email, String senha) {
+    public boolean logar() {
         logado = true;
         return logado;
     }
+
+
+
+    @Override
+    public void imprimir() {
+        System.out.println("\n+---------------------------------+\n"+"| Usuário: " + this.nome +
+                           "\n| ID: " + this.id +
+                           "\n| E-mail: " + this.email +
+                "\n| Numero: " + this.telefone + "." +
+                "\n| Data de nascimento: " + this.dataNascimento + "." +
+                "\n| Genero: " + this.genero + "." +
+                "\n| Sexo: " + this.sexo +
+                "\n| Desafio: " + this.desafios +
+                "\n| Comentario: " + this.comentarios +
+                "\n| Matchs: " + this.matchs +
+                "\n| Hobbies: " + this.hobbies +
+                "\n+---------------------------------+ \n");
+
+    }
+
+    public void setDesafios(List<Desafios> desafios) {
+        this.desafios = desafios;
+    }
+
 
     public boolean deslogar() {
         logado = false;
@@ -158,20 +177,11 @@ public class Usuario implements Impressao {
     }
 
     @Override
-    public void imprimir() {
-        System.out.println("Usuário: " + this.nome +
-                "\nID: " + this.id +
-                "\nE-mail: " + this.email + "." +
-                "\nNumero: " + this.telefone + "." +
-                "\nData de nascimento: " + this.dataNascimento + "." +
-                "\nGenero: " + this.genero + "." +
-                "\nSexo: " + this.sexo +
-                "\nDesafio: " + this.desafios +
-                "\nComentarios: " + this.comentarios +
-                "\nMatchs: " + this.matchs +
-                "\nHobbies: " + this.hobbies
-        );
-
+    public String toString() {
+        return "Usuario: " + nome + "\n" +
+                "Telefone:" + telefone + "\n" +
+                "Sexo='" + sexo + "\n" +
+                "Hobbies=" + hobbies +"\n" ;
     }
 
 }

@@ -6,7 +6,7 @@ public class ComentarioTest {
     private ComentarioManipulacao<Comentario> comentarioManipulacao = new ComentarioManipulacao<>();
 
     @Test
-    public void deveTestarAdicionarComentarioComSucesso() {
+    public void deveTestarAdicionarComentarioComSucesso(){
         comentario.setComentario("Gostei do perfil");
 
         boolean retorno = comentarioManipulacao.adicionarComentario(comentario);
@@ -15,12 +15,13 @@ public class ComentarioTest {
     }
 
     @Test
-    public void deveTestarRemoverComentarioSemSucesso() {
+    public void deveTestarRemoverComentarioSemSucesso(){
         comentario.setComentario(null);
 
         boolean retorno = comentarioManipulacao.adicionarComentario(comentario);
 
         Assertions.assertTrue(retorno);
     }
+
 
 }

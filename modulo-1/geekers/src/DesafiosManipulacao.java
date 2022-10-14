@@ -3,14 +3,15 @@ import java.util.List;
 
 public class DesafiosManipulacao<T> {
     private List<T> desafios = new ArrayList<>();
-    private Desafios desafio = new Desafios();
+    Desafios desafio = new Desafios();
 
     public boolean adicionarDesafio(T desafio) {
 
         if (desafios == null) {
             desafios = new ArrayList<>();
             return false;
-        } else {
+        }
+        else {
             desafios.add(desafio);
             return true;
         }
@@ -36,12 +37,10 @@ public class DesafiosManipulacao<T> {
             throw new DesafioException("Desafio não cadastrado, tente novamente.");
         }
     }
-
     @Override
     public String toString() {
         return "DesafiosManipulacao{" +
                 "desafio=" + desafios +
                 '}';
     }
-
 }

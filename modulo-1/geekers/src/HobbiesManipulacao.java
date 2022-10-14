@@ -3,17 +3,19 @@ import java.util.List;
 
 public class HobbiesManipulacao<T> {
     private Hobbies hobbies;
-    private List<T> listaHobbies = new ArrayList<>();
+    private List<T> listaHobbies=new ArrayList<>();
+
 
     public HobbiesManipulacao() {
     }
 
-    public HobbiesManipulacao(Hobbies hobbies) {
+    public HobbiesManipulacao(Hobbies hobbies)
+    {
         this.hobbies = hobbies;
     }
 
-    public boolean adicionarHobbies(T hobbie) {
-        if (listaHobbies == null) {
+    public boolean adicionarHobbies(T hobbie){
+        if(listaHobbies==null){
             listaHobbies = new ArrayList<>();
             listaHobbies.add(hobbie);
         }
@@ -21,11 +23,11 @@ public class HobbiesManipulacao<T> {
         return true;
     }
 
-    public List<T> listarHobbies() {
+    public List<T> listarHobbies(){
         return listaHobbies;
     }
 
-    public boolean atualizarHobbie(T hobbies, TipoHobbies tipoHobbies, String descricaoHobbie) {
+    public boolean atualizarHobbie(T hobbies, TipoHobbies tipoHobbies, String descricaoHobbie){
 
         Hobbies hobbiesAtualizar = (Hobbies) listaHobbies.get(0);
 
@@ -34,7 +36,7 @@ public class HobbiesManipulacao<T> {
         return true;
     }
 
-    public boolean deletarHobbie(int id) {
+    public boolean deletarHobbie(int id){
 
         this.listaHobbies.remove(id);
         return true;
@@ -62,5 +64,4 @@ public class HobbiesManipulacao<T> {
     public void setListaHobbies(List<T> listaHobbies) {
         this.listaHobbies = listaHobbies;
     }
-
 }

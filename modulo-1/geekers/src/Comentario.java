@@ -21,11 +21,10 @@ public class Comentario {
 
     @Override
     public String toString() {
-        return "Comentario{" +
-                "comentario='" + comentario + "}'";
+        return  comentario ;
     }
 
-    public void imprimir() {
+    public void imprimir(){
         System.out.println("Comentario: " + comentario);
     }
 }
