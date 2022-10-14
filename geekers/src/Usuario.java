@@ -181,7 +181,7 @@ public class Usuario implements Impressao {
         return "Usuario: " + nome + "\n" +
                 "Telefone:" + telefone + "\n" +
                 "Sexo='" + sexo + "\n" +
-                "Hobbies=" + hobbies ;
+                "Hobbies=" + hobbies +"\n" ;
     }
 
 }

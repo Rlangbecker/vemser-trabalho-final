@@ -45,8 +45,8 @@ public class Main {
         usuarioManipulacao.adicionarUsuario(usuarioLogado);
 
 
-        int escolha = -1;
-        while (escolha != 0) {
+        int escolha = 6;
+        while (escolha != -1) {
             try {
                 System.out.println("+---------------------------------+\n" +
                         "|             Geeker              |\n" +
@@ -69,12 +69,12 @@ public class Main {
                         System.out.println(" \n Carregando ...");
                         if (usuarioManipulacao.logar(email, senha)) {
                             userParaLogar = usuarioManipulacao.receberUsuario(email, senha);
-                            while (userParaLogar.isLogado()) {
+                            while (escolha!=-2) {
                                 mostrarMenuLogado();
 
-                                int opcao = input.nextInt();
+                               escolha = input.nextInt();
                                 input.nextLine();
-                                switch (opcao) {
+                                switch (escolha) {
                                     case 1 -> {
                                         System.out.println("Matchs:");
                                         System.out.println(userParaLogar.getMatchs());
@@ -95,6 +95,7 @@ public class Main {
                                     }
                                     case 0 -> {
                                         usuarioManipulacao.deslogar(userParaLogar);
+                                        escolha=-2;
                                     }
                                     default -> {
                                         System.out.println("Ops!" +
@@ -110,6 +111,7 @@ public class Main {
                     case 0 -> {
                         System.out.println("Programa encerrado." +
                                 "\nAté logo.");
+                        escolha = -1;
                     }
                     default -> {
                         System.out.println("Ops!" +
