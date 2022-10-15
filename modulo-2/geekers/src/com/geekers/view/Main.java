@@ -21,7 +21,12 @@ public class Main {
         usuario.setTelefone("9991283113");
         usuario.setSexo("M");
         usuarioService.adicionarUsuario(usuario);
-        usuarioService.listarUsuarios();
+
+//        usuarioService.removerUsuario(4);
+//
+//        usuarioService.listarUsuarios();
+//
+//        usuarioService.editarUsuario();
 
     }
 }
