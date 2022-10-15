@@ -33,7 +33,7 @@ public class UsuarioRepository implements Repository<Integer, Usuario> {
             usuario.setIdUsuario(proximoId);
 
             String sql = "INSERT INTO USUARIO\n" +
-                    "(id_usuario, nome, email, telefone, senha, dataNascimento, sexo)\n" +
+                    "(id_usuario, nome, email, telefone, senha, data_nascimento, sexo)\n" +
                     "VALUES(?, ?, ?, ?, ?, ?, ?)\n";
             PreparedStatement stmt = con.prepareStatement(sql);
 
@@ -48,6 +48,7 @@ public class UsuarioRepository implements Repository<Integer, Usuario> {
             System.out.println("adicionarUsuario.res=" + res);
             return usuario;
         } catch (SQLException e) {
+            e.printStackTrace();
             throw new BancoDeDadosException(e.getCause());
         } finally {
             try {
@@ -89,10 +90,12 @@ public class UsuarioRepository implements Repository<Integer, Usuario> {
                 usuario.setEmail(res.getString("email"));
                 usuario.setTelefone(res.getString("telefone"));
                 usuario.setSenha(res.getString("senha"));
-                usuario.setDataNascimento(res.getDate("dataNascimento").toLocalDate());
+                usuario.setDataNascimento(res.getDate("data_nascimento").toLocalDate());
                 usuario.setSexo(res.getString("sexo"));
+                usuarios.add(usuario);
             }
         } catch (SQLException e) {
+            e.printStackTrace();
             throw new BancoDeDadosException(e.getCause());
         } finally {
             try {
