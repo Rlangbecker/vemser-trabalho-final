@@ -19,9 +19,8 @@ public class ConexaoBancoDeDados {
 
         // Abre-se a conexão com o Banco de Dados
         Connection con = DriverManager.getConnection(url, USER, PASS);
-
         // sempre usar o schema vem_ser
-        con.createStatement().execute("alter session set current_schema=VEM_SER");
+        con.createStatement().execute("alter session set current_schema=GEEKERS");
 
         return con;
     }

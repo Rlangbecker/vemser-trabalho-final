@@ -1,5 +1,7 @@
 package com.geekers.model;
 
+import java.time.LocalDate;
+
 public class Usuario {
 
     private Integer idUsuario;
@@ -7,8 +9,7 @@ public class Usuario {
     private String email;
     private String telefone;
     private String senha;
-    private String dataNascimento;
-    private String genero;
+    private LocalDate dataNascimento;
     private String sexo;
     private boolean logado;
 
@@ -52,22 +53,13 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public String getDataNascimento() {
+    public LocalDate getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(String dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
-
-    public String getGenero() {
-        return genero;
-    }
-
-    public void setGenero(String genero) {
-        this.genero = genero;
-    }
-
     public String getSexo() {
         return sexo;
     }
@@ -92,7 +84,6 @@ public class Usuario {
                 ", email='" + email + '\'' +
                 ", telefone='" + telefone + '\'' +
                 ", dataNascimento='" + dataNascimento + '\'' +
-                ", genero='" + genero + '\'' +
                 ", sexo='" + sexo + '\'' +
                 ", logado=" + logado +
                 '}';

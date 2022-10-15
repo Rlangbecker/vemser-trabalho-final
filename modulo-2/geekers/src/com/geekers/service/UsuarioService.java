@@ -11,18 +11,16 @@ public class UsuarioService {
 
     private UsuarioRepository usuarioRepository;
 
-    public UsuarioService(UsuarioRepository usuarioRepository) {
-        this.usuarioRepository = usuarioRepository;
+    public UsuarioService(){
+        usuarioRepository = new UsuarioRepository();
+
     }
 
     public void adicionarUsuario (Usuario usuario) {
         try {
-            if (usuario == null) {
-                throw new Exception("Dados inseridos são inválidos");
-            }
 
             Usuario usuarioAdicionado = usuarioRepository.adicionar(usuario);
-
+            System.out.println("Usuario adicinada com sucesso! " + usuarioAdicionado);
         } catch (BancoDeDadosException ex) {
 
         } catch (Exception ex) {
