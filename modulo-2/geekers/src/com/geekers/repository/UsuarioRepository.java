@@ -4,6 +4,7 @@ import com.geekers.exceptions.BancoDeDadosException;
 import com.geekers.model.Usuario;
 
 import java.sql.*;
+import java.time.DateTimeException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -100,12 +101,13 @@ public class UsuarioRepository implements Repository<Integer, Usuario> {
 
             StringBuilder sql = new StringBuilder();
             sql.append("UPDATE USUARIO SET ");
-            sql.append(" nome  = ? ");
-            sql.append(" email = ? ");
-            sql.append(" telefone = ? ");
-            sql.append(" senha = ? ");
-            sql.append(" data_nascimento = ?");
+            sql.append(" nome  = ?, ");
+            sql.append(" email = ?, ");
+            sql.append(" telefone = ?, ");
+            sql.append(" senha = ?, ");
+            sql.append(" data_nascimento = ?, ");
             sql.append(" sexo = ? ");
+            sql.append(" WHERE id_usuario = ? ");
 
             PreparedStatement stmt = con.prepareStatement(sql.toString());
 
@@ -115,6 +117,7 @@ public class UsuarioRepository implements Repository<Integer, Usuario> {
             stmt.setString(4, usuario.getSenha());
             stmt.setDate(5, Date.valueOf(usuario.getDataNascimento()));
             stmt.setString(6, usuario.getSexo());
+            stmt.setInt(7, id);
 
             int res = stmt.executeUpdate();
             System.out.println("editarUsuario.res = " + res);
@@ -122,8 +125,9 @@ public class UsuarioRepository implements Repository<Integer, Usuario> {
             return res >0;
 
         } catch (SQLException e) {
+            e.printStackTrace();
             throw new BancoDeDadosException(e.getCause());
-        } finally {
+        }  finally {
             try {
                 if (con != null) {
                     con.close();
