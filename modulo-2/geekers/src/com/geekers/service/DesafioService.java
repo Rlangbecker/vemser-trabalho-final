@@ -22,7 +22,7 @@ public class DesafioService {
             Desafio desafioAdd = desafioRepository.adicionar(desafio);
             System.out.println("Desafio adicinado com sucesso! " + desafioAdd);
         } catch (BancoDeDadosException ex) {
-
+            System.out.println("Erro: " + ex.getMessage());
         } catch (Exception ex) {
             System.err.println("Erro: " + ex.getMessage());
         }

@@ -149,10 +149,10 @@ public class DesafioRepository implements Repository<Integer, Desafio> {
             con = ConexaoBancoDeDados.getConnection();
             Statement stmt = con.createStatement();
 
-            String sql = "SELECT C.*, " +
-                    "            P.NOME AS NOME_PESSOA " +
-                    "       FROM CONTATO C " +
-                    "  LEFT JOIN PESSOA P ON (P.ID_PESSOA = C.ID_PESSOA) ";
+            String sql = "SELECT D.*, " +
+                    "            U.NOME AS NOME_USUARIO " +
+                    "       FROM DESAFIO D " +
+                    "  LEFT JOIN USUARIO U ON (D.ID_PESSOA = D.ID_PESSOA) ";
 
             // Executa-se a consulta
             ResultSet res = stmt.executeQuery(sql);
