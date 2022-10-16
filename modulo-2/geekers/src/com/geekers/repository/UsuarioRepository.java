@@ -264,5 +264,4 @@ public class UsuarioRepository implements Repository<Integer, Usuario> {
         usuario.setSexo(res.getString("sexo"));
         return usuario;
     }
-
 }

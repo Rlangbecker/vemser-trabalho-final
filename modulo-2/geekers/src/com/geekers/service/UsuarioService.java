@@ -54,6 +54,7 @@ public class UsuarioService {
             e.printStackTrace();
         }
     }
+    
     public void listarUsuariosPorUsuario(Integer quantidadeUsuarios) {
         try {
             List<Usuario> listar = usuarioRepository.listarPorUsuario(quantidadeUsuarios);
@@ -72,4 +73,5 @@ public class UsuarioService {
         }
         return null;
     }
+
 }
