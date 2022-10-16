@@ -66,7 +66,7 @@ public class MatchRepository implements Repository<Integer, Match> {
         try {
             con = ConexaoBancoDeDados.getConnection();
 
-            String sql = "DELETE FROM DESAFIO WHERE ID_DESAFIO = ?";
+            String sql = "DELETE FROM MATCH WHERE ID_DESAFIO = ?";
 
             PreparedStatement stmt = con.prepareStatement(sql);
 
@@ -74,7 +74,7 @@ public class MatchRepository implements Repository<Integer, Match> {
 
             // Executa-se a consulta
             int res = stmt.executeUpdate();
-            System.out.println("removerDesafioPorId.res=" + res);
+            System.out.println("removerMatchPorId.res=" + res);
 
             return res > 0;
         } catch (SQLException e) {
@@ -103,10 +103,10 @@ public class MatchRepository implements Repository<Integer, Match> {
             con = ConexaoBancoDeDados.getConnection();
             Statement stmt = con.createStatement();
 
-            String sql = "SELECT C.*, " +
-                    "            P.NOME AS NOME_PESSOA " +
-                    "       FROM CONTATO C " +
-                    "  LEFT JOIN PESSOA P ON (P.ID_PESSOA = C.ID_PESSOA) ";
+            String sql = "SELECT M.*, " +
+                    "            U.NOME AS NOME_PESSOA " +
+                    "       FROM MATCH M " +
+                    "  LEFT JOIN USUARIO U ON (M.ID_USUARIO = U.ID_USUARIO) ";
 
             // Executa-se a consulta
             ResultSet res = stmt.executeQuery(sql);
@@ -137,11 +137,11 @@ public class MatchRepository implements Repository<Integer, Match> {
             con = ConexaoBancoDeDados.getConnection();
 
 
-            String sql = "SELECT D.*, " +
+            String sql = "SELECT M.*, " +
                     "            U.NOME AS NOME_USUARIO " +
-                    "       FROM DESAFIO D " +
+                    "       FROM MATCH M " +
                     " INNER JOIN USUARIO U ON (D.ID_USUARIO = U.ID_USUARIO) " +
-                    "      WHERE D.ID_USUARIO = ? ";
+                    "      WHERE M.ID_USUARIO = ? ";
 
             // Executa-se a consulta
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -170,6 +170,7 @@ public class MatchRepository implements Repository<Integer, Match> {
         Match match = new Match();
         match.setIdMatch(res.getInt("id_match"));
         Usuario usuario = new Usuario();
+        match.setUsuario(usuario);
         usuario.setIdUsuario(res.getInt("id_usuario"));
         usuario.setIdUsuario(res.getInt("id_usuario_main"));
         return match;

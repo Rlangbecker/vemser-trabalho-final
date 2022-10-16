@@ -1,9 +1,11 @@
 package com.geekers.view;
 
 import com.geekers.exceptions.BancoDeDadosException;
+import com.geekers.model.Comentario;
 import com.geekers.model.Desafio;
 import com.geekers.model.Match;
 import com.geekers.model.Usuario;
+import com.geekers.service.ComentarioService;
 import com.geekers.service.DesafioService;
 import com.geekers.service.MatchService;
 import com.geekers.service.UsuarioService;
@@ -20,10 +22,13 @@ public class Main {
         Usuario usuario2 = new Usuario();
         Desafio desafio = new Desafio();
         Desafio desafioEditado = new Desafio();
+        Comentario comentario = new Comentario();
+        Comentario comentario1 = new Comentario();
         Match match = new Match();
         UsuarioService usuarioService = new UsuarioService();
         DesafioService desafioService = new DesafioService();
         MatchService matchService = new MatchService();
+        ComentarioService comentarioService = new ComentarioService();
 
         usuario.setNome("Teste");
         usuario.setEmail("Kaio@bol.com");
@@ -60,6 +65,14 @@ public class Main {
 //        matchService.adicionarMatch(match);
 //        matchService.listarMatchPorUsuario(2);
 //        matchService.removerMatch(1);
+
+//        comentario.setComentario("Muito bom perfil!");
+//        comentario.setUsuario(usuario);
+//        comentarioService.adicionarComentario(comentario);
+//        comentarioService.listarComentarioPorUsuario(usuario.getIdUsuario());
+//        comentario1.setComentario("Parabens");
+//        comentarioService.editarComentario(25, comentario1);
+//        comentarioService.listar();
 
     }
 }
