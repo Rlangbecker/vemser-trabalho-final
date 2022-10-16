@@ -54,4 +54,24 @@ public class UsuarioService {
             e.printStackTrace();
         }
     }
+    
+    public void listarUsuariosPorUsuario(Integer quantidadeUsuarios) {
+        try {
+            List<Usuario> listar = usuarioRepository.listarPorUsuario(quantidadeUsuarios);
+            listar.forEach(System.out::println);
+        } catch (BancoDeDadosException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Usuario verificarUsuario (Usuario usuario) {
+        try {
+            return usuarioRepository.receberUsuario(usuario);
+        } catch (BancoDeDadosException e) {
+            System.err.println("ERRO: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }

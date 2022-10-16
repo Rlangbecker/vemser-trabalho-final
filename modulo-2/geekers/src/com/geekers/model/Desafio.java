@@ -41,6 +41,6 @@ public class Desafio {
 
     @Override
     public String toString() {
-            return "Pergunta= " + pergunta ;
+            return "Pergunta : " + pergunta;
     }
 }
