@@ -41,11 +41,6 @@ public class Desafio {
 
     @Override
     public String toString() {
-        return "Desafio{" +
-                "idDesafio=" + idDesafio +
-                ", pergunta='" + pergunta + '\'' +
-                ", resposta='" + resposta + '\'' +
-                ", usuario=" + usuario +
-                '}';
+            return "Pergunta= " + pergunta ;
     }
 }

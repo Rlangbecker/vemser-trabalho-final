@@ -82,13 +82,11 @@ public class Main {
         desafioEditado.setResposta("1");
         usuarioService.adicionarUsuario(usuario2);
         usuarioService.adicionarUsuario(usuario);
-        //desafioService.adicionarDesafio(desafio);
-        //desafioService.listarDesafioPorUsuario(9);
-        //desafioService.editarDesafio(4, desafioEditado);
-        //desafioService.listarDesafioPorUsuario(9);
-        //desafioService.removerDesafio(10);
-        //desafioService.verificarResposta("1",9);
-        //usuarioService.listarUsuarios();
+        desafioService.adicionarDesafio(desafio);
+//        desafioService.editarDesafio(4, desafioEditado);
+//        desafioService.removerDesafio(10);
+//        desafioService.verificarResposta("1",9);
+//        usuarioService.listarUsuarios();
 
 //        match.setUsuario(usuario2);
 //        match.setUsuarioMain(usuario);
@@ -103,6 +101,7 @@ public class Main {
 //        comentario1.setComentario("Parabens");
 //        comentarioService.editarComentario(25, comentario1);
 //        comentarioService.listar();
-
+//        desafioService.listarDesafioPorUsuario(usuario);
+        desafioService.resolverDesafio(usuario,usuario2);
     }
 }
