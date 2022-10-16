@@ -1,6 +1,7 @@
 package com.geekers.repository;
 
 import com.geekers.exceptions.BancoDeDadosException;
+import com.geekers.model.Desafio;
 
 import java.sql.Connection;
 import java.sql.SQLException;

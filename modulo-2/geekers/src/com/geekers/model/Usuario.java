@@ -13,7 +13,7 @@ public class Usuario {
     private String sexo;
     private boolean logado;
 
-    public Integer getIdUsuario() {
+    public int getIdUsuario() {
         return idUsuario;
     }
 
