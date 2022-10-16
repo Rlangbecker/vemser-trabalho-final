@@ -4,6 +4,7 @@ import com.geekers.exceptions.BancoDeDadosException;
 import com.geekers.model.Usuario;
 
 import java.sql.*;
+import java.time.DateTimeException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,12 +64,78 @@ public class UsuarioRepository implements Repository<Integer, Usuario> {
 
     @Override
     public boolean remover(Integer id) throws BancoDeDadosException {
-        return false;
+        Connection con = null;
+
+        try {
+            con = ConexaoBancoDeDados.getConnection();
+
+            String sql = "DELETE FROM USUARIO WHERE id_usuario = ?";
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+
+            stmt.setInt(1, id);
+
+            int res = stmt.executeUpdate();
+            System.out.println("removerUsuarioPorId.res = " + res);
+
+            return res > 0;
+
+        } catch (SQLException e) {
+            throw new BancoDeDadosException(e.getCause());
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
     public boolean editar(Integer id, Usuario usuario) throws BancoDeDadosException {
-        return false;
+        Connection con = null;
+        try {
+            con = ConexaoBancoDeDados.getConnection();
+
+            StringBuilder sql = new StringBuilder();
+            sql.append("UPDATE USUARIO SET ");
+            sql.append(" nome  = ?, ");
+            sql.append(" email = ?, ");
+            sql.append(" telefone = ?, ");
+            sql.append(" senha = ?, ");
+            sql.append(" data_nascimento = ?, ");
+            sql.append(" sexo = ? ");
+            sql.append(" WHERE id_usuario = ? ");
+
+            PreparedStatement stmt = con.prepareStatement(sql.toString());
+
+            stmt.setString(1, usuario.getNome());
+            stmt.setString(2, usuario.getEmail());
+            stmt.setString(3, usuario.getTelefone());
+            stmt.setString(4, usuario.getSenha());
+            stmt.setDate(5, Date.valueOf(usuario.getDataNascimento()));
+            stmt.setString(6, usuario.getSexo());
+            stmt.setInt(7, id);
+
+            int res = stmt.executeUpdate();
+            System.out.println("editarUsuario.res = " + res);
+
+            return res >0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new BancoDeDadosException(e.getCause());
+        }  finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override

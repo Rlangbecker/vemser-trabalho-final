@@ -40,7 +40,7 @@ public class UsuarioService {
     public void editarUsuario(Integer id, Usuario usuario) {
         try {
             boolean conseguiuEditar = usuarioRepository.editar(id, usuario);
-            System.out.println("pessoa editada? " + conseguiuEditar + " | com id=" + id);
+            System.out.println("usuário editado? " + conseguiuEditar + " | com id= " + id);
         } catch (BancoDeDadosException e) {
             e.printStackTrace();
         }
