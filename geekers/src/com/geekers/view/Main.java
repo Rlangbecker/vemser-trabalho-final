@@ -8,7 +8,6 @@ import com.geekers.service.HobbieService;
 import com.geekers.service.MatchService;
 import com.geekers.service.UsuarioService;
 
-import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
@@ -147,8 +146,30 @@ public class Main {
                                     }
                                 }
                             }
-                    } case 2 -> {
+                    } case 2 -> { // cadastrar usuario
+                        Usuario usuarioNovo = new Usuario();
+                        System.out.println("Insira seus dados\n");
 
+                        System.out.println("Nome:");
+                        usuarioNovo.setNome(scanner.nextLine());
+
+                        System.out.println("Email:");
+                        usuarioNovo.setEmail(scanner.nextLine());
+
+                        System.out.println("Senha:");
+                        usuarioNovo.setSenha(scanner.nextLine());
+
+                        System.out.println("Telefone: ");
+                       usuarioNovo.setTelefone(scanner.nextLine());
+
+                        System.out.println("Data de nascimento: ");
+                        String dataNascimento =  scanner.nextLine();
+                        usuarioNovo.setDataNascimento(LocalDate.parse(dataNascimento, formatter));
+
+                        System.out.println("Sexo: ");
+                        usuarioNovo.setSexo(scanner.nextLine());
+
+                        usuarioService.adicionarUsuario(usuarioNovo);
                     }
                     case 0 -> {
                         System.out.println("Deslogando");
