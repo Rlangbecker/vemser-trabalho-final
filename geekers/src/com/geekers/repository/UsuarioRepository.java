@@ -23,6 +23,7 @@ public class UsuarioRepository implements Repository<Integer, Usuario> {
         return null;
     }
 
+
     @Override
     public Usuario adicionar(Usuario usuario) throws BancoDeDadosException {
         Connection con = null;
@@ -61,6 +62,7 @@ public class UsuarioRepository implements Repository<Integer, Usuario> {
         }
     }
 
+
     @Override
     public boolean remover(Integer id) throws BancoDeDadosException {
         Connection con = null;
@@ -92,6 +94,7 @@ public class UsuarioRepository implements Repository<Integer, Usuario> {
         }
     }
 
+
     @Override
     public boolean editar(Integer id, Usuario usuario) throws BancoDeDadosException {
         Connection con = null;
@@ -100,12 +103,13 @@ public class UsuarioRepository implements Repository<Integer, Usuario> {
 
             StringBuilder sql = new StringBuilder();
             sql.append("UPDATE USUARIO SET ");
-            sql.append(" nome  = ? ");
-            sql.append(" email = ? ");
-            sql.append(" telefone = ? ");
-            sql.append(" senha = ? ");
-            sql.append(" data_nascimento = ?");
+            sql.append(" nome  = ?, ");
+            sql.append(" email = ?, ");
+            sql.append(" telefone = ?, ");
+            sql.append(" senha = ?, ");
+            sql.append(" data_nascimento = ?, ");
             sql.append(" sexo = ? ");
+            sql.append(" WHERE id_usuario = ? ");
 
             PreparedStatement stmt = con.prepareStatement(sql.toString());
 
@@ -115,15 +119,17 @@ public class UsuarioRepository implements Repository<Integer, Usuario> {
             stmt.setString(4, usuario.getSenha());
             stmt.setDate(5, Date.valueOf(usuario.getDataNascimento()));
             stmt.setString(6, usuario.getSexo());
+            stmt.setInt(7, id);
 
             int res = stmt.executeUpdate();
             System.out.println("editarUsuario.res = " + res);
 
-            return res > 0;
+            return res >0;
 
         } catch (SQLException e) {
+            e.printStackTrace();
             throw new BancoDeDadosException(e.getCause());
-        } finally {
+        }  finally {
             try {
                 if (con != null) {
                     con.close();
@@ -148,17 +154,16 @@ public class UsuarioRepository implements Repository<Integer, Usuario> {
 
             while (res.next()) {
                 Usuario usuario = new Usuario();
-                usuario.setIdUsuario(res.getInt(" id_usuario "));
-                usuario.setNome(res.getString(" nome "));
-                usuario.setEmail(res.getString(" email "));
-                usuario.setTelefone(res.getString(" telefone "));
-                usuario.setSenha(res.getString(" senha "));
-                usuario.setDataNascimento(res.getDate(" data_nascimento ").toLocalDate());
-                usuario.setSexo(res.getString(" sexo "));
+                usuario.setIdUsuario(res.getInt("id_usuario"));
+                usuario.setNome(res.getString("nome"));
+                usuario.setEmail(res.getString("email"));
+                usuario.setTelefone(res.getString("telefone"));
+                usuario.setSenha(res.getString("senha"));
+                usuario.setDataNascimento(res.getDate("data_nascimento").toLocalDate());
+                usuario.setSexo(res.getString("sexo"));
                 usuarios.add(usuario);
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
             e.printStackTrace();
             throw new BancoDeDadosException(e.getCause());
         } finally {
@@ -171,6 +176,52 @@ public class UsuarioRepository implements Repository<Integer, Usuario> {
             }
         }
         return usuarios;
+    }
+
+    public List<Usuario> listarPorUsuario(Integer quantidadeUsuarios) throws BancoDeDadosException {
+        List<Usuario> usuarios = new ArrayList<>();
+        Connection con = null;
+        try {
+            con = ConexaoBancoDeDados.getConnection();
+
+
+            String sql = "SELECT * \n" +
+                    "FROM (SELECT * FROM USUARIO u ORDER BY dbms_random.value) \n" +
+                    " WHERE rownum <= ?\n";
+
+            // Executa-se a consulta
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, quantidadeUsuarios);
+
+            ResultSet res = stmt.executeQuery();
+
+            while (res.next()) {
+                Usuario usuario = getUsuarioFromResultSet(res);
+                usuarios.add(usuario);
+            }
+            return usuarios;
+        } catch (SQLException e) {
+            throw new BancoDeDadosException(e.getCause());
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    private Usuario getUsuarioFromResultSet(ResultSet res) throws SQLException {
+        Usuario usuario = new Usuario();
+        usuario.setIdUsuario(res.getInt("id_usuario"));
+        usuario.setNome(res.getString("nome"));
+        usuario.setEmail(res.getString("email"));
+        usuario.setTelefone(res.getString("telefone"));
+        usuario.setSenha(res.getString("senha"));
+        usuario.setDataNascimento(res.getDate("data_nascimento").toLocalDate());
+        usuario.setSexo(res.getString("sexo"));
+        return usuario;
     }
 
 
