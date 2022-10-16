@@ -43,7 +43,7 @@ public class Main {
         // ------ Insert Usuário ------
 //        usuarioService.removerUsuario(4);
 //
-//        usuarioService.listarUsuarios();
+        usuarioService.listarPorUsuarios(2);
 
 
 
@@ -60,28 +60,28 @@ public class Main {
 //
 //        usuarioService.listarUsuarios();
 
-        usuario.setNome("Teste");
-        usuario.setEmail("Kaio@bol.com");
-        usuario.setDataNascimento(LocalDate.parse("14/03/2002", formatter));
-        usuario.setSenha("1234");
-        usuario.setTelefone("9991283113");
-        usuario.setSexo("M");
-
-        usuario2.setNome("Julia");
-        usuario2.setEmail("123@bol.com");
-        usuario2.setDataNascimento(LocalDate.parse("14/03/2002", formatter));
-        usuario2.setSenha("1234");
-        usuario2.setTelefone("9991283113");
-        usuario2.setSexo("M");
-
-        desafio.setPergunta("gremio maior do rio?");
-        desafio.setResposta("1");
-        desafio.setUsuario(usuario);
-
-        desafioEditado.setPergunta("O flamengo é o maior de todos os tempos?");
-        desafioEditado.setResposta("1");
-        usuarioService.adicionarUsuario(usuario2);
-        usuarioService.adicionarUsuario(usuario);
+//        usuario.setNome("Teste");
+//        usuario.setEmail("Kaio@bol.com");
+//        usuario.setDataNascimento(LocalDate.parse("14/03/2002", formatter));
+//        usuario.setSenha("1234");
+//        usuario.setTelefone("9991283113");
+//        usuario.setSexo("M");
+//
+//        usuario2.setNome("Julia");
+//        usuario2.setEmail("123@bol.com");
+//        usuario2.setDataNascimento(LocalDate.parse("14/03/2002", formatter));
+//        usuario2.setSenha("1234");
+//        usuario2.setTelefone("9991283113");
+//        usuario2.setSexo("M");
+//
+//        desafio.setPergunta("gremio maior do rio?");
+//        desafio.setResposta("1");
+//        desafio.setUsuario(usuario);
+//
+//        desafioEditado.setPergunta("O flamengo é o maior de todos os tempos?");
+//        desafioEditado.setResposta("1");
+//        usuarioService.adicionarUsuario(usuario2);
+//        usuarioService.adicionarUsuario(usuario);
         //desafioService.adicionarDesafio(desafio);
         //desafioService.listarDesafioPorUsuario(9);
         //desafioService.editarDesafio(4, desafioEditado);

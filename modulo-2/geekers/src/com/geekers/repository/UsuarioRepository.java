@@ -1,6 +1,7 @@
 package com.geekers.repository;
 
 import com.geekers.exceptions.BancoDeDadosException;
+import com.geekers.model.Desafio;
 import com.geekers.model.Usuario;
 
 import java.sql.*;
@@ -174,6 +175,53 @@ public class UsuarioRepository implements Repository<Integer, Usuario> {
             }
         }
         return usuarios;
+    }
+
+    public List<Usuario> listarPorUsuario(Integer idUsuario) throws BancoDeDadosException {
+        List<Usuario> usuarios = new ArrayList<>();
+        Connection con = null;
+        try {
+            con = ConexaoBancoDeDados.getConnection();
+
+
+            String sql = "SELECT * \n" +
+                    "FROM (SELECT * FROM USUARIO u ORDER BY dbms_random.value) \n" +
+                    " WHERE rownum <= ?\n";
+
+            // Executa-se a consulta
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, idUsuario);
+
+            ResultSet res = stmt.executeQuery();
+
+            while (res.next()) {
+                Usuario usuario = getUsuarioFromResultSet(res);
+                usuarios.add(usuario);
+            }
+            return usuarios;
+        } catch (SQLException e) {
+            throw new BancoDeDadosException(e.getCause());
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private Usuario getUsuarioFromResultSet(ResultSet res) throws SQLException {
+        Usuario usuario = new Usuario();
+        usuario.setIdUsuario(res.getInt("id_usuario"));
+        usuario.setNome(res.getString("nome"));
+        usuario.setEmail(res.getString("email"));
+        usuario.setTelefone(res.getString("telefone"));
+        usuario.setSenha(res.getString("senha"));
+        usuario.setDataNascimento(res.getDate("data_nascimento").toLocalDate());
+        usuario.setSexo(res.getString("sexo"));
+        return usuario;
     }
 
 }

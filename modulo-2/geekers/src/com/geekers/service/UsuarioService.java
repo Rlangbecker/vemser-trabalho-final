@@ -46,9 +46,9 @@ public class UsuarioService {
         }
     }
 
-    public void listarUsuarios() {
+    public void listarPorUsuarios(Integer id_usuario) {
         try {
-            List<Usuario> listar = usuarioRepository.listar();
+            List<Usuario> listar = usuarioRepository.listarPorUsuario(id_usuario);
             listar.forEach(System.out::println);
         } catch (BancoDeDadosException e) {
             e.printStackTrace();
