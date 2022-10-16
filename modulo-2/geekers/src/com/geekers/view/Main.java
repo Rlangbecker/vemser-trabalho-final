@@ -174,12 +174,33 @@ public class Main {
                                         while (opcao != 0) {
                                             menu.menuEditarPerfil();
                                             opcao = scanner.nextInt();
+                                            scanner.nextLine();
                                             switch (opcao) {
                                                 case 1 -> {//ver dados perfil
-                                                    usuarioService.verificarUsuario(user);
+                                                    System.out.println(user.toString());
                                                 }
                                                 case 2 -> {//editar dados perfil
-                                                    usuarioService.editarUsuario(user.getIdUsuario(), user);
+                                                    Usuario atualizarUsuario = new Usuario();
+                                                    System.out.println("Nome: ");
+                                                    atualizarUsuario.setNome(scanner.nextLine());
+
+                                                    System.out.println("E-mail: ");
+                                                    atualizarUsuario.setEmail(scanner.nextLine());
+
+                                                    System.out.println("Telefone: ");
+                                                    atualizarUsuario.setTelefone(scanner.nextLine());
+
+                                                    System.out.println("Senha: ");
+                                                    atualizarUsuario.setSenha(scanner.nextLine());
+
+                                                    System.out.println("Data nascimento: ");
+                                                    String data = scanner.nextLine();
+                                                    atualizarUsuario.setDataNascimento(LocalDate.parse(data, formatter));
+
+                                                    System.out.println("Sexo: ");
+                                                    atualizarUsuario.setSexo(scanner.nextLine());
+
+                                                    usuarioService.editarUsuario(user.getIdUsuario(), atualizarUsuario);
                                                 }
                                                 case 3 -> {//ver desafio
                                                 desafioService.listarDesafioPorUsuario(user);

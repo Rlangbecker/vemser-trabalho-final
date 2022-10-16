@@ -67,7 +67,7 @@ public class UsuarioService {
         try {
             return usuarioRepository.receberUsuario(usuario);
         } catch (BancoDeDadosException e) {
-            System.out.println("ERRO: " + e.getMessage());
+            System.err.println("ERRO: " + e.getMessage());
             e.printStackTrace();
         }
         return null;

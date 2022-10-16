@@ -201,6 +201,9 @@ public class UsuarioRepository implements Repository<Integer, Usuario> {
             usuario.setNome(res.getString("nome"));
             usuario.setEmail(res.getString("email"));
             usuario.setSenha(res.getString("senha"));
+            usuario.setTelefone(res.getString("telefone"));
+            usuario.setDataNascimento(res.getDate("data_nascimento").toLocalDate());
+            usuario.setSexo(res.getString("sexo"));
 
         } catch (SQLException e){
             throw new RuntimeException(e);
