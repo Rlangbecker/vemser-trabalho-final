@@ -22,7 +22,7 @@ public class Main {
         usuario.setSenha("1234");
         usuario.setTelefone("9991283113");
         usuario.setSexo("M");
-        usuarioService.adicionarUsuario(usuario);
+//        usuarioService.adicionarUsuario(usuario);
 
 //        usuarioService.removerUsuario(4);
 //
@@ -37,9 +37,9 @@ public class Main {
 
         HobbieService hobbieService = new HobbieService();
 
-        hobbieService.adicionarHobbie(hobbie);
-        hobbieService.remover(7);
+        hobbieService.listar();
 
+//        hobbieService.remover();
 
     }
 }

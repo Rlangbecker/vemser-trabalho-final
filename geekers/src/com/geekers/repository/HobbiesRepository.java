@@ -32,7 +32,7 @@ public class HobbiesRepository implements Repository<Integer, Hobbies> {
             hobbie.setIdHobbies(proximoId);
 
             String sql = "INSERT INTO HOBBIE \n" +
-                    "(id_hobbies, tipo_hobbie, descricao,id_usuario) \n" +
+                    "(id_hobbies , tipo_hobbie , descricao ,id_usuario ) \n" +
                     "VALUES(?, ?, ?, ?) \n";
             PreparedStatement stmt = con.prepareStatement(sql);
 
@@ -98,10 +98,10 @@ public class HobbiesRepository implements Repository<Integer, Hobbies> {
             StringBuilder sql = new StringBuilder();
             sql.append("UPDATE HOBBIE SET ");
 
-            if(hobbie.getTipoHobbie() != null ){
+            if (hobbie.getTipoHobbie() != null) {
                 sql.append(" tipo_hobbie  = ? ,");
             }
-            if(hobbie.getDescricao() != null){
+            if (hobbie.getDescricao() != null) {
                 sql.append(" descricao = ? ,");
             }
             sql.deleteCharAt(sql.length() - 1);
@@ -138,8 +138,10 @@ public class HobbiesRepository implements Repository<Integer, Hobbies> {
             con = ConexaoBancoDeDados.getConnection();
             Statement stmt = con.createStatement();
 
-            String sql = "SELECT ID_HOBBIES,DESCRICAO "
-                    + "FROM HOBBIE " ;
+            String sql = "SELECT H.ID_HOBBIES , H.DESCRICAO "
+                    + "FROM HOBBIE AS H \n"
+                    + "INNER JOIN USUARIO AS U "
+                    + "ON (U.ID_USUARIO = H.ID_USUARIO)";
 
             ResultSet res = stmt.executeQuery(sql);
 
@@ -147,6 +149,7 @@ public class HobbiesRepository implements Repository<Integer, Hobbies> {
                 Hobbies hobbie = getHobbieFromResultSet(res);
                 hobbies.add(hobbie);
             }
+
             return hobbies;
         } catch (SQLException e) {
             throw new BancoDeDadosException(e.getCause());
@@ -177,3 +180,4 @@ public class HobbiesRepository implements Repository<Integer, Hobbies> {
     }
 
 }
+

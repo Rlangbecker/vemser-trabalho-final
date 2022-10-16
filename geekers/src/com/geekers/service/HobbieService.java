@@ -8,8 +8,8 @@ public class HobbieService {
 
     private HobbiesRepository hobbiesRepository;
 
-    public HobbieService(){
-       hobbiesRepository = new HobbiesRepository();
+    public HobbieService() {
+        hobbiesRepository = new HobbiesRepository();
     }
 
     public HobbiesRepository getHobbiesRepository() {
@@ -20,8 +20,8 @@ public class HobbieService {
         this.hobbiesRepository = hobbiesRepository;
     }
 
-    public void adicionarHobbie(Hobbies hobbie){
-        try{
+    public void adicionarHobbie(Hobbies hobbie) {
+        try {
             Hobbies hobbieAdicionado = hobbiesRepository.adicionar(hobbie);
             System.out.println("Hobbie adicionado com sucesso! " + hobbieAdicionado);
         } catch (BancoDeDadosException e) {
@@ -31,18 +31,18 @@ public class HobbieService {
         }
     }
 
-    public void remover(Integer id){
-        try{
+    public void remover(Integer id) {
+        try {
             boolean conseguiuRemover = hobbiesRepository.remover(id);
             System.out.println("Hobbie removido? " + conseguiuRemover + "| com id= " + id);
-        } catch (BancoDeDadosException e){
+        } catch (BancoDeDadosException e) {
             e.printStackTrace();
         }
     }
 
     public void editar(Integer id, Hobbies hobbie) {
         try {
-            boolean conseguiuEditar = hobbiesRepository.editar(id,hobbie);
+            boolean conseguiuEditar = hobbiesRepository.editar(id, hobbie);
             System.out.println("Hobbie editado? " + conseguiuEditar + "| com id= " + id);
         } catch (BancoDeDadosException e) {
             e.printStackTrace();
