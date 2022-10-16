@@ -54,4 +54,14 @@ public class UsuarioService {
             e.printStackTrace();
         }
     }
+
+    //alterei daqui para baixo
+    public boolean logar(String email, String senha){
+        if(usuarioRepository.logar(usuarioRepository.receberUsuario(email,senha))){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

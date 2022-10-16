@@ -1,6 +1,6 @@
 package com.geekers.model;
 
-public class Hobbies {
+public class Hobbie {
 
     private Integer idHobbies;
     private String descricao;
@@ -8,6 +8,8 @@ public class Hobbies {
     private String tipoHobbie;
 
     private Usuario usuario;
+
+
     public Integer getIdHobbies() {
         return idHobbies;
     }

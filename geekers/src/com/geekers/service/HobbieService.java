@@ -1,28 +1,28 @@
 package com.geekers.service;
 
 import com.geekers.exceptions.BancoDeDadosException;
-import com.geekers.model.Hobbies;
-import com.geekers.repository.HobbiesRepository;
+import com.geekers.model.Hobbie;
+import com.geekers.repository.HobbieRepository;
 
 public class HobbieService {
 
-    private HobbiesRepository hobbiesRepository;
+    private HobbieRepository hobbiesRepository;
 
     public HobbieService() {
-        hobbiesRepository = new HobbiesRepository();
+        hobbiesRepository = new HobbieRepository();
     }
 
-    public HobbiesRepository getHobbiesRepository() {
+    public HobbieRepository getHobbiesRepository() {
         return hobbiesRepository;
     }
 
-    public void setHobbiesRepository(HobbiesRepository hobbiesRepository) {
+    public void setHobbiesRepository(HobbieRepository hobbiesRepository) {
         this.hobbiesRepository = hobbiesRepository;
     }
 
-    public void adicionarHobbie(Hobbies hobbie) {
+    public void adicionarHobbie(Hobbie hobbie) {
         try {
-            Hobbies hobbieAdicionado = hobbiesRepository.adicionar(hobbie);
+            Hobbie hobbieAdicionado = hobbiesRepository.adicionar(hobbie);
             System.out.println("Hobbie adicionado com sucesso! " + hobbieAdicionado);
         } catch (BancoDeDadosException e) {
             e.printStackTrace();
@@ -40,7 +40,7 @@ public class HobbieService {
         }
     }
 
-    public void editar(Integer id, Hobbies hobbie) {
+    public void editar(Integer id, Hobbie hobbie) {
         try {
             boolean conseguiuEditar = hobbiesRepository.editar(id, hobbie);
             System.out.println("Hobbie editado? " + conseguiuEditar + "| com id= " + id);

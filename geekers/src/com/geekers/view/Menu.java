@@ -32,7 +32,6 @@ public class Menu {
                         "+---------------------------------+\n" +
                         "|     [1] Listar Matchs           |\n" +
                         "|     [2] Comentar Match          |\n" +
-                        "|     [2] Editar Match            |\n" +
                         "|     [3] Excluir Match           |\n" +
                         "|     [0] Voltar menu principal   |\n" +
                         "+---------------------------------+\n");

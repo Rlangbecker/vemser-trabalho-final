@@ -1,6 +1,6 @@
 package com.geekers.view;
 
-import com.geekers.model.Hobbies;
+import com.geekers.model.Hobbie;
 import com.geekers.model.Usuario;
 import com.geekers.service.HobbieService;
 import com.geekers.service.UsuarioService;
@@ -12,6 +12,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        Menu menu = new Menu();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         Usuario usuario = new Usuario();
         UsuarioService usuarioService = new UsuarioService();
@@ -30,7 +31,7 @@ public class Main {
 //
 //        usuarioService.editarUsuario();
 
-        Hobbies hobbie = new Hobbies();
+        Hobbie hobbie = new Hobbie();
         hobbie.setUsuario(usuario);
         hobbie.setTipoHobbie("1");
         hobbie.setDescricao("ADORO VOAR");
@@ -40,6 +41,41 @@ public class Main {
         hobbieService.listar();
 
 //        hobbieService.remover();
+
+//        int opcao =-1;
+//        while(opcao!=0){
+//            menu.menuPrincipal();
+//            opcao = scanner.nextInt();
+//            scanner.nextLine();
+//
+//            switch (opcao){
+//                case 1 -> {
+//                    System.out.println("Email:");
+//                    String email = scanner.nextLine();
+//                    System.out.println("Senha:");
+//                    String senha = scanner.nextLine();
+//                    if(usuarioService.logar(email,senha)){
+//                        opcao = -1;
+//                        while(opcao!=0){
+//                            menu.menuUsuarioLogado();
+//                        }
+//                    } else {
+//                        System.out.println("Tente novamente!\nSenha ou email inválidos");
+//                    }
+//
+//                }
+//                case 2 -> {
+//
+//                }
+//                case 0 -> {
+//
+//                }
+//                default -> {
+//                    return;
+//                }
+//            }
+//        }
+
 
     }
 }

@@ -1,14 +1,14 @@
 package com.geekers.repository;
 
 import com.geekers.exceptions.BancoDeDadosException;
-import com.geekers.model.Hobbies;
+import com.geekers.model.Hobbie;
 import com.geekers.model.Usuario;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HobbiesRepository implements Repository<Integer, Hobbies> {
+public class HobbieRepository implements Repository<Integer, Hobbie> {
     @Override
     public Integer getProximoId(Connection connection) throws SQLException {
         String sql = "SELECT SEQ_HOBBIE.nextval mysequence from DUAL";
@@ -23,7 +23,7 @@ public class HobbiesRepository implements Repository<Integer, Hobbies> {
     }
 
     @Override
-    public Hobbies adicionar(Hobbies hobbie) throws BancoDeDadosException {
+    public Hobbie adicionar(Hobbie hobbie) throws BancoDeDadosException {
         Connection con = null;
         try {
             con = ConexaoBancoDeDados.getConnection();
@@ -90,7 +90,7 @@ public class HobbiesRepository implements Repository<Integer, Hobbies> {
     }
 
     @Override
-    public boolean editar(Integer id, Hobbies hobbie) throws BancoDeDadosException {
+    public boolean editar(Integer id, Hobbie hobbie) throws BancoDeDadosException {
         Connection con = null;
         try {
             con = ConexaoBancoDeDados.getConnection();
@@ -131,22 +131,22 @@ public class HobbiesRepository implements Repository<Integer, Hobbies> {
     }
 
     @Override
-    public List<Hobbies> listar() throws BancoDeDadosException {
-        List<Hobbies> hobbies = new ArrayList<>();
+    public List<Hobbie> listar() throws BancoDeDadosException {
+        List<Hobbie> hobbies = new ArrayList<>();
         Connection con = null;
         try {
             con = ConexaoBancoDeDados.getConnection();
             Statement stmt = con.createStatement();
 
-            String sql = "SELECT H.ID_HOBBIES , H.DESCRICAO "
-                    + "FROM HOBBIE AS H \n"
-                    + "INNER JOIN USUARIO AS U "
+            String sql = "SELECT H.*, U.NOME AS NOME_USUARIO "
+                    + "FROM HOBBIE H "
+                    + "LEFT JOIN USUARIO U "
                     + "ON (U.ID_USUARIO = H.ID_USUARIO)";
 
             ResultSet res = stmt.executeQuery(sql);
 
             while (res.next()) {
-                Hobbies hobbie = getHobbieFromResultSet(res);
+                Hobbie hobbie = getHobbieFromResultSet(res);
                 hobbies.add(hobbie);
             }
 
@@ -165,19 +165,14 @@ public class HobbiesRepository implements Repository<Integer, Hobbies> {
     }
 
 
-    private Hobbies getHobbieFromResultSet(ResultSet res) throws SQLException {
-        Hobbies hobbie = new Hobbies();
-
+    private Hobbie getHobbieFromResultSet(ResultSet res) throws SQLException {
+        Hobbie hobbie = new Hobbie();
         hobbie.setIdHobbies(res.getInt("id_hobbies"));
         hobbie.setTipoHobbie(res.getString("tipo_hobbie"));
         hobbie.setDescricao(res.getString("descricao"));
-
         Usuario usuario = new Usuario();
-        usuario.setNome("nome");
-        usuario.setIdUsuario(res.getInt("id_pessoa"));
+        usuario.setIdUsuario(res.getInt("id_usuario"));
         hobbie.setUsuario(usuario);
         return hobbie;
     }
-
 }
-
