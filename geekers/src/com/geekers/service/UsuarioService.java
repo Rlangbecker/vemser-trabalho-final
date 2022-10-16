@@ -55,13 +55,13 @@ public class UsuarioService {
         }
     }
 
-    //alterei daqui para baixo
-    public boolean logar(String email, String senha){
-        if(usuarioRepository.logar(usuarioRepository.receberUsuario(email,senha))){
-            return true;
-        } else {
-            return false;
+    public Usuario verificarUsuario (Usuario usuario) {
+        try {
+            return usuarioRepository.receberUsuario(usuario);
+        } catch (BancoDeDadosException e) {
+            System.out.println("ERRO: " + e.getMessage());
+            e.printStackTrace();
         }
+        return null;
     }
-
 }

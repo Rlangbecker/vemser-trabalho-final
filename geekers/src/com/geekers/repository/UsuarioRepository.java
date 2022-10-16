@@ -148,16 +148,17 @@ public class UsuarioRepository implements Repository<Integer, Usuario> {
 
             while (res.next()) {
                 Usuario usuario = new Usuario();
-                usuario.setIdUsuario(res.getInt("id_usuario"));
-                usuario.setNome(res.getString("nome"));
-                usuario.setEmail(res.getString("email"));
-                usuario.setTelefone(res.getString("telefone"));
-                usuario.setSenha(res.getString("senha"));
-                usuario.setDataNascimento(res.getDate("data_nascimento").toLocalDate());
-                usuario.setSexo(res.getString("sexo"));
+                usuario.setIdUsuario(res.getInt(" id_usuario "));
+                usuario.setNome(res.getString(" nome "));
+                usuario.setEmail(res.getString(" email "));
+                usuario.setTelefone(res.getString(" telefone "));
+                usuario.setSenha(res.getString(" senha "));
+                usuario.setDataNascimento(res.getDate(" data_nascimento ").toLocalDate());
+                usuario.setSexo(res.getString(" sexo "));
                 usuarios.add(usuario);
             }
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
             e.printStackTrace();
             throw new BancoDeDadosException(e.getCause());
         } finally {
@@ -172,52 +173,46 @@ public class UsuarioRepository implements Repository<Integer, Usuario> {
         return usuarios;
     }
 
-    // FIZ METODOS LOGAR DAQUI PARA BAIXO
 
     public boolean logar(Usuario usuario) {
         usuario.setLogado(true);
-        return false;
+        return true;
     }
 
-    public Usuario receberUsuario(String email, String senha) {
-        Usuario usuario;
+    public Usuario receberUsuario(Usuario usuarioLogin)throws BancoDeDadosException {
         Connection con = null;
+        Usuario usuario = new Usuario();
+
         try {
             con = ConexaoBancoDeDados.getConnection();
-            String sql = "SELECT * "
-                    + " FROM USUARIO U\n"
-                    + " WHERE U.EMAIL = ? "
-                    + " AND U.SENHA= ? ";
+            String sql = "SELECT * FROM USUARIO " +
+                    " WHERE EMAIL = ? AND SENHA = ?";
 
             PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, usuarioLogin.getEmail());
+            stmt.setString(2, usuarioLogin.getSenha());
 
-            stmt.setString(1,email);
-            stmt.setString(2,senha);
-            ResultSet res = stmt.executeQuery(sql);
+            ResultSet res = stmt.executeQuery();
 
-            while (res.next()) {
-                usuario = new Usuario();
-                usuario.setIdUsuario(res.getInt("id_usuario"));
-                usuario.setNome(res.getString("nome"));
-                usuario.setEmail(res.getString("email"));
-                usuario.setTelefone(res.getString("telefone"));
-                usuario.setSenha(res.getString("senha"));
-                usuario.setDataNascimento(res.getDate("data_nascimento").toLocalDate());
-                usuario.setSexo(res.getString("sexo"));
-                return usuario;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+            res.next();
+            usuario.setIdUsuario(res.getInt("id_usuario"));
+            usuario.setNome(res.getString("nome"));
+            usuario.setEmail(res.getString("email"));
+            usuario.setSenha(res.getString("senha"));
+
+        } catch (SQLException e){
+            throw new RuntimeException(e);
         } finally {
-            try {
-                if (con != null) {
+            try{
+                if (con != null){
                     con.close();
                 }
-            } catch (SQLException e) {
+            } catch (SQLException e){
                 e.printStackTrace();
             }
         }
-        return null;
+        return usuario;
     }
+
 
 }
