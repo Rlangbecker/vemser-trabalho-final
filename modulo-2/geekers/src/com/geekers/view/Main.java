@@ -83,6 +83,10 @@ public class Main {
                                         System.out.println("Insira a quantidade de usuarios que gostaria de listar:");
                                         int quantidade = scanner.nextInt();
                                         usuarioService.listarUsuariosPorUsuario(quantidade);
+                                        System.out.println("Escolha o usuario que você quer dar match pelo id:");
+                                        int idUsuario = scanner.nextInt();
+                                        scanner.nextLine();
+                                        desafioService.resolverDesafio(idUsuario,user);
                                     }
                                     case 2 -> { //matchs
                                         while (opcao != 0) {
@@ -90,13 +94,14 @@ public class Main {
                                             opcao = scanner.nextInt();
                                             switch (opcao) {
                                                 case 1 -> {//listar matchs
-// ---------------------------------------->        matchService.listarMatchPorUsuario();
+                                                      matchService.listarMatchPorUsuario(user.getIdUsuario());
                                                 }
                                                 case 2 -> {//comentar match
-// ---------------------------------------->
                                                 }
                                                 case 3 -> {//excluir match
-// ---------------------------------------->        matchService.removerMatch();
+                                                    System.out.println("Informe o id do match que voce desja remover: ");
+                                                        int idMatch = scanner.nextInt();
+                                                        matchService.removerMatch(idMatch);
                                                 }
                                                 case 0 -> {//voltar menu principal
                                                     break;
@@ -138,7 +143,7 @@ public class Main {
                                                     usuarioService.editarUsuario(user.getIdUsuario(), atualizarUsuario);
                                                 }
                                                 case 3 -> {//ver desafio
-                                                desafioService.listarDesafioPorUsuario(user);
+                                                desafioService.listarDesafioPorUsuario(user.getIdUsuario());
                                                 }
                                                 case 4 -> {//editar desafio
 // ---------------------------------------->        desafioService.editarDesafio();
@@ -176,6 +181,7 @@ public class Main {
                             }
                         }
                     } case 2 -> { // cadastrar usuario
+
                         Usuario usuarioNovo = new Usuario();
                         System.out.println("Insira seus dados\n");
 
@@ -192,13 +198,38 @@ public class Main {
                         usuarioNovo.setTelefone(scanner.nextLine());
 
                         System.out.println("Data de nascimento: ");
-                        String dataNascimento =  scanner.nextLine();
+                        String dataNascimento = scanner.nextLine();
                         usuarioNovo.setDataNascimento(LocalDate.parse(dataNascimento, formatter));
 
                         System.out.println("Sexo: ");
                         usuarioNovo.setSexo(scanner.nextLine());
 
                         usuarioService.adicionarUsuario(usuarioNovo);
+
+                        Hobbie hobbie1 = new Hobbie();
+
+                        menu.menuEscolhaHobbies();
+
+                        hobbie1.setTipoHobbie(scanner.nextLine());
+
+                        menu.menuDescreverHobbie();
+                        hobbie1.setDescricao(scanner.nextLine());
+                        hobbie1.setUsuario(usuarioNovo);
+
+                        hobbieService.adicionarHobbie(hobbie1);
+
+                        Desafio desafio1 = new Desafio();
+
+                        menu.menuCriarDesafio();
+                        desafio1.setUsuario(usuarioNovo);
+                        desafio1.setPergunta(scanner.nextLine());
+
+                        menu.menuRespostaDesafio();
+                        desafio1.setResposta(scanner.nextLine());
+                        desafioService.adicionarDesafio(desafio1);
+
+                        opcao = 0;
+
                     }
                     case 0 -> {
                         System.out.println("Deslogando");

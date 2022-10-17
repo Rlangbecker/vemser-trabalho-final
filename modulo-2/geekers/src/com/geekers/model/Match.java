@@ -32,10 +32,8 @@ public class Match {
 
     @Override
     public String toString() {
-        return "Match{" +
-                "idMatch=" + idMatch +
-                ", usuario=" + usuario +
-                ", usuarioMain=" + usuarioMain +
-                '}';
+        return "Matchs " + idMatch + ": " +
+                usuario + " | " +
+                usuarioMain;
     }
 }

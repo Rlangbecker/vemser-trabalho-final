@@ -66,7 +66,7 @@ public class MatchRepository implements Repository<Integer, Match> {
         try {
             con = ConexaoBancoDeDados.getConnection();
 
-            String sql = "DELETE FROM MATCH WHERE ID_DESAFIO = ?";
+            String sql = "DELETE FROM MATCH WHERE ID_MATCH = ?";
 
             PreparedStatement stmt = con.prepareStatement(sql);
 
@@ -137,11 +137,7 @@ public class MatchRepository implements Repository<Integer, Match> {
             con = ConexaoBancoDeDados.getConnection();
 
 
-            String sql = "SELECT M.*, " +
-                    "            U.NOME AS NOME_USUARIO " +
-                    "       FROM MATCH M " +
-                    " INNER JOIN USUARIO U ON (D.ID_USUARIO = U.ID_USUARIO) " +
-                    "      WHERE M.ID_USUARIO = ? ";
+            String sql = "SELECT * FROM MATCH WHERE ID_USUARIO_MAIN = ? ";
 
             // Executa-se a consulta
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -150,6 +146,7 @@ public class MatchRepository implements Repository<Integer, Match> {
             ResultSet res = stmt.executeQuery();
 
             while (res.next()) {
+
                 Match match = getMatchFromResultSet(res);
                 matches.add(match);
             }

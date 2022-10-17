@@ -48,9 +48,9 @@ public class DesafioService {
         }
     }
 
-    public void listarDesafioPorUsuario(Usuario idUsuario) {
+    public void listarDesafioPorUsuario(Integer idUsuario) {
         try {
-            List<Desafio> listar = desafioRepository.listarPorUsuario(idUsuario.getIdUsuario());
+            List<Desafio> listar = desafioRepository.listarPorUsuario(idUsuario);
             for(Desafio desafio : listar){
                 System.out.println(desafio);
             };
@@ -71,7 +71,7 @@ public class DesafioService {
         }
     }
 
-    public boolean resolverDesafio(Usuario idUsuario, Usuario idUsuarioLogado) throws BancoDeDadosException {
+    public boolean resolverDesafio(Integer idUsuario, Usuario idUsuarioLogado) throws BancoDeDadosException {
         Scanner sc = new Scanner(System.in);
         MatchService matchService = new MatchService();
         Match match = new Match();
@@ -81,10 +81,12 @@ public class DesafioService {
         listarDesafioPorUsuario(idUsuario);
         System.out.println("Responda a pergunta: 0- Verdadeiro | 1- Falso");
         escolha = sc.nextLine();
-        boolean retorno = verificarResposta(escolha, idUsuario.getIdUsuario());
+        boolean retorno = verificarResposta(escolha, idUsuario);
         if (retorno){
             System.out.println("Usuario dado match com sucesso!");
-            match.setUsuario(idUsuario);
+            Usuario usuario = new Usuario();
+            usuario.setIdUsuario(idUsuario);
+            match.setUsuario(usuario);
             match.setUsuarioMain(idUsuarioLogado);
             matchService.adicionarMatch(match);
             return true;
