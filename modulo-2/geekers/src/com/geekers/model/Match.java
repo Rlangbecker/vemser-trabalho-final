@@ -32,10 +32,7 @@ public class Match {
 
     @Override
     public String toString() {
-        return "Match{" +
-                "idMatch=" + idMatch +
-                ", usuario=" + usuario +
-                ", usuarioMain=" + usuarioMain +
-                '}';
+        return "Match ID: " + idMatch +
+                "\nMatch dado com o usuario: " + usuario.getNome() + " | Id " + usuario.getIdUsuario();
     }
 }

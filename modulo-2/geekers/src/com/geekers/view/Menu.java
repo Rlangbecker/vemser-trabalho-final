@@ -33,10 +33,10 @@ public class Menu {
                         "|     [1] Listar Matchs           |\n" +
                         "|     [2] Comentar Match          |\n" +
                         "|     [3] Excluir Match           |\n" +
+                        "|     [4] Mostrar Comentarios     |\n" +
                         "|     [0] Voltar menu principal   |\n" +
                         "+---------------------------------+\n");
     }
-
     public void menuEditarPerfil(){
         System.out.println(
                 "+---------------------------------+\n" +
@@ -52,6 +52,33 @@ public class Menu {
                         "+---------------------------------+\n");
     }
 
+    public void menuEscolhaHobbies(){
+        System.out.println("+---------------------------------+");
+        System.out.println("|       QUAL SEU HOBBIE?          |\n" +
+                "+---------------------------------+" +
+                "\n|          [1] Jogos              |" +
+                "\n|          [2] Series             |" +
+                "\n|          [3] Livros             |" +
+                "\n|          [4] Filmes             |" +
+                "\n|          [5] Bebidas            |" +
+                "\n|          [6] Outros             |" +
+                "\n+---------------------------------+ \n");
+    }
 
+    public void menuDescreverHobbie(){
+        System.out.println("+------ DESCREVA SEU HOBBIE ------+");
+        System.out.println("Informe a descricao: ");
+    }
 
+    public void menuCriarDesafio(){
+        System.out.println("+---------------------------------+\n"
+                +"|            DESAFIO              |\n"
+                +"+---------------------------------+\n"
+                +"Informe a pergunta : ");
+    }
+
+    public void menuRespostaDesafio(){
+        System.out.println("Informe sua resposta: \n" +
+                "[0] VERDADEIRO\n"+"[1] FALSO");
+    }
 }

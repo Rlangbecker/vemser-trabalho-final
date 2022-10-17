@@ -4,6 +4,7 @@ import com.geekers.exceptions.BancoDeDadosException;
 import com.geekers.model.Desafio;
 import com.geekers.model.Match;
 import com.geekers.model.Usuario;
+import com.geekers.service.UsuarioService;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -66,7 +67,7 @@ public class MatchRepository implements Repository<Integer, Match> {
         try {
             con = ConexaoBancoDeDados.getConnection();
 
-            String sql = "DELETE FROM MATCH WHERE ID_DESAFIO = ?";
+            String sql = "DELETE FROM MATCH WHERE ID_MATCH = ?";
 
             PreparedStatement stmt = con.prepareStatement(sql);
 
@@ -137,11 +138,7 @@ public class MatchRepository implements Repository<Integer, Match> {
             con = ConexaoBancoDeDados.getConnection();
 
 
-            String sql = "SELECT M.*, " +
-                    "            U.NOME AS NOME_USUARIO " +
-                    "       FROM MATCH M " +
-                    " INNER JOIN USUARIO U ON (D.ID_USUARIO = U.ID_USUARIO) " +
-                    "      WHERE M.ID_USUARIO = ? ";
+            String sql = "SELECT * FROM MATCH WHERE ID_USUARIO_MAIN = ? ";
 
             // Executa-se a consulta
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -150,6 +147,7 @@ public class MatchRepository implements Repository<Integer, Match> {
             ResultSet res = stmt.executeQuery();
 
             while (res.next()) {
+
                 Match match = getMatchFromResultSet(res);
                 matches.add(match);
             }
@@ -168,11 +166,18 @@ public class MatchRepository implements Repository<Integer, Match> {
     }
     private Match getMatchFromResultSet(ResultSet res) throws SQLException {
         Match match = new Match();
+        UsuarioService usuarioService = new UsuarioService();
         match.setIdMatch(res.getInt("id_match"));
         Usuario usuario = new Usuario();
-        match.setUsuario(usuario);
+        Usuario usuario2 = new Usuario();
         usuario.setIdUsuario(res.getInt("id_usuario"));
-        usuario.setIdUsuario(res.getInt("id_usuario_main"));
+        Usuario usuario1 = usuarioService.listarUsuarioPorId(usuario.getIdUsuario());
+        usuario.setNome(usuario1.getNome());
+        usuario2.setIdUsuario(res.getInt("id_usuario_main"));
+        Usuario usuarioLogado = usuarioService.listarUsuarioPorId(usuario2.getIdUsuario());
+        usuario2.setNome(usuarioLogado.getNome());
+        match.setUsuario(usuario);
+        match.setUsuarioMain(usuario2);
         return match;
     }
 

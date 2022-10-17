@@ -57,5 +57,12 @@ public class HobbieService {
         }
     }
 
+    public void listarPorUsuario(Integer id) {
+        try {
+            hobbiesRepository.listarHobbiePorUsuario(id).forEach(System.out::println);
+        } catch (BancoDeDadosException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

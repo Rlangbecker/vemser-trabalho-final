@@ -46,14 +46,15 @@ public class UsuarioService {
         }
     }
 
-    public void listarUsuarios() {
+    public void listarPorUsuarios(Integer id_usuario) {
         try {
-            List<Usuario> listar = usuarioRepository.listar();
+            List<Usuario> listar = usuarioRepository.listarPorUsuario(id_usuario);
             listar.forEach(System.out::println);
         } catch (BancoDeDadosException e) {
             e.printStackTrace();
         }
     }
+
     
     public void listarUsuariosPorUsuario(Integer quantidadeUsuarios) {
         try {
@@ -62,6 +63,16 @@ public class UsuarioService {
         } catch (BancoDeDadosException e) {
             e.printStackTrace();
         }
+    }
+
+    public Usuario listarUsuarioPorId(Integer idUsuario){
+        try {
+            List<Usuario> listar = usuarioRepository.listarUsuarioPorID(idUsuario);
+            return listar.get(0);
+        } catch (BancoDeDadosException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public Usuario verificarUsuario (Usuario usuario) {
@@ -75,3 +86,6 @@ public class UsuarioService {
     }
 
 }
+
+}
+
