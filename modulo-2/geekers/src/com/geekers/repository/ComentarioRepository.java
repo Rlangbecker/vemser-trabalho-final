@@ -4,6 +4,7 @@ import com.geekers.exceptions.BancoDeDadosException;
 import com.geekers.model.Comentario;
 import com.geekers.model.Desafio;
 import com.geekers.model.Usuario;
+import com.geekers.service.UsuarioService;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -207,9 +208,12 @@ public class ComentarioRepository implements Repository<Integer, Comentario> {
     }
     private Comentario getComentarioFromResultSet(ResultSet res) throws SQLException {
         Comentario comentario = new Comentario();
+        UsuarioService usuarioService = new UsuarioService();
         comentario.setIdComentario(res.getInt("id_comentario"));
         Usuario usuario = new Usuario();
         usuario.setIdUsuario(res.getInt("id_usuario"));
+        Usuario usuarioComentario = usuarioService.listarUsuarioPorId(usuario.getIdUsuario());
+        usuario.setNome(usuarioComentario.getNome());
         comentario.setUsuario(usuario);
         comentario.setComentario(res.getString("comentario"));
         return comentario;

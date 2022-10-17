@@ -78,15 +78,15 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" +
-                "idUsuario=" + idUsuario +
-                ", nome='" + nome + '\'' +
-                ", email='" + email + '\'' +
-                ", telefone='" + telefone + '\'' +
-                ", dataNascimento='" + dataNascimento + '\'' +
-                ", sexo='" + sexo + '\'' +
-                ", logado=" + logado +
-                '}';
+        return "+---------------------------------+\n"
+                +"Usuario ID:" + idUsuario+"\n"
+                +"Nome: " + nome +"\n"+
+                "Email: " + email +"\n" +
+                "Telefone: " + telefone + "\n" +
+                "Data Nascimento:" + dataNascimento + "\n" +
+                "Sexo: " + sexo + "\n" +
+                "Online: " + logado +"\n"
+                +"+---------------------------------+ \n";
     }
 
 }
