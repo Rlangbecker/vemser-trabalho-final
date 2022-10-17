@@ -1,6 +1,7 @@
 package com.geekers.repository;
 
 import com.geekers.exceptions.BancoDeDadosException;
+import com.geekers.model.Desafio;
 import com.geekers.model.Usuario;
 
 import java.sql.*;
@@ -176,6 +177,7 @@ public class UsuarioRepository implements Repository<Integer, Usuario> {
         return usuarios;
     }
 
+
     public boolean logar(Usuario usuario) {
         usuario.setLogado(true);
         return true;
@@ -220,6 +222,7 @@ public class UsuarioRepository implements Repository<Integer, Usuario> {
     }
 
     public List<Usuario> listarPorUsuario(Integer quantidadeUsuarios) throws BancoDeDadosException {
+
         List<Usuario> usuarios = new ArrayList<>();
         Connection con = null;
         try {
@@ -232,6 +235,7 @@ public class UsuarioRepository implements Repository<Integer, Usuario> {
 
             // Executa-se a consulta
             PreparedStatement stmt = con.prepareStatement(sql);
+
             stmt.setInt(1, quantidadeUsuarios);
 
             ResultSet res = stmt.executeQuery();
@@ -267,6 +271,7 @@ public class UsuarioRepository implements Repository<Integer, Usuario> {
 
             // Executa-se a consulta
             PreparedStatement stmt = con.prepareStatement(sql);
+
             stmt.setInt(1, idUsuario);
 
             ResultSet res = stmt.executeQuery();
@@ -288,6 +293,7 @@ public class UsuarioRepository implements Repository<Integer, Usuario> {
             }
         }
     }
+
     private Usuario getUsuarioFromResultSet(ResultSet res) throws SQLException {
         Usuario usuario = new Usuario();
         usuario.setIdUsuario(res.getInt("id_usuario"));
@@ -299,4 +305,8 @@ public class UsuarioRepository implements Repository<Integer, Usuario> {
         usuario.setSexo(res.getString("sexo"));
         return usuario;
     }
+
+}
+
+
 }
