@@ -58,6 +58,7 @@ CREATE TABLE DESAFIO (
 CREATE TABLE MATCH (
   id_match NUMBER,
   id_usuario NUMBER,
+  id_usuario_main NUMBER,
   PRIMARY KEY (id_match),
   CONSTRAINT FK_NATCH_USUARIO_ID_USUARIO
    FOREIGN KEY (id_usuario)
