@@ -253,6 +253,41 @@ public class UsuarioRepository implements Repository<Integer, Usuario> {
             }
         }
     }
+
+    public List<Usuario> listarUsuarioPorID(Integer idUsuario) throws BancoDeDadosException {
+        List<Usuario> usuarios = new ArrayList<>();
+        Connection con = null;
+        try {
+            con = ConexaoBancoDeDados.getConnection();
+
+
+            String sql = "SELECT * \n" +
+                    "FROM USUARIO u \n" +
+                    " WHERE u.ID_USUARIO = ?\n";
+
+            // Executa-se a consulta
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, idUsuario);
+
+            ResultSet res = stmt.executeQuery();
+
+            while (res.next()) {
+                Usuario usuario = getUsuarioFromResultSet(res);
+                usuarios.add(usuario);
+            }
+            return usuarios;
+        } catch (SQLException e) {
+            throw new BancoDeDadosException(e.getCause());
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
     private Usuario getUsuarioFromResultSet(ResultSet res) throws SQLException {
         Usuario usuario = new Usuario();
         usuario.setIdUsuario(res.getInt("id_usuario"));

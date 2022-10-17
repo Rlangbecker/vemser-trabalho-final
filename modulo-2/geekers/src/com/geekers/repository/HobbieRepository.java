@@ -164,6 +164,37 @@ public class HobbieRepository implements Repository<Integer, Hobbie> {
         }
     }
 
+    public List<Hobbie> listarHobbiePorUsuario(Integer id) throws BancoDeDadosException {
+        List<Hobbie> hobbies = new ArrayList<>();
+        Connection con = null;
+        try {
+            con = ConexaoBancoDeDados.getConnection();
+
+            String sql = "SELECT * FROM HOBBIE WHERE ID_USUARIO = ? ";
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, id);
+
+            ResultSet res = stmt.executeQuery();
+
+            while (res.next()) {
+                Hobbie hobbie = getHobbieFromResultSet(res);
+                hobbies.add(hobbie);
+            }
+            return hobbies;
+        } catch (SQLException e) {
+            throw new BancoDeDadosException(e.getCause());
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 
     private Hobbie getHobbieFromResultSet(ResultSet res) throws SQLException {
         Hobbie hobbie = new Hobbie();

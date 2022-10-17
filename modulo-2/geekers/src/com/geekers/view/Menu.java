@@ -33,10 +33,10 @@ public class Menu {
                         "|     [1] Listar Matchs           |\n" +
                         "|     [2] Comentar Match          |\n" +
                         "|     [3] Excluir Match           |\n" +
+                        "|     [4] Mostrar Comentarios     |\n" +
                         "|     [0] Voltar menu principal   |\n" +
                         "+---------------------------------+\n");
     }
-
     public void menuEditarPerfil(){
         System.out.println(
                 "+---------------------------------+\n" +

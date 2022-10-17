@@ -96,12 +96,28 @@ public class Main {
                                                 case 1 -> {//listar matchs
                                                       matchService.listarMatchPorUsuario(user.getIdUsuario());
                                                 }
+
                                                 case 2 -> {//comentar match
+                                                    Comentario comentarioMatch = new Comentario();
+                                                    System.out.println("Informe seu comentario: ");
+                                                    scanner.nextLine();
+                                                    String comentar = scanner.nextLine();
+                                                    comentarioMatch.setComentario(comentar);
+                                                    System.out.println("Informe o id do usuario para comentar: ");
+                                                    Integer idUsuario = scanner.nextInt();
+                                                    Usuario usuarioComentario = usuarioService.listarUsuarioPorId(idUsuario);
+                                                    comentarioMatch.setUsuario(usuarioComentario);
+                                                    comentarioService.adicionarComentario(comentarioMatch);
                                                 }
                                                 case 3 -> {//excluir match
                                                     System.out.println("Informe o id do match que voce desja remover: ");
                                                         int idMatch = scanner.nextInt();
                                                         matchService.removerMatch(idMatch);
+                                                }
+                                                case 4 -> {
+                                                    System.out.println("Informe o id do usuario para ver o comentario: ");
+                                                    int idComentario = scanner.nextInt();
+                                                    comentarioService.listarComentarioPorUsuario(idComentario);
                                                 }
                                                 case 0 -> {//voltar menu principal
                                                     break;
@@ -149,7 +165,7 @@ public class Main {
 // ---------------------------------------->        desafioService.editarDesafio();
                                                 }
                                                 case 5 -> {//ver hobbies
-                                                    hobbieService.listar();
+                                                    hobbieService.listarPorUsuario(user.getIdUsuario());
                                                 }
                                                 case 6 -> {//editar hobbies
                                                     System.out.println("Insira o ID do hobbie a ser editado: ");

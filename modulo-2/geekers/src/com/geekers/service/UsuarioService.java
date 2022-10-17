@@ -64,6 +64,16 @@ public class UsuarioService {
         }
     }
 
+    public Usuario listarUsuarioPorId(Integer idUsuario){
+        try {
+            List<Usuario> listar = usuarioRepository.listarUsuarioPorID(idUsuario);
+            return listar.get(0);
+        } catch (BancoDeDadosException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public Usuario verificarUsuario (Usuario usuario) {
         try {
             return usuarioRepository.receberUsuario(usuario);

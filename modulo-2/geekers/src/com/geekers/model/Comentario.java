@@ -31,10 +31,8 @@ public class Comentario {
 
     @Override
     public String toString() {
-        return "Comentario{" +
-                "idComentario=" + idComentario +
-                ", comentario='" + comentario + '\'' +
-                ", usuario=" + usuario +
-                '}';
+        return "ID " + idComentario +
+                "\nUsuario: " + usuario.getNome() +
+                " Comentario: " + comentario;
     }
 }
