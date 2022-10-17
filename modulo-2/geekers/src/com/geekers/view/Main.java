@@ -7,6 +7,7 @@ import com.geekers.service.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
+
 import com.geekers.model.Comentario;
 import com.geekers.model.Desafio;
 import com.geekers.model.Match;
@@ -16,8 +17,6 @@ import com.geekers.service.DesafioService;
 import com.geekers.service.MatchService;
 import com.geekers.service.UsuarioService;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Main {
@@ -75,7 +74,7 @@ public class Main {
                                 try {
                                     menu.menuUsuarioLogado();
                                     opcao = scanner.nextInt();
-                                } catch(InputMismatchException e){
+                                } catch (InputMismatchException e) {
                                     System.out.println("Opcao inválida, tente novamente!");
                                     break;
                                 }
@@ -87,7 +86,7 @@ public class Main {
                                         System.out.println("Escolha o usuario que você quer dar match pelo id:");
                                         int idUsuario = scanner.nextInt();
                                         scanner.nextLine();
-                                        desafioService.resolverDesafio(idUsuario,user);
+                                        desafioService.resolverDesafio(idUsuario, user);
                                     }
                                     case 2 -> { //matchs
                                         while (opcao != 0) {
@@ -95,7 +94,7 @@ public class Main {
                                             opcao = scanner.nextInt();
                                             switch (opcao) {
                                                 case 1 -> {//listar matchs
-                                                      matchService.listarMatchPorUsuario(user.getIdUsuario());
+                                                    matchService.listarMatchPorUsuario(user.getIdUsuario());
                                                 }
 
                                                 case 2 -> {//comentar match
@@ -112,8 +111,8 @@ public class Main {
                                                 }
                                                 case 3 -> {//excluir match
                                                     System.out.println("Informe o id do match que voce desja remover: ");
-                                                        int idMatch = scanner.nextInt();
-                                                        matchService.removerMatch(idMatch);
+                                                    int idMatch = scanner.nextInt();
+                                                    matchService.removerMatch(idMatch);
                                                 }
                                                 case 4 -> {
                                                     System.out.println("Informe o id do usuario para ver o comentario: ");
@@ -160,10 +159,20 @@ public class Main {
                                                     usuarioService.editarUsuario(user.getIdUsuario(), atualizarUsuario);
                                                 }
                                                 case 3 -> {//ver desafio
-                                                desafioService.listarDesafioPorUsuario(user.getIdUsuario());
+                                                    desafioService.listarDesafioPorUsuario(user.getIdUsuario());
                                                 }
                                                 case 4 -> {//editar desafio
-// ---------------------------------------->        desafioService.editarDesafio();
+                                                    Desafio desafioAtualizado = new Desafio();
+                                                    System.out.println("Insira o ID do desafio a ser editado: ");
+                                                    int id = scanner.nextInt();
+                                                    scanner.nextLine();
+
+                                                    menu.menuCriarDesafio();
+                                                    desafioAtualizado.setPergunta(scanner.nextLine());
+                                                    menu.menuRespostaDesafio();
+                                                    desafioAtualizado.setResposta(scanner.nextLine());
+
+                                                    desafioService.editarDesafio(id, desafioAtualizado);
                                                 }
                                                 case 5 -> {//ver hobbies
                                                     hobbieService.listarPorUsuario(user.getIdUsuario());
@@ -197,7 +206,8 @@ public class Main {
                                 }
                             }
                         }
-                    } case 2 -> { // cadastrar usuario
+                    }
+                    case 2 -> { // cadastrar usuario
 
                         Usuario usuarioNovo = new Usuario();
                         System.out.println("Insira seus dados\n");
@@ -260,6 +270,7 @@ public class Main {
 
 
     }
+
     public static Usuario fazerLogin(UsuarioService usuarioService, Scanner entrada) {
 
         Usuario usuario = new Usuario();
